@@ -57,10 +57,33 @@ class iosinformation():
         # self.exec_command(cmd2)
 
     def Install_Ipa(self, ipa):
-        os.system("ideviceinstaller -i {0}".format(ipa))
+        cmd = 'ideviceinstaller -i {0}'.format(ipa)
+        result = self.exec_command(cmd)
+        return result
 
     def Uninstall_Ipa(self, appid):
-        os.system("ideviceinstaller -u appid".format(appid))
+        cmd1 = 'ideviceinstaller -l'
+        cmd2 = 'ideviceinstaller -U {0}'.format(appid)
+        result = self.exec_command(cmd1)
+        appids=[]
+        for id in result.split('\n'):
+            if re.search('-',id):
+                str = id[0:id.find("-")].strip()
+                appids.append(str)
+
+            else:
+                pass
+        print appids
+        if appid in appids:
+            result = self.exec_command(cmd2)
+        else:
+            print "The appid dosen't exit in the devices"
+
+
+
+        # cmd2 = 'ideviceinstaller -u appid'.format(appid)
+        # result = self.exec_command(cmd)
+        # return result
 
 
 def main():
@@ -77,6 +100,9 @@ def main():
     # all_pakagas = ios.List_All_Pakages(uuid)
     # print " all_pakagas is {0}".format(all_pakagas)
     ios.Take_Screenshot()
+    ios.Install_Ipa('/Users/anderson/testcode/python/flask/uploads/englishtown_corporate_daily-190-2016.07.15.ipa')
+    #ios.Uninstall_Ipa("com.ef.engage.englishtown.uat.dailydebug")
+
 
 
 if __name__ == '__main__':
