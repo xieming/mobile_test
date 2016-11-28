@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_wtf import Form
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
+from account_ec import AccountHelper
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -54,67 +55,19 @@ def create_account():
         type = Accounts.typeset.data
         level = Accounts.levelset.data
         quantity = Accounts.quantityset.data
-    return render_template('account.html', form=Accounts, env=env, partner=partner, platform=platform, type=type,
-                           level=level, quantity=quantity)
+
+    memberId= AccountHelper.create_member()
+    mainRedemptionCode = "S15SCHOOLMAIN"
+    freeRedemptionCode = "S15SCHOOLF1D"
+    divisionCode = "SSCNTE2"
+    productId = 63
+
+    result = AccountHelper.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
+
+    # return render_template('account.html', form=Accounts, env=env, partner=partner, platform=platform, type=type,
+    #                        level=level, quantity=quantity)
 
 
-class progress(Form):
-    usernameset = StringField('User', validators=[DataRequired()])
-    levelset = SelectField('Level',
-                           choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'),
-                                    ('8', '8'), ('9', '9'), ('10', '10')])
-    submit = SubmitField("submit")
-
-
-@app.route('/progress_check', methods=['GET', 'POST'])
-def progress_check():
-    username = None
-    level = None
-    Progress = progress()
-    if Progress.validate_on_submit():
-        username = Progress.usernameset.data
-        level = Progress.levelset.data
-    return render_template('progress.html', form=Progress, username=username, level=level)
-
-
-class coupon(Form):
-    envset = SelectField('Environment', choices=[('1', 'UAT'), ('2', 'QA')])
-    usernameset = StringField('User', validators=[DataRequired()])
-    submit = SubmitField("submit")
-
-
-@app.route('/coupon_check', methods=['GET', 'POST'])
-def coupon_check():
-    env = None
-    username = None
-    Coupon = coupon()
-    if Coupon.validate_on_submit():
-        env = Coupon.envset.data
-        username = Coupon.username.data
-    return render_template('coupon.html', form=Coupon, env=env, username=username)
-
-
-class content(Form):
-    env = SelectField('Environment', choices=[('uat', 'UAT'), ('qa', 'QA'), ('stag', 'STAG')])
-    product = SelectField('Product', choices=[('b2c', 'B2C'), ('b2b', 'B2B'), ('ec', 'EC')])
-    username = StringField('User', validators=[DataRequired()])
-    password = StringField('Password', validators=[DataRequired()])
-    submit = SubmitField("Check")
-
-
-@app.route('/content_check')
-def content_check():
-    env = None
-    product = None
-    user = None
-    pwd = None
-    Content = content()
-    if Content.validate_on_submit():
-        env = Content.env.data
-        product = Content.product.data
-        user = Content.username.data
-        pwd = Content.password.data
-    return render_template('content.html', form=Content, env=env, product=product, user=user, pwd=pwd)
 
 
 if __name__ == "__main__":
