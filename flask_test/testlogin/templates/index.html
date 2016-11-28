@@ -1,0 +1,18 @@
+<!-- extend from base layout -->
+{% extends "base.html" %}
+    {% block content %}
+    <p>
+        Please enter your name:<br>
+        {{form.name(size=8)}}<br>
+        {% for error in form.errors.name %}
+        <span style='color:red;'>[{{error}}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        Password:<br>
+        {{form.password}}
+        {% for error in form.errors.password%}
+        <span style='color:red;'>[{{error}}]</span>
+        {% endfor %}
+    </p>
+{% endblock %}

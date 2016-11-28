@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Flask DEMO</title>
+    <link rel="stylesheet" type="text/css" href="static/css/index.css"/>
+</head>
+<body>
+    <div class="header">
+        {%if islogin == '1' %}
+        <h1>Welcome ,{{username}}!</h1>
+        {%else%}
+        <h1>{{username}}!</h1>
+        {%endif%}
+        <div class="nav">
+            <ul>
+                {%for nav in nav_list%}
+                <li><a href="{{nav}}">{{nav}}</a></li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <div class="item">
+            <h1>{{blog['title']}}</h1>
+            <div class="content">
+                <img src="/static/images/cat.jpg" alt="cat" />
+                <p>{{blog['content']}}</p>
+                <img src="{{img}}" alt="cat" />
+            </div>
+        </div>
+        <div class="side">
+            <ul>
+                {%for key,value in blogtag.items()%}
+                    <li>{{key}}({{value}})</li>
+                {%endfor%}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

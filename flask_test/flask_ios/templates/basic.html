@@ -1,0 +1,34 @@
+{% extends "bootstrap/base.html"  %}
+
+{% block title %}Floating-Bridge{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Floating-Bridge</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav nav-pills" role="tablist">
+                <li role="presentation" class="active"><a href="{{ url_for("create_account") }}">Accounts</a></li>
+				<li role="presentation"><a href="{{ url_for("progress_check") }}">Progress</a></li>
+				<li role="presentation"><a href="{{ url_for("coupon_check") }}">Coupons</a></li>
+				<li role="presentation"><a href="{{ url_for("down_loads") }}">Builds</a></li>
+                <li role="presentation"><a href="{{ url_for("content_check") }}">Content</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  {% block page_content %}{% endblock %}
+</div>
+{% endblock %}

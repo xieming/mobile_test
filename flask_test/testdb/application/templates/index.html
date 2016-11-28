@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row">
+        <div class="span6 offset6">
+        {% for mess in get_flashed_messages() %}
+
+                <div class="alert alert-info">
+                        {{ mess }}
+                </div>
+        {% endfor %}
+        </div>
+
+</div>
+<script language="javascript">
+        function checkinput()
+{
+        var oName=document.getElementById('name');
+        if(oName.value == ""){
+                alert("姓名不能为空");
+                return false;
+        }
+        var ocontent=document.getElementById('content');
+        if(ocontent.value == ""){
+                alert("内容不能为空");
+                return false;   
+        }
+        var otitle=document.getElementById('title');
+        if(otitle.value == ""){
+                alert("标题不能为空");
+                return false;
+        }
+        var oemail=document.getElementById('email');
+        if(oemail.value == ""){
+                alert("邮箱不能为空");
+                return false;
+        }
+        return true;
+}
+</script>
+<div class="container">
+<div class="span8 offset2">
+                <h2>留言板</h2>
+<table class="table table-hover">
+                <tr>
+                        <th>姓名</th>
+                        <th>留言主题</th>
+                        <th>留言时间</th>
+                        <th>留言邮箱</th>
+                <tr>
+        {% for i in message %}
+                <tr>
+                        <td>{{ i.name }}</td>
+                        <td><a href="/show/{{ i.id }}">{{ i.title}}</a></td>
+                        <td>{{ i.time }}</td>
+                        <td>{{ i.email }}</td>
+                </tr>
+        {% endfor %}
+</table>
+</div>
+</div>
+<div class="container">
+<div class="span12">
+        <hr>
+</div>
+</div>
+<div class="container">
+<div class="span6 offset3">
+<form class="form-horizontal" role="form" action="{{ url_for("index") }}" method=post onsubmit="return checkinput();">
+<div class="form-group">
+        <label class="col-sm-4 control-label">姓名</label>
+<div class="col-sm-8">
+<input type=text name="name" id="name" />
+</div>
+</div>
+<div class="form-group">
+        <label class="col-sm-4 control-label">留言主题</label>
+<div class="col-sm-8">
+<input type=text name="title" id="title" />
+</div>
+</div>
+
+<div class="form-group">
+        <label class="col-sm-4 control-label">留言内容</label>
+<div class="col-sm-8">
+<input type=text name="content" id="content" />
+</div>
+</div>
+
+<div class="form-group">
+        <label class="col-sm-4 control-label">留言信箱</label>
+<div class="col-sm-8">
+<input type=text name="email" id="email" />
+</div>
+</div>
+        <div class="span6 offset3">
+        <input type=submit value="提交" name="sub"/>
+        </div>
+</div>
+</form>
+</div>
+</div>
+{% endblock %}
