@@ -1,0 +1,119 @@
+{% extends "basic.html" %}
+{% block title %} Floating-Bridge {% endblock %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block page_content %}
+    <div class="page-header">
+        <form method="POST">
+
+        {% if envset %}
+            {{ envset }}
+        {% endif %}
+
+        {% if partnerset %}
+            {{ partnerset }}
+        {% endif %}
+
+        {% if platformset %}
+            {{ platformset }}
+        {% endif %}
+
+        {% if typeset %}
+            {{ typeset }}
+        {% endif %}
+
+        {% if levelset %}
+            {{ levelset }}
+        {% endif %}
+
+        {% if quantityset %}
+            {{ quantityset }}
+        {% endif %}
+		
+		{{ form.envset.label }}: {{ form.envset(class="input-sm") }}
+		{{ form.partnerset.label }}: {{ form.partnerset(class="input-sm") }}
+		{{ form.platformset.label }}: {{ form.platformset(class="input-sm") }}
+		{{ form.typeset.label }}: {{ form.typeset(class="input-sm") }}
+		{{ form.levelset.label }}: {{ form.levelset(class="input-sm") }}
+		{{ form.quantityset.label }}: {{ form.quantityset(class="input-sm") }}
+		</br>
+		{{ form.submit() }}
+		</form>
+		</br>
+		<i class="glyphicon glyphicon-cog"></i>
+		<table class="table table-striped">
+		  <thead>
+			<tr>
+			  <th>Partner</th>
+			  <th>Product_id</th>
+			  <th>Product_Name</th>
+			  <th>MainRedemptionCode</th>
+			  <th>FreeRedemptionCode</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td>Cool</td>
+			  <td>63</td>
+			  <td>Smart 15 - School</td>
+			  <td>S15SCHOOLMAIN</td>
+			  <td>S15SCHOOLF1D</td>
+			</tr>
+			<tr>
+			  <td>Cool</td>
+			  <td>64</td>
+			  <td>Smart 15 - Home PL(20)</td>
+			  <td>S15HOMEPL20MAIN</td>
+			  <td>S15HOMEPL20F1D</td>
+			</tr>
+			<tr>
+			  <td>Mini</td>
+			  <td>65</td>
+			  <td>Smart 15 - School - Mini</td>
+			  <td>S15SCHOOLMAIN</td>
+			  <td>S15SCHOOLF1D</td>
+			</tr>
+			<tr>
+			  <td>Mini</td>
+			  <td>66</td>
+			  <td>Smart 15 - Home PL(20)</td>
+			  <td>S15HOMEPL20MAIN</td>
+			  <td>S15HOMEPL20F1D</td>
+			</tr>
+		  </tbody>
+		</table>
+	</div>
+<div>
+	<h3 id="dla">DLA:</h3>
+	<i class="glyphicon glyphicon-cog"></i>
+		<table class="table table-striped">
+		  <thead>
+			<tr>
+			  <th>Env</th>
+			  <th>Redemption code: US</th>
+			  <th>Redemption code: CN1</th>
+			</tr>
+		  </thead>
+		  <tbody>
+			<tr>
+			  <td>UAT</td>
+			  <td>DLAHAOPL</td>
+			  <td>DLACNPL</td>
+			</tr>
+			<tr>
+			  <td>QA</td>
+			  <td>DLAHao2591598B0CB84C</td>
+			  <td>DLACNPL</td>
+			</tr>
+			<tr>
+			  <td>Staging</td>
+			   <td>DLAHAOPL</td>
+				<td>DLACNPL</td>
+				</tr>
+		  </tbody>
+		</table>
+	</div>
+
+	<!--<Iframe src="http://cns-etuat-34.ef.com" width="800" height="1000" scrolling="yes" frameborder="0"></iframe>-->
+
+{% endblock %}

@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 track_modifications = app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
-app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/flask"
+app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/info"
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = 'xxxx'
@@ -88,7 +88,7 @@ def create_account():
     current_quantity = request.form['quantity']
 
     productId = INFO.query.filter_by(Partner=current_partner).second()
-    divisionCode = INFO.query.filter_by(Partner=current_partner).third()
+    divisionCode = INFO.query.filter_by(Partnerf=current_partner).third()
     mainRedemptionCode = INFO.query.filter_by(Partner=current_partner).fourth()
     freeRedemptionCode = INFO.query.filter_by(Partner=current_partner).fifth()
 
@@ -98,7 +98,7 @@ def create_account():
     result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
 
     # return request.form['name']+'</br>'+request.form['passwd']
-    #return render_template('index.html', name=name)
+    return render_template('index.html')
 
 
 

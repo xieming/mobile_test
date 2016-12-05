@@ -16,7 +16,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav nav-pills" role="tablist">
-                <li role="presentation" class="active"><a href="{{ url_for("create_account") }}">Accounts</a></li>
+                <li role="presentation" class="active"><a href="{{ url_for("submit") }}">Accounts</a></li>
             </ul>
         </div>
     </div>
@@ -25,6 +25,6 @@
 
 {% block content %}
 <div class="container">
-  {% block page_content %}{% endblock %}
+    {% block page_content %}{% endblock %}
 </div>
 {% endblock %}

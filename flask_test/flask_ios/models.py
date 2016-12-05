@@ -1,17 +1,19 @@
 #encoding=utf-8
-from  flask import Flask
-import MySQLdb
+# from  flask import Flask
+# import MySQLdb
+# from app import app
+#
+# from datetime import datetime
+# from flask_sqlalchemy import SQLAlchemy
+from app import db
 
-from datetime import datetime
-from flask_sqlalchemy import SQLAlchemy
 
+# app = Flask(__name__)
+# track_modifications = app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
+# app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/info"
+# db = SQLAlchemy(app)
 
-app = Flask(__name__)
-track_modifications = app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
-app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/flask"
-db = SQLAlchemy(app)
-
-class INFO(db.Model):
+class INFO():
         __tablename__ ="info"
         #id = db.Column(db.Integer,primary_key=True)
         Partner = db.Column(db.String(200),primary_key=True)
@@ -32,5 +34,5 @@ class INFO(db.Model):
                 return "<Partner:%s>" %self.Partner
 
 
-# if __name__=="__main__":
-#         db.create_all()
+if __name__=="__main__":
+        db.create_all()
