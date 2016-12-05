@@ -1,14 +1,22 @@
-from flask import Flask, render_template
+from flask import Flask, render_template,request,flash
 from flask_bootstrap import Bootstrap
 from flask_wtf import Form
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 from account_ec import AccountHelper
+from config import Environment
+from flask_sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
+track_modifications = app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
+app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/flask"
+db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = 'xxxx'
 root_path = '/Users/anderson/testcode/python/flask'
+from models import *
+
 
 
 # urls = (
@@ -22,11 +30,12 @@ root_path = '/Users/anderson/testcode/python/flask'
 
 @app.route('/')
 def index():
+
     return render_template('index.html')
 
 
 class account(Form):
-    envset = SelectField('Environment', choices=[('1', 'UAT'), ('2', 'QA'), ('3', 'STAG'), ('4', 'Live')])
+    envset = SelectField('Environment', choices=[('1', 'UAT'), ('2', 'QA'), ('3', 'STAG')])
     partnerset = SelectField('Partner',
                              choices=[('1', 'Cool'), ('2', 'Mini'), ('3', 'Indo'), ('4', 'Rupe'), ('5', 'Cehk'),
                                       ('6', 'Ecsp')])
@@ -39,8 +48,8 @@ class account(Form):
     submit = SubmitField("Create")
 
 
-@app.route('/create_account', methods=['GET', 'POST'])
-def create_account():
+@app.route('/create_account')
+def account_form():
     env = None
     partner = None
     platform = None
@@ -49,6 +58,7 @@ def create_account():
     quantity = None
     Accounts = account()
     if Accounts.validate_on_submit():
+        flash('please wait: ')
         env = Accounts.envset.data
         partner = Accounts.partnerset.data
         platform = Accounts.platformset.data
@@ -56,16 +66,40 @@ def create_account():
         level = Accounts.levelset.data
         quantity = Accounts.quantityset.data
 
-    memberId= AccountHelper.create_member()
+
+    # memberId= account_info.create_member()
     mainRedemptionCode = "S15SCHOOLMAIN"
     freeRedemptionCode = "S15SCHOOLF1D"
     divisionCode = "SSCNTE2"
     productId = 63
 
-    result = AccountHelper.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
+    # result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
 
-    # return render_template('account.html', form=Accounts, env=env, partner=partner, platform=platform, type=type,
-    #                        level=level, quantity=quantity)
+    return render_template('account.html', form=Accounts, env=env, partner=partner, platform=platform, type=type,
+                           level=level, quantity=quantity)
+
+@app.route('/create_account', methods=['GET', 'POST'])
+def create_account():
+    current_env = request.form['env']
+    current_partner = request.form['partner']
+    current_platform = request.form['platform']
+    current_type = request.form['type']
+    current_level = request.form['level']
+    current_quantity = request.form['quantity']
+
+    productId = INFO.query.filter_by(Partner=current_partner).second()
+    divisionCode = INFO.query.filter_by(Partner=current_partner).third()
+    mainRedemptionCode = INFO.query.filter_by(Partner=current_partner).fourth()
+    freeRedemptionCode = INFO.query.filter_by(Partner=current_partner).fifth()
+
+    account_info = AccountHelper(Environment.get_host(current_env))
+    memberId = account_info.create_member()
+
+    result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
+
+    # return request.form['name']+'</br>'+request.form['passwd']
+    #return render_template('index.html', name=name)
+
 
 
 
