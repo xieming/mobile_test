@@ -67,11 +67,11 @@ def account_form():
         quantity = Accounts.quantityset.data
 
 
-    # memberId= account_info.create_member()
-    mainRedemptionCode = "S15SCHOOLMAIN"
-    freeRedemptionCode = "S15SCHOOLF1D"
-    divisionCode = "SSCNTE2"
-    productId = 63
+    # # memberId= account_info.create_member()
+    # mainRedemptionCode = "S15SCHOOLMAIN"
+    # freeRedemptionCode = "S15SCHOOLF1D"
+    # divisionCode = "SSCNTE2"
+    # productId = 63
 
     # result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
 
@@ -97,7 +97,7 @@ def create_account():
 
     result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
 
-    # return request.form['name']+'</br>'+request.form['passwd']
+    #return request.form['name']+'</br>'+request.form['passwd']
     return render_template('index.html')
 
 
