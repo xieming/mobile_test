@@ -34,7 +34,7 @@ def index():
     return render_template('index.html')
 
 
-class account(Form):
+class account_form(Form):
     envset = SelectField('Environment', choices=[('1', 'UAT'), ('2', 'QA'), ('3', 'STAG')])
     partnerset = SelectField('Partner',
                              choices=[('1', 'Cool'), ('2', 'Mini'), ('3', 'Indo'), ('4', 'Rupe'), ('5', 'Cehk'),
@@ -48,64 +48,71 @@ class account(Form):
     submit = SubmitField("Create")
 
 
-@app.route('/create_account')
-def account_form():
-    env = None
-    partner = None
-    platform = None
-    type = None
-    level = None
-    quantity = None
-    Accounts = account()
-    if Accounts.validate_on_submit():
-        flash('please wait: ')
-        env = Accounts.envset.data
-        partner = Accounts.partnerset.data
-        platform = Accounts.platformset.data
-        type = Accounts.typeset.data
-        level = Accounts.levelset.data
-        quantity = Accounts.quantityset.data
+@app.route('/create_account', methods=['GET', 'POST'])
+def create_account():
+    form = account_form(request.form)
+    if request.method == "POST":
+        #account = (form.envset.data,form.partnerset.data,form.platformset.data,form.typeset.data,form.levelset.data,form.quantityset.data)
+        return 'Hello %s !' % form.envset.choices
+    else:
+        return render_template('account.html',form = form)
 
-
-    # # memberId= account_info.create_member()
-    # mainRedemptionCode = "S15SCHOOLMAIN"
-    # freeRedemptionCode = "S15SCHOOLF1D"
-    # divisionCode = "SSCNTE2"
-    # productId = 63
+    # env = None
+    # partner = None
+    # platform = None
+    # type = None
+    # level = None
+    # quantity = None
+    # Accounts = account()
+    # if Accounts.validate_on_submit():
+    #     flash('please wait: ')
+    #     env = Accounts.envset.data
+    #     partner = Accounts.partnerset.data
+    #     platform = Accounts.platformset.data
+    #     type = Accounts.typeset.data
+    #     level = Accounts.levelset.data
+    #     quantity = Accounts.quantityset.data
+    #
+    #
+    # # # memberId= account_info.create_member()
+    # # mainRedemptionCode = "S15SCHOOLMAIN"
+    # # freeRedemptionCode = "S15SCHOOLF1D"
+    # # divisionCode = "SSCNTE2"
+    # # productId = 63
 
     # result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
 
-    return render_template('account.html', form=Accounts, env=env, partner=partner, platform=platform, type=type,
-                           level=level, quantity=quantity)
+    # return render_template('account.html', form=Accounts, env=env, partner=partner, platform=platform, type=type,
+    #                        level=level, quantity=quantity)
 
-@app.route('/create_account', methods=['GET', 'POST'])
-def create_account():
-    current_env = request.form['env']
-    current_partner = request.form['partner']
-    current_platform = request.form['platform']
-    current_type = request.form['type']
-    current_level = request.form['level']
-    current_quantity = request.form['quantity']
-
-    productId = INFO.query.filter_by(Partner=current_partner).second()
-    divisionCode = INFO.query.filter_by(Partnerf=current_partner).third()
-    mainRedemptionCode = INFO.query.filter_by(Partner=current_partner).fourth()
-    freeRedemptionCode = INFO.query.filter_by(Partner=current_partner).fifth()
-
-    account_info = AccountHelper(Environment.get_host(current_env))
-    memberId = account_info.create_member()
-
-    result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
-
-    #return request.form['name']+'</br>'+request.form['passwd']
-    return render_template('index.html')
+# @app.route('/create_account', methods=['GET', 'POST'])
+# def create_account():
+#     current_env = request.form['env']
+#     current_partner = request.form['partner']
+#     current_platform = request.form['platform']
+#     current_type = request.form['type']
+#     current_level = request.form['level']
+#     current_quantity = request.form['quantity']
+#
+#     productId = INFO.query.filter_by(Partner=current_partner).second()
+#     divisionCode = INFO.query.filter_by(Partnerf=current_partner).third()
+#     mainRedemptionCode = INFO.query.filter_by(Partner=current_partner).fourth()
+#     freeRedemptionCode = INFO.query.filter_by(Partner=current_partner).fifth()
+#
+#     account_info = AccountHelper(Environment.get_host(current_env))
+#     memberId = account_info.create_member()
+#
+#     result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
+#
+#     #return request.form['name']+'</br>'+request.form['passwd']
+#     return render_template('index.html')
 
 
 
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)
+    #app.run(debug=True)
     app.run(host='0.0.0.0', port=5000)
     # app.debug = True
     # app.run("0.0.0.0", port = 5000)
