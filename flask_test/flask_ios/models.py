@@ -13,7 +13,7 @@ from app import db
 # app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/info"
 # db = SQLAlchemy(app)
 
-class INFO():
+class INFO(db.Model):
         __tablename__ ="info"
         #id = db.Column(db.Integer,primary_key=True)
         Partner = db.Column(db.String(200),primary_key=True)

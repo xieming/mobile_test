@@ -35,12 +35,12 @@ def index():
 
 
 class account_form(Form):
-    envset = SelectField('Environment', choices=[('1', 'UAT'), ('2', 'QA'), ('3', 'STAG')])
+    envset = SelectField('Environment', choices=[('uat', 'UAT'), ('qa', 'QA'), ('stag', 'STAG')])
     partnerset = SelectField('Partner',
-                             choices=[('1', 'Cool'), ('2', 'Mini'), ('3', 'Indo'), ('4', 'Rupe'), ('5', 'Cehk'),
-                                      ('6', 'Ecsp')])
-    platformset = SelectField('Platform ', choices=[('1', 'V1'), ('2', 'V2')])
-    typeset = SelectField('school|home', choices=[('1', 'school'), ('2', 'home')])
+                             choices=[('cool', 'Cool'), ('mini', 'Mini'), ('indo', 'Indo'), ('rupe', 'Rupe'), ('cehk', 'Cehk'),
+                                      ('ecsp', 'Ecsp')])
+    platformset = SelectField('Platform ', choices=[('v1', 'V1'), ('v2', 'V2')])
+    typeset = SelectField('school|home', choices=[('school', 'school'), ('home', 'home')])
     levelset = SelectField('Level',
                            choices=[('1', '1'), ('2', '2'), ('3', '3'), ('4', '4'), ('5', '5'), ('6', '6'), ('7', '7'),
                                     ('8', '8'), ('9', '9'), ('10', '10')])
@@ -52,8 +52,25 @@ class account_form(Form):
 def create_account():
     form = account_form(request.form)
     if request.method == "POST":
+        current_env = form.envset.data
+        current_partner = form.partnerset.data
+        current_platform = form.platformset.data
+        current_type = form.typeset.data
+        current_level = form.levelset.data
+        current_quantity = form.quantityset.data
         #account = (form.envset.data,form.partnerset.data,form.platformset.data,form.typeset.data,form.levelset.data,form.quantityset.data)
-        return 'Hello %s !' % form.envset.choices
+
+        productId = INFO.query.filter_by(Partner= current_partner)
+        # divisionCode = INFO.query.filter_by(Partnerf=current_partner).third()
+        # mainRedemptionCode = INFO.query.filter_by(Partner=current_partner).fourth()
+        # freeRedemptionCode = INFO.query.filter_by(Partner=current_partner).fifth()
+
+        # account_info = AccountHelper(Environment.get_host(current_env))
+        # memberId = account_info.create_member()
+        #
+        # result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
+
+        return 'Hello %s !' % INFO.query.filter_by(Partner='cool').first()
     else:
         return render_template('account.html',form = form)
 
