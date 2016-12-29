@@ -63,17 +63,17 @@ class AccountHelper():
         file_object.close()
 
 
-def main():
-    new = AccountHelper()
-    memberId= new.create_member()
-    mainRedemptionCode = "S15SCHOOLMAIN"
-    freeRedemptionCode = "S15SCHOOLF1D"
-    divisionCode = "SSCNTE2"
-    productId = 63
-
-    result = new.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
-    print result
-
-
-if __name__ == '__main__':
-    main()
+# def main():
+#     new = AccountHelper()
+#     memberId= new.create_member()
+#     mainRedemptionCode = "S15SCHOOLMAIN"
+#     freeRedemptionCode = "S15SCHOOLF1D"
+#     divisionCode = "SSCNTE2"
+#     productId = 63
+#
+#     result = new.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
+#     print result
+#
+#
+# if __name__ == '__main__':
+#     main()

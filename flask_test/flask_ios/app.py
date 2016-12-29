@@ -10,7 +10,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 track_modifications = app.config.setdefault('SQLALCHEMY_TRACK_MODIFICATIONS', True)
-app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/info"
+app.config['SQLALCHEMY_DATABASE_URI']="mysql://root:@localhost:3306/TESTS"
 db = SQLAlchemy(app)
 bootstrap = Bootstrap(app)
 app.config['SECRET_KEY'] = 'xxxx'
@@ -30,7 +30,8 @@ from models import *
 
 @app.route('/')
 def index():
-
+    # select_ = TESTS.query.filter_by(Partner='cool').first()
+    # print(select_)
     return render_template('index.html')
 
 
@@ -60,7 +61,6 @@ def create_account():
         current_quantity = form.quantityset.data
         #account = (form.envset.data,form.partnerset.data,form.platformset.data,form.typeset.data,form.levelset.data,form.quantityset.data)
 
-        productId = INFO.query.filter_by(Partner= current_partner)
         # divisionCode = INFO.query.filter_by(Partnerf=current_partner).third()
         # mainRedemptionCode = INFO.query.filter_by(Partner=current_partner).fourth()
         # freeRedemptionCode = INFO.query.filter_by(Partner=current_partner).fifth()
@@ -68,9 +68,15 @@ def create_account():
         # account_info = AccountHelper(Environment.get_host(current_env))
         # memberId = account_info.create_member()
         #
-        # result = account_info.set_values(memberId, mainRedemptionCode, freeRedemptionCode, divisionCode, productId)
-
-        return 'Hello %s !' % INFO.query.filter_by(Partner='cool').first()
+        #
+        select_ = TESTS.query.filter_by(Partner=current_partner).first()
+        print
+        print current_env
+        memberId = AccountHelper().create_member()
+        divisionCode = "SSCNTE2"
+        result = AccountHelper().set_values(memberId, select_.MainRedemptionCode, select_.FreeRedemptionCode, divisionCode, select_.Product_ID)
+        print result
+        return 'Hello %s !' %(select_)
     else:
         return render_template('account.html',form = form)
 
