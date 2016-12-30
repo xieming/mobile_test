@@ -28,11 +28,13 @@ from models import *
 # class icon:
 #     def GET(self): raise web.seeother("/static/favicon.ico")
 
-@app.route('/')
+@app.route('/',methods=['GET'])
 def index():
     # select_ = TESTS.query.filter_by(Partner='cool').first()
     # print(select_)
-    return render_template('index.html')
+    mess = TESTS.query.all()
+    return render_template("index.html", test=mess)
+    #return render_template('index.html')
 
 
 class account_form(Form):
@@ -70,15 +72,29 @@ def create_account():
         #
         #
         select_ = TESTS.query.filter_by(Partner=current_partner).first()
-        print
-        print current_env
-        memberId = AccountHelper().create_member()
+        member_id,username,password = AccountHelper().create_member()
         divisionCode = "SSCNTE2"
-        result = AccountHelper().set_values(memberId, select_.MainRedemptionCode, select_.FreeRedemptionCode, divisionCode, select_.Product_ID)
-        print result
-        return 'Hello %s !' %(select_)
+        result = AccountHelper().set_values(member_id, select_.MainRedemptionCode, select_.FreeRedemptionCode, divisionCode, select_.Product_ID)
+
+        mess = ACCOUNT(Username=username, Password=password, Memberid=member_id, Env=current_env,Partner=current_partner)
+        db.session.add(mess)
+        db.session.commit()
+
+        return 'Hello new account! {},{},{},{},{}'.format(current_env, current_partner, member_id, username,
+                                                              password)
+
+
+
     else:
         return render_template('account.html',form = form)
+
+@app.route('/show_account', methods=['GET','POST'])
+def show_account():
+    # select_ = TESTS.query.filter_by(Partner='cool').first()
+    # print(select_)
+    account = ACCOUNT.query.all()
+    return render_template("show.html",account=account)
+            # return render_template('index.html')
 
     # env = None
     # partner = None

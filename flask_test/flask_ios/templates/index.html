@@ -1,8 +1,25 @@
 {% extends "basic.html" %}
 {% block title %} Floating-Bridge {% endblock %}
 {% block page_content %}
-    <div class="page-header">
-        <h1>Hello, welcome to mobile QA team!</h1>
-    </div>
-
+<div class="span8 offset2">
+                <h2>Configurating</h2>
+<table class="table table-hover">
+                <tr>
+                        <th>Partner</th>
+                        <th>Product_id</th>
+                        <th>Product_Name</th>
+                        <th>MainRedemptionCode</th>
+                        <th>FreeRedemptionCode</th>
+                <tr>
+        {% for i in test %}
+                <tr>
+                        <td>{{ i.Partner }}</td>
+                        <td>{{ i.Product_ID }}</td>
+                        <td>{{ i.Product_Name }}</td>
+                        <td>{{ i.MainRedemptionCode }}</td>
+                        <td>{{ i.FreeRedemptionCode }}</td>
+                </tr>
+        {% endfor %}
+</table>
+</div>
 {% endblock %}
