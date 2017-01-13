@@ -1,6 +1,5 @@
 __author__ = 'anderson'
 
-# -*- coding: utf-8 -*-
 
 import lib.Utils as U
 import lib.adbUtils

@@ -22,7 +22,7 @@ import random
 class RunApp(object):
     def __init__(self, device_l):
         """
-        self.time:用于建立存放文件的目录
+        self.time: strorage dir
         """
         self.time = time.strftime(
             "%Y-%m-%d_%H_%M_%S",
@@ -37,7 +37,7 @@ class RunApp(object):
 
     def mkdir_file(self):
         """
-        :return:创建日志存放文件夹
+        :return:log folder
         """
         ini = U.ConfigIni()
         result_file = str(ini.get_ini('test_case', 'log_file'))
@@ -65,7 +65,7 @@ class RunApp(object):
     @U.l()
     def __get_appium_port(self):
         """
-        :return: 开启appium端口
+        :return: start appium port
         """
         sp = public.StartAppium.Sp(self.device)
         self.appium_port = sp.main()
@@ -74,7 +74,7 @@ class RunApp(object):
     @U.l()
     def clear_process(self):
         """
-        :return: 清理appium与logcat进程
+        :return: clear appium and logcat process
         """
         cp = public.CleanProcess.Cp()
         cp.clean_process(self.appium_port, self.device)
@@ -82,7 +82,7 @@ class RunApp(object):
 
     def start_appium(self):
         """
-        启动driver
+        start driver
         :return:
         """
 
@@ -106,8 +106,8 @@ class RunApp(object):
 
     def analysis(self, yaml_name, yaml_path):
         """
-        继承driver开始测试
-        :param path_yaml: 测试用例地址
+        inherit driver
+        :param path_yaml:
         :return:
         """
 
@@ -121,13 +121,11 @@ class RunApp(object):
 
     def case_start(self):
         """
-        控制diver开启 and 关闭,且清理进程
-        执行步骤:
-            1:安装应用
-            2:开启driver,并且执行测试
-            3:关闭driver
-            4:清理logcat appium 进程
-        :return:
+        driver progress:
+            1. install app
+            2. start driver, and execute test
+            3. close driver
+            4. clear logcat appium process
         """
 
         test_case_yaml = public.GetCase.case_yaml_file().items()
@@ -148,8 +146,7 @@ class RunApp(object):
 
 def get_device_info():
     """
-    获取当前电脑连接的devices
-    :return: 返回设备列表
+    Get current devices list
     """
     device_list = []
     ini = U.ConfigIni()

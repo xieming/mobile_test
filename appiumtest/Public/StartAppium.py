@@ -11,18 +11,18 @@ class Sp:
 
     def __start_driver(self, aport, bpport):
         """
-        清理logcat与appium所有进程
+        clear logcat and appium all process
         :return:
         """
         if platform.system() == 'Windows':
-            # 在win10启动appium有bug,暂时处理方案
+
             import subprocess
             subprocess.Popen("appium -p %s -bp %s -U %s" %
                              (aport, bpport, self.device), shell=True)
 
         else:
             appium = U.cmd("appium -p %s -bp %s -U %s" %
-                           (aport, bpport, self.device))  # 启动appium
+                           (aport, bpport, self.device))  # start appium
             while True:
                 appium_line = appium.stdout.readline().strip()
                 U.Logging.debug(appium_line)
@@ -31,10 +31,10 @@ class Sp:
 
     def start_appium(self):
         """
-        启动appium
+        start appium
         p:appium port
         bp:bootstrap port
-        :return: 返回appium端口参数
+        :return: return appium port parameters
         """
 
         aport = random.randint(4700, 4900)
@@ -49,11 +49,11 @@ class Sp:
 
     def main(self):
         """
-        :return: 启动appium
+        :return: start appium
         """
         return self.start_appium()
 
 
 if __name__ == '__main__':
-    s = Sp('0530dc6a')
+    s = Sp('A7J5T15A28007700')
     s.main()
