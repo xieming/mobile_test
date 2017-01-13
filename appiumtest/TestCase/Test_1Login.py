@@ -2,8 +2,9 @@
 __author__ = 'Anderson'
 import unittest
 from PO import LoginPage
+from PO import BasePage
 
-class Login(unittest.TestCase):
+class LoginTest(unittest.TestCase):
 
 	def setUp(self):
 		print "start to test login"
@@ -12,7 +13,7 @@ class Login(unittest.TestCase):
 		username='dla_none_cn@qp1.org'
 		password='11111111'
 
-		LoginPage.login_action(username, password)
+		LoginPage.Login(BasePage).login_action(username, password)
 
 
 	def tearDown(self):

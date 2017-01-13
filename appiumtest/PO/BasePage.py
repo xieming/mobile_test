@@ -4,25 +4,61 @@ from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
 
 import time,os
+import Queue
+import threading
 
-class Base:
-	driver = None
-	capabilities = { 'platformName':'Android',
+class Base(threading.Thread):
+	# driver = None
+	# capabilities = { 'platformName':'Android',
+	# 				# 'platformVersion':'6.0',
+	# 				# 'deviceName':'Nexus 5X',
+	# 				 'platformVersion':'5.1',
+	# 				# 'deviceName':"Samsung Galaxy S6 - 5.0.0 - API 21 - 1440x2560",
+	# 				 'deviceName': '192.168.56.101:5555',
+	# 				 'udid': '192.168.56.101:5555',
+	# 				 'appPackage':'com.ef.core.engage.englishtown',
+	# 				 'appActivity':'com.ef.core.engage.ui.screens.activity.LoginActivity',
+	# 				 'app': '/Users/anderson/Downloads/engage-englishtown-live-release.apk',
+	# 				 'unicodeKeyboard':True,
+	# 				 'resetKeyboard':True}
+    #
+	# driver = webdriver.Remote('http://localhost:4723/wd/hub', capabilities)
+    #
+    #
+	# capabilities1 = { 'platformName':'Android',
+	# 				# 'platformVersion':'6.0',
+	# 				# 'deviceName':'Nexus 5X',
+	# 				 'platformVersion':'5.0',
+	# 				# 'deviceName':"Samsung Galaxy S6 - 5.0.0 - API 21 - 1440x2560",
+	# 				 'deviceName': '192.168.56.102:5555',
+	# 				 'udid': '192.168.56.102:5555',
+	# 				 'appPackage':'com.ef.core.engage.englishtown',
+	# 				 'appActivity':'com.ef.core.engage.ui.screens.activity.LoginActivity',
+	# 				 'app': '/Users/anderson/Downloads/engage-englishtown-live-release.apk',
+	# 				 'unicodeKeyboard':True,
+	# 				 'resetKeyboard':True}
+    #
+	# driver = webdriver.Remote('http://localhost:4725/wd/hub', capabilities1)
+	def __init__(self,appium_driver):
+		threading.Thread.__init__(self)
+		self.capabilities={ 'platformName':'Android',
 					# 'platformVersion':'6.0',
 					# 'deviceName':'Nexus 5X',
 					 'platformVersion':'5.1',
 					# 'deviceName':"Samsung Galaxy S6 - 5.0.0 - API 21 - 1440x2560",
 					 'deviceName': '192.168.56.101:5555',
+					 'udid': '192.168.56.101:5555',
 					 'appPackage':'com.ef.core.engage.englishtown',
 					 'appActivity':'com.ef.core.engage.ui.screens.activity.LoginActivity',
 					 'app': '/Users/anderson/Downloads/engage-englishtown-live-release.apk',
 					 'unicodeKeyboard':True,
 					 'resetKeyboard':True}
 
-	driver = webdriver.Remote('http://localhost:4723/wd/hub', capabilities)
-	def __init__(self,appium_driver):
+		self.driver = webdriver.Remote('http://localhost:4725/wd/hub', self.capabilities)
 
-		self.driver = appium_driver
+		def run(self):
+			while not exit_flag:
+
 
 #重新封装单个元素定位方法
 	def find_element(self,loc):
