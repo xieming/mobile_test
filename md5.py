@@ -184,22 +184,22 @@ def main():
                 check_md5(report_path  + file)
         else:
             "please check your network!"
-    elif choose == '2':
+    # elif choose == '2':
 
 
-        # check_folder(new_path)
-        # upgrade_englishtown(old_path,new_path)
-        # print "old apk is : %s" % old_apk
-        # install_apks(old_path + old_apk)
-        # print "new apk is : %s" % new_apk
-        # install_apks(new_path+new_apk)
+    #     # check_folder(new_path)
+    #     # upgrade_englishtown(old_path,new_path)
+    #     # print "old apk is : %s" % old_apk
+    #     # install_apks(old_path + old_apk)
+    #     # print "new apk is : %s" % new_apk
+    #     # install_apks(new_path+new_apk)
 
 
-    elif choose == '3':
-        # pg = find_package("smart")
-        # print pg
-        getdeviceinfo()
-        screenshot()
+    # elif choose == '3':
+    #     # pg = find_package("smart")
+    #     # print pg
+    #     getdeviceinfo()
+    #     screenshot()
 
 
     else:

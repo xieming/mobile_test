@@ -54,7 +54,10 @@ class account_form(Form):
 @app.route('/create_account', methods=['GET', 'POST'])
 def create_account():
     form = account_form(request.form)
+
     if request.method == "POST":
+
+
         current_env = form.envset.data
         current_partner = form.partnerset.data
         current_platform = form.platformset.data
@@ -74,12 +77,15 @@ def create_account():
         select_ = TESTS.query.filter_by(Partner=current_partner).first()
         member_id,username,password = AccountHelper().create_member()
         divisionCode = "SSCNTE2"
+
+
+
         result = AccountHelper().set_values(member_id, select_.MainRedemptionCode, select_.FreeRedemptionCode, divisionCode, select_.Product_ID)
 
         mess = ACCOUNT(Username=username, Password=password, Memberid=member_id, Env=current_env,Partner=current_partner)
         db.session.add(mess)
         db.session.commit()
-
+        flash('Creating accounts,Please waiting...', 'info')
         return 'Hello new account! {},{},{},{},{}'.format(current_env, current_partner, member_id, username,
                                                               password)
 

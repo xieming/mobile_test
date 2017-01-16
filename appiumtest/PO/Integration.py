@@ -8,7 +8,6 @@ import os
 import yaml
 from appium import webdriver
 import lib.Utils as U
-import ExecuteCase
 import public.StartAppium
 import public.GetHtml
 import public.GetLog

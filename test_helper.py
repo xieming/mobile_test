@@ -6,9 +6,9 @@ import time
 
 import global_value
 
-# v1 = "http://10.128.42.155:8080/view/Engage/job/engage-android-release/21/artifact/engage/build/outputs/apk/engage-englishtown-qa-release.apk"
-# v2= "http://10.128.42.155:8080/view/Engage/job/engage-android-release/35/artifact/engage/build/outputs/apk/engage-englishtown-qa-release.apk"
-v3= "http://10.128.42.155:8080/view/Engage/job/engage-android-release/41/artifact/engage/build/outputs/apk/engage-englishtown-qa-debug.apk"
+#v1 = "http://10.128.42.155:8080/view/Engage/job/engage-android-release/21/artifact/engage/build/outputs/apk/engage-englishtown-live-release.apk"
+#v2 = "http://10.128.42.155:8080/view/Engage/job/engage-android-release/35/artifact/engage/build/outputs/apk/engage-englishtown-live-release.apk"
+v3 = "http://10.128.42.155:8080/view/Engage/job/engage-android-release/35/artifact/engage/build/outputs/apk/engage-corporate-live-release.apk"
 
 # v1="http://10.128.42.155:8080/view/Engage/job/engage-android-release/10/artifact/engage/build/outputs/apk/engage-corporate-qa-release.apk"
 # v2="http://10.128.42.155:8080/view/Engage/job/engage-android-release/35/artifact/engage/build/outputs/apk/engage-corporate-qa-release.apk"
