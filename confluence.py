@@ -20,6 +20,9 @@ from selenium.webdriver import ActionChains
 import time
 import sys
 
+Emails = []
+ID = []
+
 def check_time(start_day):
     start_time = datetime.datetime.strptime(start_day.decode(), '%Y-%m-%d')
 
@@ -90,10 +93,22 @@ def get_all_email():
     driver.find_element_by_id('loginButton').click()
     driver.get(devive_page)
     print (driver.title)
-    ele = driver.find_element_by_xpath("//div[2]/table/tbody/tr[8]/td[8]/div/a")
-    print('emails')
-    print (ele.text.replace(" ",".")+"@ef.com")
+    if ID:
+        print(ID)
+        for id in ID:
+            print('each')
+            print(id)
+
+            ele = driver.find_element_by_xpath("//div[2]/table/tbody/tr[{}]/td[8]/div//a".format(id))
+
+
+
+
+            time.sleep(1)
+            print (ele.text.replace(" ",".")+"@ef.com")
+            Emails.append(ele.text.replace(" ",".")+"@ef.com")
     driver.quit()
+    print(Emails)
 
 
 
@@ -135,7 +150,7 @@ def sort_by_count(d):
 
 
 def main():
-    get_all_email()
+
 
 
     # loadConfluencePage(pageID)
@@ -166,7 +181,7 @@ def main():
     for table in tables:
         #print table
         result = makeTableContentList(table)
-
+        index = 1
         for kk in result[1:]:
             print (kk[-3].decode())
 
@@ -177,11 +192,14 @@ def main():
 
                 if check_time(kk[-2]) > 60:
                     #print ("why")
+                    ID.append(index)
                     print("ok %s" %(kk[0]))
                     # print("nok %s" % (kk[-2]))
                     # print("nok %s" % (kk[-3]))
             else:
                 pass
+
+            index = index +1
         #print result
         result_table.append(result)
     #     makeFile(result)
@@ -236,6 +254,7 @@ def main():
     # print(ll)
     # gg = sort_by_count(ll)
     # print(gg)
+    get_all_email()
 
 if __name__ == "__main__":
     main()
