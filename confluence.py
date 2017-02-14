@@ -28,20 +28,20 @@ def check_time(start_day):
     return (current_time - start_time).days
 
 
-def mkdir(path):
-    path = path.strip()
-
-    path = path.rstrip("\\")
-
-    isExists = os.path.exists(path)
-
-    if not isExists:
-        print(path + ' create successfully!')
-        os.makedirs(path)
-        return True
-    else:
-        print(path + ' exists!')
-        return False
+# def mkdir(path):
+#     path = path.strip()
+#
+#     path = path.rstrip("\\")
+#
+#     isExists = os.path.exists(path)
+#
+#     if not isExists:
+#         print(path + ' create successfully!')
+#         os.makedirs(path)
+#         return True
+#     else:
+#         print(path + ' exists!')
+#         return False
 
 
 def makeTableContentList(table):
@@ -60,10 +60,10 @@ def makeTableContentList(table):
         rowIndex = 0
         for i in allcols:
             if i.findAll('div'):
-                line.append(i.div.text.encode('utf-8'))
+                line.append(i.div.text.encode())
 
             else:
-                line.append(i.text.encode('utf-8'))
+                line.append(i.text.encode())
 
 
         # print "rowIndex = ",rowIndex
@@ -79,55 +79,20 @@ def makeTableContentList(table):
         result.append(line)
     return result
 
-
-def makeFile(tableContentList):
-    className = tableContentList[0][0]
-
-    outputFile = file("output/" + className + ".cs", "w")
-
-    # start to write file
-
-    # write header
-    outputFile.write("using UnityEngine;\n")
-    outputFile.write("using System.Collections;\n\n")
-    outputFile.write("public class " + className + "\n{\n")
-
-    # write members
-    rowCounter = 0
-    for row in tableContentList:
-        if row and rowCounter > 0:  # rowCounter == 0 is className
-
-            # --------format---------
-            beginSpaces = "    public    "
-            typeString = "{:<12}".format(row[0])
-            memberName = "{:<30}".format(row[1] + ";")
-            comments = ""
-
-            if len(row[2]) > 1:
-                comments = "    //" + row[2]
-
-            s = beginSpaces + typeString + memberName + comments + "\n"
-
-            outputFile.write(s)
-
-        rowCounter += 1
-
-    # write tail
-    outputFile.write("}\n")
-
-    outputFile.close()
-
 def get_all_email():
     login_page = "https://confluence.englishtown.com/"
     devive_page = "https://confluence.englishtown.com/pages/viewpage.action?pageId=673644924"
     driver = webdriver.PhantomJS()
+    #driver = webdriver.Firefox()
     driver.get(login_page)
     driver.find_element_by_id('os_username').send_keys("ming.xiesh")
     driver.find_element_by_id('os_password').send_keys("Good_Luck777")
     driver.find_element_by_id('loginButton').click()
     driver.get(devive_page)
-    time.sleep(3)
     print (driver.title)
+    ele = driver.find_element_by_xpath("//div[2]/table/tbody/tr[8]/td[8]/div/a")
+    print('emails')
+    print (ele.text.replace(" ",".")+"@ef.com")
     driver.quit()
 
 
@@ -171,15 +136,14 @@ def sort_by_count(d):
 
 def main():
     get_all_email()
-    # change Encoding to UTF8
-    #setDefaultEncodingUTF8()
 
-    # htmlContent = loadConfluencePage(pageID)
+
+    # loadConfluencePage(pageID)
     # print htmlContent
 
 
     #make output directory
-    mkdir(sys.path[0] + "/output")
+    #mkdir(sys.path[0] + "/output")
 
     # there are two pages contain data model
     pageID = "673644924"
@@ -212,10 +176,10 @@ def main():
                 # print (check_time(kk[-2]))
 
                 if check_time(kk[-2]) > 60:
-                    print ("why")
+                    #print ("why")
                     print("ok %s" %(kk[0]))
-                    print("nok %s" % (kk[-2]))
-                    print("nok %s" % (kk[-3]))
+                    # print("nok %s" % (kk[-2]))
+                    # print("nok %s" % (kk[-3]))
             else:
                 pass
         #print result
