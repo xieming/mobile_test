@@ -14,19 +14,27 @@ class Product:
     EC = 'ec'
 
     @staticmethod
-    def to_id(product):
+    def to_package(product):
         return {
-            Product.B2B: 2,
-            Product.B2C: 1,
-            Product.EC: 4
+            Product.B2B: "com.ef.core.engage.corporate",
+            Product.B2C: "com.ef.core.engage.englishtown",
+            Product.EC: "com.ef.core.engage.smartenglish"
         }[product]
 
     @staticmethod
-    def to_name_tablet(product):
+    def to_start_page(product):
+        return {
+            Product.B2B: "com.ef.core.engage.corporate/com.ef.core.engage.ui.screens.activity.CorporateLoginActivity",
+            Product.B2C: "com.ef.core.engage.englishtown/com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity",
+            Product.EC: "com.ef.core.engage.smartenglish/com.ef.core.engage.ui.screens.activity.SmartEnglishLoginActivity"
+        }[product]
+
+    @staticmethod
+    def to_name(product):
         return {
             Product.B2C: 'englishtown',
             Product.B2B: 'corporate',
-            Product.EC: 'englishcenters'
+            Product.EC: 'smartenglish'
         }[product]
 
 

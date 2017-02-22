@@ -12,7 +12,7 @@ class iosinformation():
         (stdoutdata, stderrdata) = result.communicate()
         # print("Result is:%s") % stdoutdata
         if (re.search("No device found", str(stdoutdata)) or re.search("Could not connect", str(stdoutdata))):
-            print "Please connet it agian, or add permission like: brew install libimobiledevice --HEAD,sudo chmod -R 777 /var/db/lockdown/"
+            print ("Please connet it agian, or add permission like: brew install libimobiledevice --HEAD,sudo chmod -R 777 /var/db/lockdown/")
         else:
             return stdoutdata
 
@@ -39,7 +39,6 @@ class iosinformation():
     def List_All_Pakages(self, uuid):
         cmd = 'ideviceinstaller -u {0}'.format(uuid)
 
-        print cmd
         all_pakages = self.exec_command(cmd)
 
         return all_pakages
@@ -53,7 +52,7 @@ class iosinformation():
         cmd1 = "idevicescreenshot {0} + '/' + screenshot-DATE.tiff".format(current_dir)
         cmd2 = "sips - s format png {0}.tiff - -out {1}.png".format(current_time, current_time)
         self.exec_command(cmd1)
-        print "ok"
+
         # self.exec_command(cmd2)
 
     def Install_Ipa(self, ipa):
@@ -73,11 +72,11 @@ class iosinformation():
 
             else:
                 pass
-        print appids
+
         if appid in appids:
             result = self.exec_command(cmd2)
         else:
-            print "The appid dosen't exit in the devices"
+            print ("The appid dosen't exit in the devices")
 
 
 
@@ -90,13 +89,13 @@ def main():
     ios = iosinformation()
 
     uuid = ios.Get_UUID()
-    print " uuid is {0}".format(uuid)
+    print (" uuid is {0}".format(uuid))
     device = ios.Get_Device_Name()
-    print " device is {0}".format(device)
+    print (" device is {0}".format(device))
     device_info = ios.Get_Device_information()
-    print " device_info is {0}".format(device_info)
+    print (" device_info is {0}".format(device_info))
     product_type = ios.Get_Device_Product_type()
-    print " product_type is {0}".format(product_type)
+    print (" product_type is {0}".format(product_type))
     # all_pakagas = ios.List_All_Pakages(uuid)
     # print " all_pakagas is {0}".format(all_pakagas)
     ios.Take_Screenshot()

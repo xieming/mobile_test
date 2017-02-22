@@ -36,3 +36,4 @@ class AppInfo(Base):
     app_product = None
     app_platform = None
     app_job = None
+    app_type = None

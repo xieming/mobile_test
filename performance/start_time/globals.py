@@ -1,11 +1,10 @@
-import configparser
-from .datastruct import AppInfo
-
-cf = configparser.ConfigParser()
-cf.read("config.ini")
+from ptest import config
+from enumeration import *
+from datastruct import AppInfo
 
 current_app_info = AppInfo()
-current_app_info.app_env = cf.options("test.env")
-current_app_info.app_product = cf.options('test.product')
-current_app_info.app_platform = cf.options('test.platform')
-current_app_info.app_job = cf.options('test.job')
+current_app_info.app_env =config.get_property('test.env', default="uat").lower()
+current_app_info.app_product = config.get_property('test.product',default=Product.B2C).lower()
+current_app_info.app_platform = config.get_property('test.platform')
+current_app_info.app_job = config.get_property('test.job',default="engage-android-snapshot")
+current_app_info.app_type = config.get_property('test.type',default="debug")
