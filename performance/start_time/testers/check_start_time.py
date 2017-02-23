@@ -7,11 +7,11 @@ from globals import *
 from datastruct import *
 from testhelpers.graph import *
 
-MAX_TIME=2
+MAX_TIME=3
 cold_start={}
 hot_start={}
 
-@TestClass(run_mode='singleline')
+@TestClass(run_mode='parallel')
 class ANDROIDSTARTTIME:
 
     @Test()
@@ -72,12 +72,14 @@ class ANDROIDSTARTTIME:
     @Test()
     def check_android_start_time_and_draw(self):
         for i in range(MAX_TIME):
+            print(i)
             colde_test, hot_test=self.check_android_start_time()
-            cold_start[i] = colde_test.decode().strip()
-            hot_start[i] = hot_test.decode().strip()
+            cold_start[i] = colde_test.decode().strip().replace(" ","").split(":")[-1]
+            hot_start[i] = hot_test.decode().strip().replace(" ","").split(":")[-1]
+            #i=i+1
 
-        draw_bar(cold_start, "cold start time")
-        draw_bar(hot_start, "hot start time")
+        draw_bar(cold_start, "cold_start_time")
+        draw_bar(hot_start, "hot_start_time")
 
 
 

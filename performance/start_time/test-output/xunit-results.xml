@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="1" name="DefaultSuite" skips="0" tests="1" time="48.863" timestamp="2017-02-22 18:39:44.544036">
-		<testcase classname="testers.check_start_time.ANDROIDSTARTTIME" name="check_android_start_time_and_draw" time="48.860">
-			<failure message="'dict_keys' object does not support indexing" type="builtins.TypeError">Traceback (most recent call last):
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/ptest/testexecutor.py&quot;, line 383, in run_test
-    self.test_fixture.test_fixture_ref.__call__()
-  File &quot;/Users/anderson/work/autotest/mobile_test/mobile_test/performance/start_time/testers/check_start_time.py&quot;, line 79, in check_android_start_time_and_draw
-    draw_bar(cold_start, &quot;cold start time&quot;)
-  File &quot;/Users/anderson/work/autotest/mobile_test/mobile_test/performance/start_time/testhelpers/graph.py&quot;, line 16, in draw_bar
-    plt.bar(labels, quants, 0.4, color=&quot;green&quot;)
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/matplotlib/pyplot.py&quot;, line 2705, in bar
-    **kwargs)
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/matplotlib/__init__.py&quot;, line 1892, in inner
-    return func(ax, *args, **kwargs)
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/matplotlib/axes/_axes.py&quot;, line 2105, in bar
-    left = [left[i] - width[i] / 2. for i in xrange(len(left))]
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/matplotlib/axes/_axes.py&quot;, line 2105, in &lt;listcomp&gt;
-    left = [left[i] - width[i] / 2. for i in xrange(len(left))]
-TypeError: 'dict_keys' object does not support indexing
-</failure>
-		</testcase>
+	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="71.223" timestamp="2017-02-23 11:02:01.538175">
+		<testcase classname="testers.check_start_time.ANDROIDSTARTTIME" name="check_android_start_time_and_draw" time="71.220"/>
 	</testsuite>
