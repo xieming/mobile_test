@@ -1,0 +1,4 @@
+UPDATE school_0.dbo.StudentCourseItem
+set ExtraData = '%s'
+where id = '%s'
+and student_id = '%s

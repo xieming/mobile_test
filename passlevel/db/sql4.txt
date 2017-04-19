@@ -1,0 +1,5 @@
+SELECT sci.id, sci.itemtype_id, sci.extradata, sci.score, *
+FROM school_0.dbo.StudentCourseItem sci
+WHERE sci.Student_id = %d
+AND ItemType_id = 2
+ORDER BY sci.ItemType_id, sci.id

@@ -1,0 +1,15 @@
+SELECT qe.Quiz_id, qe.StudentMember_id, qe.PartnerCode, qe.LevelCode, qe.LevelName, qe.InsertDate,
+q.QuizTypeCode, q.Topic, q.StatusCode, qws.storage_id, qws.contentText,
+qa.CorrectionTypeCode, qa.Assignment_id, qa.StatusCode, qa.TeacherMember_id,
+qc.Grade, qc.GradeReasonCode, qc.Comment
+FROM AcademicContent.dbo.QuizExternal qe
+INNER JOIN AcademicContent.dbo.Quiz q
+ON qe.Quiz_id = q.Quiz_id
+LEFT JOIN AcademicContent.dbo.QuizAssignment qa
+ON q.Quiz_id = qa.Quiz_id
+LEFT JOIN AcademicContent.dbo.QuizCorrection qc
+ON qa.Assignment_id = qc.Assignment_id
+LEFT JOIN AcademicContent.dbo.QuizWritingStorage qws
+ON q.storage_id = qws.storage_id
+WHERE qe.StudentMember_id = %d
+--AND qe.Quiz_id = 50000699

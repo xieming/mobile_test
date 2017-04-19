@@ -1,96 +1,109 @@
-import json
+# from passlevel.passleveltest import *
+import urllib.error
+import urllib.parse
+import urllib.request
 import re
+import numpy as np
 
-from submitscore_helper import SubmitScoreHelperV1
+HOST = "qa"
+username = "stest90644"
 
 
-class PassLevelForEcV1:
-    def __init__(self, host, level, username, level_test=True):
+class PassLevelTest():
+    def __init__(self):
+        self.headers = {'Accept': "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                        'Accept-Language': "zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3",
+                        }
+        self.load_url = "http://{0}.englishtown.com/services/school/_tools/progress/SubmitScoreHelper.aspx?newengine=true&token=".format(
+            HOST)
 
-        self.level = level
-        self.username = username
-        self.level_test = level_test
-        self.score_help_v1 = SubmitScoreHelperV1(host)
+    def get_page(self, url, parameters, headers):
+        post_data = urllib.parse.urlencode(parameters).encode()
+        request = urllib.request.Request(url, post_data, headers)
+        response = urllib.request.urlopen(request)
+        page = response.read()
 
-    def get_course_ids(self):
+        return page
 
-        levels_page = self.score_help_v1.load_student_information(self.username)
-        print(levels_page)
-        match_course = levels_page.split('$')
-        print(match_course)
-        member_information = match_course[0].split('|')
-        member_id = member_information[3]
-        partner = member_information[4]
-        print(partner)
-        level1 = member_information[5]
-        match_course.pop(0)
-        course_lists = []
+    def load_student_information(self, username):
+        load_student_info_json = {
+            'cmd': 'loadStudentInfo',
+            'member_id': username,
+            'token': ''
+        }
+        response = self.get_page(self.load_url, load_student_info_json, self.headers)
+        return response
 
-        for list in match_course:
-            matched_course = re.search(r'#(\d{3})', str(list))
+    def show_unit_list_progress(self, member_id, course_id, unit_id):
+        unit_list_progress_json = {
+            'cmd': 'loadUnitProgress',
+            'member_id': member_id,
+            'course_id': course_id,
+            'unit_id': unit_id,
+            'hasEvc': 'false',
+            'enrollToUnit': 'false',
+            'resetUnit': 'false',
+            'keepUnfinish': 'undefined',
+            'token': ''
+        }
 
-            if matched_course:
-                course_lists.append(matched_course.group(1))
+        response = self.get_page(self.load_url, unit_list_progress_json, self.headers)
 
-        course_lists.insert(0, level1)
-        print(course_lists)
-        print("get course done")
-        course_id = course_lists[self.level]
-        return member_id, course_id, partner
+        return response
 
-    def get_unit_ids(self):
-        member_id, course_id, partner = self.get_course_ids()
-        unit_page = self.score_help_v1.load_unit_list(course_id, member_id)
-        print(unit_page)
-        unit_list = unit_page.split('$')
-        print(unit_list)
-        units = []
+    def save_activity_score(self, member_id, course_id, unit_id, activity_ids, partner_code):
+        batch_save_activity_score_json = {
+            'cmd': 'batchSaveActivityScore',
+            'member_id': member_id,
+            'course_id': course_id,
+            'unit_id': unit_id,
+            'act_ids': activity_ids,
+            'grade': '100',
+            'keepUnfinish': '0',
+            'hasEvc': 'false',
+            'partnerCode': partner_code,
+            'engineVersion': '2',
+            'token': '',
+            'isReview': ''
+        }
 
-        for unit in unit_list:
-            unit_matched = re.search(r'\d{4}', str(unit))
+        response = self.get_page(self.load_url, batch_save_activity_score_json, self.headers)
 
-            if unit_matched:
-                units.append(unit_matched.group(0))
-            else:
-                pass
+        return response
 
-        print(units)
-        print("get units done")
-        return units
+    def level_test(self):
+        result = self.load_student_information(username).decode()
+        menber_id = result.split('|')[3]
+        partener = result.split('|')[4]
+        final_unit = result.split('#')[-1]
 
-    def pass_level_test(self):
-        member_id, course_id, partner = self.get_course_ids()
+        unit_id = final_unit[:final_unit.index("$")]
+        course_id = final_unit[final_unit.index("|") + 1:]
 
-        if self.level_test == True:
-            searched_units = self.get_unit_ids()
-        else:
-            searched_units = self.get_unit_ids()[0:6]
+        unitresponse= self.show_unit_list_progress(menber_id,course_id,unit_id).decode()
+        matched_activity = re.compile(r'"Activities":\[(.*?)\]')
+        matched_activity_id = re.compile(r'"ID":(\d+),')
 
-        for unit_id in searched_units:
-            progress_page = self.score_help_v1.show_unit_list_progress(member_id, course_id, unit_id)
-            print(progress_page)
-            progress_json = json.loads(progress_page)
-            print(progress_json['Lessons'])
-            lessons = str(progress_json['Lessons'])
-            matched_activity = re.compile(r"'Activities':\s\[(.*?)\]")
-            matched_activity_id = re.compile(r"'ID':\s(\d+),")
-            activity_id = re.findall(matched_activity, lessons)
-            print(activity_id)
-            activity_list = []
+        activity_id = re.findall(matched_activity, unitresponse)
+        print(activity_id)
 
-            for id in activity_id:
-                activity = re.findall(matched_activity_id, id)
-                activity_list.append(activity)
-                print(activity_list)
+        activity = [re.findall(matched_activity_id, id) for id in activity_id]
 
-            activity_listed = str(activity_list).replace('[', '').replace(']', '')
-            activity_listed = activity_listed.replace('\'', '')
-            print(activity_listed)
+        activity_arry = np.array(activity)
+        print(activity_arry)
+        activity_string = ""
 
-            submit_page = self.score_help_v1.save_activity_score(member_id, course_id, unit_id,
-                                                                 activity_listed,
-                                                                 partner)
-            print(submit_page)
-            progress_page = self.score_help_v1.show_unit_list_progress(member_id, course_id, unit_id)
-            print(progress_page)
-            print("Done!")
+        for row in activity_arry:
+            activity_string += ",".join(row) + ","
+        print(activity_string.rstrip(","))
+        activity_ids = activity_string.rstrip(",")
+
+        self.save_activity_score(menber_id,course_id,unit_id,activity_ids,partener)
+
+def main():
+    passlevetest=PassLevelTest()
+    passlevetest.level_test()
+
+
+if __name__ == '__main__':
+    main()

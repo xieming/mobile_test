@@ -1,0 +1,3 @@
+SELECT * FROM oboe.dbo.ScheduledClass sc
+WHERE sc.IsPublished = 1 AND sc.IsDeleted=0 AND sc.ClassCategory_id = %d
+AND sc.StartDate BETWEEN '2016-07-01 01:00:00.000' AND GETDATE()
