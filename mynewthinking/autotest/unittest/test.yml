@@ -1,0 +1,31 @@
+---
+LoginPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity"
+  Login:
+    - action: input
+      id: txtName
+      value: username
+    - action: input
+      id: txtPwd
+      value: password
+    - action: click
+      id: btnLogin
+CourseOverViewPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
+  Doload: icon_icon
+
+LessonOverViewPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
+
+ModuleOverViewPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
+
+ModuleOverViewPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.ChangeCourseActivity"
+
+ModuleOverViewPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.BookingActivity"
+
+product:
+  b2c: com.ef.core.engage.smartenglish
+  ec: com.ef.core.engage.smartenglish
