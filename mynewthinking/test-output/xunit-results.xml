@@ -1,25 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="1" name="DefaultSuite" skips="0" tests="1" time="27.578" timestamp="2017-06-01 22:51:56.195944">
-		<testcase classname="autotest.cases.test_login.LoginTest" name="check_login_success" time="27.576">
-			<failure message="Message: An unknown server-side error occurred while processing the command. Original error: Error occured while starting App. Original error: com.ef.core.engage.englishtown/com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity or com.ef.core.engage.englishtown.com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity never started" type="selenium.common.exceptions.WebDriverException">Traceback (most recent call last):
-  File &quot;/Users/anderson/.local/lib/python3.5/site-packages/ptest/testexecutor.py&quot;, line 383, in run_test
-    self.test_fixture.test_fixture_ref.__call__()
-  File &quot;/Users/anderson/testcode/mynewthinking/autotest/cases/test_login.py&quot;, line 19, in check_login_success
-    login = Login()
-  File &quot;/Users/anderson/testcode/mynewthinking/autotest/Base.py&quot;, line 22, in __init__
-    self.driver = webdriver.Remote('http://localhost:4723/wd/hub', self.capabilities)
-  File &quot;/Users/anderson/.local/lib/python3.5/site-packages/appium/webdriver/webdriver.py&quot;, line 36, in __init__
-    super(WebDriver, self).__init__(command_executor, desired_capabilities, browser_profile, proxy, keep_alive)
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 98, in __init__
-    self.start_session(desired_capabilities, browser_profile)
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 188, in start_session
-    response = self.execute(Command.NEW_SESSION, parameters)
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 252, in execute
-    self.error_handler.check_response(response)
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py&quot;, line 194, in check_response
-    raise exception_class(message, screen, stacktrace)
-selenium.common.exceptions.WebDriverException: Message: An unknown server-side error occurred while processing the command. Original error: Error occured while starting App. Original error: com.ef.core.engage.englishtown/com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity or com.ef.core.engage.englishtown.com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity never started
-
-</failure>
-		</testcase>
+	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="24.841" timestamp="2017-06-02 17:46:34.237423">
+		<testcase classname="autotest.cases.test_login.LoginTest" name="check_login_success" time="24.835"/>
 	</testsuite>

@@ -35,7 +35,7 @@ class YAML():
 
 if __name__ == '__main__':
     yamls =YAML()
-    s = "fuck you"
-    result = yamls.read_yml("/Users/anderson/testcode/mynewthinking/autotest/unittest/write_test.yml")
-    final = result["job"]%("fuck your mother")
+    name = "fuck you"
+    result = yamls.read_yml("/Users/anderson/testcode/mynewthinking/autotest/unittest/test.yml")
+    final = result["LoginPage"]["Login"][0]["id"]
     print(final)

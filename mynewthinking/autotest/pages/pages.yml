@@ -4,36 +4,22 @@ LoginPage:
   Login:
     - action: input
       id: txtName
-      value: username
+      value: "%s"
     - action: input
       id: txtPwd
-      value: password
+      value: "%s"
     - action: click
       id: btnLogin
 
 CourseOverViewPage:
   Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
   Setting:
-   - id: syncTextView
-  Download:
-   - id: download_progress_bar
-  Lock:
-   - id: statusImageView
-  Level_change:
-   - id: titleTextView
-
-LessonOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
-
-ModuleOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
-
-ModuleOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.ChangeCourseActivity"
-
-ModuleOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.BookingActivity"
-
-product:
-  b2c: com.ef.core.engage.smartenglish
-  ec: com.ef.core.engage.smartenglish
+   - xpath: //*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
+  settings:
+   languae:
+    - id: textview_set_language
+   sync:
+    - id: textview_sync
+   logout: textview_logout
+   Level_move_on:
+    - id: btn_move_on
