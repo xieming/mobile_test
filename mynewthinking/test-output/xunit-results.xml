@@ -1,4 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="24.841" timestamp="2017-06-02 17:46:34.237423">
-		<testcase classname="autotest.cases.test_login.LoginTest" name="check_login_success" time="24.835"/>
+	<testsuite errors="0" failures="1" name="DefaultSuite" skips="0" tests="1" time="242.310" timestamp="2017-06-05 17:32:23.824374">
+		<testcase classname="autotest.cases.test_login.LoginTest" name="pass_one_unit" time="242.307">
+			<failure message="Message: An unknown server-side error occurred while processing the command. Original error: UiAUtomator shut down unexpectedly" type="selenium.common.exceptions.WebDriverException">Traceback (most recent call last):
+  File &quot;/Users/anderson/.local/lib/python3.5/site-packages/ptest/testexecutor.py&quot;, line 383, in run_test
+    self.test_fixture.test_fixture_ref.__call__()
+  File &quot;/Users/anderson/testcode/mynewthinking/autotest/cases/test_login.py&quot;, line 36, in pass_one_unit
+    self.login.pass_one_unit()
+  File &quot;/Users/anderson/testcode/mynewthinking/autotest/pages/loginpage.py&quot;, line 130, in pass_one_unit
+    self.pass_one_lesson(lessons[i])
+  File &quot;/Users/anderson/testcode/mynewthinking/autotest/pages/loginpage.py&quot;, line 106, in pass_one_lesson
+    lesson.click()
+  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/webelement.py&quot;, line 77, in click
+    self._execute(Command.CLICK_ELEMENT)
+  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/webelement.py&quot;, line 493, in _execute
+    return self._parent.execute(command, params)
+  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/webdriver.py&quot;, line 252, in execute
+    self.error_handler.check_response(response)
+  File &quot;/Users/anderson/.local/lib/python3.5/site-packages/appium/webdriver/errorhandler.py&quot;, line 29, in check_response
+    raise wde
+  File &quot;/Users/anderson/.local/lib/python3.5/site-packages/appium/webdriver/errorhandler.py&quot;, line 24, in check_response
+    super(MobileErrorHandler, self).check_response(response)
+  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/selenium/webdriver/remote/errorhandler.py&quot;, line 194, in check_response
+    raise exception_class(message, screen, stacktrace)
+selenium.common.exceptions.WebDriverException: Message: An unknown server-side error occurred while processing the command. Original error: UiAUtomator shut down unexpectedly
+
+</failure>
+		</testcase>
 	</testsuite>

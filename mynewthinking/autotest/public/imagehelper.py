@@ -1,19 +1,73 @@
+import os
+import platform
+import tempfile
+import shutil
+
 from PIL import Image
-from autotest.Base import Base_page
 
-class IMAGE(Base_page):
+PATH = lambda p: os.path.abspath(p)
+TEMP_FILE = PATH(tempfile.gettempdir() + "/temp_screen.png")
 
-    def get_picture(self,locate):
 
-    # url='http://xxxxx.com'
-    # driver = webdriver.Chrome()
-    # driver.maximize_window()  #将浏览器最大化
-    # driver.get(url)
-        self.driver.save_screenshot('aa.png')  #截取当前网页，该网页有我们需要的验证码
-        imgelement = self.driver.find_element_by_xpath(locate)  #定位验证码
-        location = imgelement.location  #获取验证码x,y轴坐标
-        size=imgelement.size  #获取验证码的长宽
-        rangle=(int(location['x']),int(location['y']),int(location['x']+size['width']),int(location['y']+size['height'])) #写成我们需要截取的位置坐标
-        i=Image.open("aa.png") #打开截图
-        frame4=i.crop(rangle)  #使用Image的crop函数，从截图中再次截取我们需要的区域
-        frame4.save('frame4.jpg')
+class Appium_Extend(object):
+    def __init__(self, driver):
+        self.driver = driver
+
+    def get_screenshot_by_element(self, element):
+        # 先截取整个屏幕，存储至系统临时目录下
+        self.driver.get_screenshot_as_file(TEMP_FILE)
+
+        # 获取元素bounds
+        location = element.location
+        size = element.size
+        box = (location["x"], location["y"], location["x"] + size["width"], location["y"] + size["height"])
+
+        # 截取图片
+        image = Image.open(TEMP_FILE)
+        newImage = image.crop(box)
+        newImage.save("/Users/anderson/testcode/mynewthinking/b.png")
+
+        return self
+
+    def get_screenshot_by_custom_size(self, start_x, start_y, end_x, end_y):
+        # 自定义截取范围
+        self.driver.get_screenshot_as_file(TEMP_FILE)
+        box = (start_x, start_y, end_x, end_y)
+
+        image = Image.open(TEMP_FILE)
+        newImage = image.crop(box)
+        newImage.save(TEMP_FILE)
+
+        return self
+
+    def write_to_file(self, dirPath, imageName, form="png"):
+        # 将截屏文件复制到指定目录下
+        if not os.path.isdir(dirPath):
+            os.makedirs(dirPath)
+        shutil.copyfile(TEMP_FILE, PATH(dirPath + "/" + imageName + "." + form))
+
+    def load_image(self, image_path):
+        # 加载目标图片供对比用
+        if os.path.isfile(image_path):
+            load = Image.open(image_path)
+            return load
+        else:
+            raise Exception("%s is not exist" % image_path)
+
+    #
+    # def same_as(self, load_image, percent):
+    #     # 对比图片，percent值设为0，则100%相似时返回True，设置的值越大，相差越大
+    #     import math
+    #     import operator
+    #
+    #     image1 = Image.open(TEMP_FILE)
+    #     image2 = load_image
+    #
+    #     histogram1 = image1.histogram()
+    #     histogram2 = image2.histogram()
+    #
+    #     differ = math.sqrt(reduce(operator.add, list(map(lambda a, b: (a - b) ** 2, histogram1, histogram2)))/len(histogram1))
+    #     if differ <= percent:
+    #         return True
+    #     else:
+    #         return False

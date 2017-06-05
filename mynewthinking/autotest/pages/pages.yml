@@ -13,6 +13,8 @@ LoginPage:
 
 CourseOverViewPage:
   Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
+  LessonOne: imageView
+  Download: download_progress_bar
   Setting:
    - xpath: //*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
   settings:
@@ -23,3 +25,24 @@ CourseOverViewPage:
    logout: textview_logout
    Level_move_on:
     - id: btn_move_on
+
+LessonOverViewPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
+  Lesson_collapse:
+   - id: image_collapse
+  Back_button:
+   - id: syncTextView
+
+ModuleOverViewPage:
+  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
+  modules: //*[@resource-id="com.ef.core.engage.englishtown:id/template_menu"]/android.widget.RelativeLayout
+  activity_download:
+   - id: download_button
+  start_activity:
+   - id: start_activity
+  activity_skip_button:
+   - id: activity_skip_button
+  countinue_button:
+   - id: text_continue
+  back_button:
+   - id: background_image

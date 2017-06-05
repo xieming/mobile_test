@@ -12,7 +12,7 @@ class Base_page():
     capabilities['appPackage'] = 'com.ef.core.engage.englishtown'
     capabilities['appActivity'] = 'com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity'
     capabilities['appWaitActivity'] = 'com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity'
-    capabilities['app'] = '/Users/anderson/Downloads/engage-englishtown-qa-debug-1.5.0-201705271211.apk'
+    capabilities['app'] = '/Users/anderson/Documents/builds/engage-englishtown-uat-debug-1.5.0.apk'
     # capabilities['unicodeKeyboard'] = True
     capabilities['resetKeyboard'] = True
     capabilities['noSign'] = True
