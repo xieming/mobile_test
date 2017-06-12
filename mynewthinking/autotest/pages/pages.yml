@@ -46,3 +46,26 @@ ModuleOverViewPage:
    - id: text_continue
   back_button:
    - id: background_image
+
+IOS:
+  LoginPage:
+    username: //XCUIElementTypeTextField[@value='Username']
+    password: //XCUIElementTypeSecureTextField
+    loginbtn: LOGIN
+    settings: ///XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]
+    logoutbtn: Logout
+    Language: Language
+    backbtn: back button black
+    Selectlevel: Select level
+    lessonone: pnlLesson_1_1
+    moduleall: //XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther
+    moduleach: //XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther['%d']
+    moduleone: //XCUIElementTypeOther[@name="pnlModule_Vocabulary"]/XCUIElementTypeOther/XCUIElementTypeButton
+    download: btn_moduleintro_download
+    passmodule: PASS MODULE
+    startbtn: btn_moduleintro_start
+    passbtn: btnQApass
+    countiune: btnContinue
+    arrow: arrow
+
+

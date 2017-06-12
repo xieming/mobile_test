@@ -71,3 +71,16 @@ class Appium_Extend(object):
     #         return True
     #     else:
     #         return False
+    def get_location_by_element(self, element, num):
+
+        location = element.location
+        size = element.size
+        # box = (location["x"], location["y"], location["x"] + size["width"], location["y"] + size["height"])
+        positions = []
+        partx = size["width"] / num
+        print(location["x"], location["y"])
+        for i in range(num):
+            x = int(location["x"] + (1 / 2 + i) * partx)
+            y = int(location["y"] + (1 / 2) * size["height"])
+            positions.append([(x, y)])
+        return positions
