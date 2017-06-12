@@ -5,9 +5,11 @@ import os, time
 from autotest.public.yamlmanage import YAML
 
 
+
+
 class Base_page():
     yas = YAML()
-    capabilities = yas.read_yml('/Users/anderson/testcode/mynewthinking/autotest/public/device.yml')['IOS']
+    capabilities = yas.read_yml('/Users/anderson/testcode/mynewthinking/autotest/public/device.yml')['Android']
     print(capabilities)
 
     # capabilities['platformName'] = 'Android'
@@ -25,47 +27,70 @@ class Base_page():
     def __init__(self):
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', self.capabilities)
 
-    def find_element(self, loc):
+    def actions(self,current,value):
+        ele=""
+        if current == 'id':
+            ele=self.driver.find_element_by_id(value)
+        if current == 'xpath':
+            ele=self.driver.find_element_by_xpath(value)
+        return ele
+
+
+    def find_element(self, tag):
+        key = tag.split("_")[0]
+        print(key)
+        value = tag.split("_")[1]
+
+        # element=("MobileBy.{}".format(key),value)
+
         try:
-            WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*loc).is_displayed())
-            return self.driver.find_element(*loc)
+            element=self.actions(key,value)
+            return element
+
+            # WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*element).is_displayed())
+            # return self.driver.find_element(by=element[0],value=element[1])
         except:
-            print(u"%s 页面中未能找到 %s 元素" % (self, loc))
+            print("%s page cannot find %s %s" % (self, key,value))
 
-            # 重新封装一组元素定位方法
-
-    def find_elements(self, loc):
+    # def find_element(self, loc):
+    #     try:
+    #         WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*loc).is_displayed())
+    #         return self.driver.find_element(*loc)
+    #     except:
+    #         print(u"%s 页面中未能找到 %s 元素" % (self, loc))
+    #
+    #
+    def find_elements(self, tag):
+        elements = {}
+        key = tag.split(": ")[0]
+        value = tag.split(": ")[1]
+        elements["By." + key.upper] = value
         try:
-            if len(self.driver.find_elements(*loc)):
-                return self.driver.find_elements(*loc)
+            if len(self.driver.find_elements(*elements)):
+                return self.driver.find_elements(*elements)
         except:
-            print(u"%s 页面中未能找到 %s 元素" % (self, loc))
-
-            # 	def typevalue(self,username,password):
-            # 		webdriver.Remote.find_element_by_xpath(self,"//*[@resource-id='com.ef.core.engage.englishtown:id/txtName']").send_keys(username)
-            # 		webdriver.Remote.find_element_by_xpath(self,"//*[@resource-id='com.ef.core.engage.englishtown:id/txtPwd']").send_keys(password)
-            # 		webdriver.Remote.find_element_by_xpath(self,"//*[contains(@resource-id,'com.ef.core.engage.englishtown:id/btnLogin')]").click()
-            # # #重新封装输入方法
-
-    def send_keys(self, loc, value, clear_first=True, click_first=True):
-        try:
-            if click_first:
-                self.find_element(loc).click()
-            if clear_first:
-                self.find_element(loc).clear()
-            self.find_element(loc).send_keys(value)
-        except AttributeError:
-            print("%s 页面未能找到 %s 元素" % (self, loc))
-
-            # 重新封装按钮点击方法
-
-    def clickButton(self, loc, find_first=True):
-        try:
-            if find_first:
-                self.find_element(loc)
-            self.find_element(loc).click()
-        except AttributeError:
-            print("%s 页面未能找到 %s 按钮" % (self, loc))
+            print("%s page cannot find %s" % (self, elements))
+            #
+            #
+            # def send_keys(self, loc, value, clear_first=True, click_first=True):
+            #     try:
+            #         if click_first:
+            #             self.find_element(loc).click()
+            #         if clear_first:
+            #             self.find_element(loc).clear()
+            #         self.find_element(loc).send_keys(value)
+            #     except AttributeError:
+            #         print("%s 页面未能找到 %s 元素" % (self, loc))
+            #
+            #         # 重新封装按钮点击方法
+            #
+            # def clickButton(self, loc, find_first=True):
+            #     try:
+            #         if find_first:
+            #             self.find_element(loc)
+            #         self.find_element(loc).click()
+            #     except AttributeError:
+            #         print("%s 页面未能找到 %s 按钮" % (self, loc))
 
             # savePngName:生成图片的名称
 

@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="1" name="DefaultSuite" skips="0" tests="1" time="129.452" timestamp="2017-06-12 15:06:14.783676">
-		<testcase classname="autotest.cases.test_login.LoginTest" name="check_login_success_ios" time="129.425">
-			<failure message="'btnQApass'" type="builtins.KeyError">Traceback (most recent call last):
-  File &quot;/Users/anderson/.local/lib/python3.5/site-packages/ptest/testexecutor.py&quot;, line 383, in run_test
-    self.test_fixture.test_fixture_ref.__call__()
-  File &quot;/Users/anderson/testcode/mynewthinking/autotest/cases/test_login.py&quot;, line 98, in check_login_success_ios
-    self.login.driver.find_element_by_id(iosfile[&quot;IOS&quot;][&quot;LoginPage&quot;][&quot;btnQApass&quot;])):
-KeyError: 'btnQApass'
-</failure>
-		</testcase>
+	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="34.614" timestamp="2017-06-12 18:27:45.079503">
+		<testcase classname="autotest.cases.test_login.LoginTest" name="check_login_success1" time="34.612"/>
 	</testsuite>

@@ -1,71 +1,17 @@
 ---
-LoginPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity"
-  Login:
-    - action: input
-      id: txtName
-      value: "%s"
-    - action: input
-      id: txtPwd
-      value: "%s"
-    - action: click
-      id: btnLogin
-
-CourseOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
-  LessonOne: imageView
-  Download: download_progress_bar
-  Setting:
-   - xpath: //*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
-  settings:
-   languae:
-    - id: textview_set_language
-   sync:
-    - id: textview_sync
-   logout: textview_logout
-   Level_move_on:
-    - id: btn_move_on
-
-LessonOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
-  Lesson_collapse:
-   - id: image_collapse
-  Back_button:
-   - id: syncTextView
-
-ModuleOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
-  modules: //*[@resource-id="com.ef.core.engage.englishtown:id/template_menu"]/android.widget.RelativeLayout
-  activity_download:
-   - id: download_button
-  start_activity:
-   - id: start_activity
-  activity_skip_button:
-   - id: activity_skip_button
-  countinue_button:
-   - id: text_continue
-  back_button:
-   - id: background_image
-
-IOS:
+Android:
   LoginPage:
-    username: //XCUIElementTypeTextField[@value='Username']
-    password: //XCUIElementTypeSecureTextField
-    loginbtn: LOGIN
-    settings: ///XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]
-    logoutbtn: Logout
-    Language: Language
-    backbtn: back button black
-    Selectlevel: Select level
-    lessonone: pnlLesson_1_1
-    moduleall: //XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther
-    moduleach: //XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther['%d']
-    moduleone: //XCUIElementTypeOther[@name="pnlModule_Vocabulary"]/XCUIElementTypeOther/XCUIElementTypeButton
-    download: btn_moduleintro_download
-    passmodule: PASS MODULE
-    startbtn: btn_moduleintro_start
-    passbtn: btnQApass
-    countiune: btnContinue
-    arrow: arrow
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity"
+    username: id_txtName
+    password: id_txtPwd
+    loginbtn: id_btnLogin
 
-
+  CourseOverViewPage:
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
+    LessonOne: imageView
+    Download: download_progress_bar
+    Setting: xpath_//*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
+    settings_languae: id_textview_set_language
+    settings_sync: id_textview_sync
+    settings_logout: id_textview_logout
+    Level_move_on: id_btn_move_on

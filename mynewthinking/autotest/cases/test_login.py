@@ -21,6 +21,22 @@ class LoginTest:
         print("start to test")
 
     @Test()
+    def check_login_success1(self):
+        yml = YAML()
+        iosfile = yml.read_yml("/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml")
+        print(iosfile["Android"]["LoginPage"]["username"])
+        ele = self.login.find_element(iosfile["Android"]["LoginPage"]["username"])
+        print(ele)
+        self.login.driver.set_value(ele, self.username)
+        time.sleep(2)
+        ele = self.login.find_element(iosfile["Android"]["LoginPage"]["password"])
+        print(ele)
+        self.login.driver.set_value(ele, self.password)
+        time.sleep(2)
+        self.login.find_element(iosfile["Android"]["LoginPage"]["loginbtn"]).click()
+        time.sleep(20)
+
+    @Test()
     def check_login_success(self):
         self.login.login_action(self.username, self.password)
         self.login.course_overview()

@@ -1,89 +1,56 @@
 ---
-LoginPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity"
-  Login:
-    - action: input
-      id: txtName
-      value: username
-    - action: input
-      id: txtPwd
-      value: password
-    - action: click
-      id: btnLogin
+Android:
+  LoginPage:
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity"
+    username: id_txtName
+    password: id_txtPwd
+    loginbtn: id_btnLogin
 
-CourseOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
-  Setting:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]"
-  Download:
-   - id: download_progress_bar
-  Lock:
-   - id: statusImageView
-  Level_change:
-   - id: titleTextView
-  Lesson_title:
-   - id: lessonTitleNumTextView
-  Lesson_desc:
-   - id: descTextView
-  Lession1:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]"
-  Lesson2:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[2]/android.widget.RelativeLayout[1]"
-  course:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/tabs_strip"]/android.widget.LinearLayout[1]/android.support.v7.app.ActionBar$Tab[1]"
-  classroom:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/tabs_strip"]/android.widget.LinearLayout[1]/android.support.v7.app.ActionBar$Tab[2]"
-  settings:
-   languae:
-    - id: textview_set_language
-   sync:
-    - id: textview_sync
-   logout:
-    - id: textview_logout
-   Level_move_on:
-    - id: btn_move_on
+  CourseOverViewPage:
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
+    LessonOne: imageView
+    Download: download_progress_bar
+    Setting: xpath_//*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
+    settings_languae: id_textview_set_language
+    settings_sync: id_textview_sync
+    settings_logout: id_textview_logout
+    Level_move_on: id_btn_move_on
 
+  LessonOverViewPage:
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
+    Lesson_collapse: id_image_collapse
+    Back_button: id_syncTextView
 
+  ModuleOverViewPage:
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
+    modules: xpath_//*[@resource-id="com.ef.core.engage.englishtown:id/template_menu"]/android.widget.RelativeLayout
+    activity_download: id_download_button
+    start_activity: id_start_activity
+    activity_skip_button: id_activity_skip_button
+    countinue_button: id_text_continue
+    back_button: id_background_image
 
-LessonOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
-  Lesson_collapse:
-   - id: image_collapse
-  Back_button:
-   - id: syncTextView
+IOS:
+  LoginPage:
+    username: xpath_//XCUIElementTypeTextField[@value='Username']
+    password: xpath_//XCUIElementTypeSecureTextField
+    loginbtn: id: LOGIN
 
-ModuleOverViewPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
-  modules:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/template_menu"]/android.widget.RelativeLayout[1]/android.widget.RelativeLayout[1]"
-  back_button:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/action_bar"]/android.widget.ImageButton[1]"
-  activity_download:
-   - id: download_button
-  start_activity:
-   - id: start_activity
-  activity_skip_button:
-   - id: activity_skip_button
-  countinue_button:
-   - id: text_continue
+  CourseOverViewPage:
+    settings: xpath: //XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]
+    logoutbtn: id: Logout
+    Language: id: Language
+    backbtn: id: back button black
+    Selectlevel: id: Select level
+    lessonone: id: pnlLesson_1_1
 
-
-ChangeCoursePage:
-  Activity: "com.ef.core.engage.ui.screens.activity.ChangeCourseActivity"
-  Change_course_button:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/action_bar"]/android.widget.ImageButton[1]"
-  GE_lesson1:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/recycler_course_level"]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]"
-  GE_lesson2:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/recycler_course_level"]/android.widget.FrameLayout[2]/android.widget.RelativeLayout[1]"
-  GE:
-   - xpath: "//*[@text="General English"]"
-  BE_lesson1:
-   - xpath: "//*[@resource-id="com.ef.core.engage.englishtown:id/recycler_course_level"]/android.widget.FrameLayout[1]/android.widget.RelativeLayout[1]"
-
-BookingClassPage:
-  Activity: "com.ef.core.engage.ui.screens.activity.BookingActivity"
-
-product:
-  b2c: com.ef.core.engage.smartenglish
-  ec: com.ef.core.engage.smartenglish
+  ModuleOverViewPage:
+    moduleall: //XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther
+    moduleach: /XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther['%d']
+    moduleone: //XCUIElementTypeOther[@name="pnlModule_Vocabulary"]/XCUIElementTypeOther/XCUIElementTypeButton
+    download: btn_moduleintro_download
+    passmodule: id: PASS MODULE
+    startbtn: id: btn_moduleintro_start
+    passbtn: id: btnQApass
+    countiune: id: btnContinue
+    arrow: id: arrow
