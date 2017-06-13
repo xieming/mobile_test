@@ -80,43 +80,6 @@ class LoginTest:
         # time.sleep(2)
         # self.login.driver.tap(a, )
         # time.sleep(2)
-        self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["lessonone"]).click()
-        time.sleep(2)
-        # self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["backbtn"]).click()
-        # time.sleep(2)
-        # self.login.driver.tap(b, )
-        # time.sleep(2)
-        modules = self.login.driver.find_elements_by_xpath(iosfile["IOS"]["LoginPage"]["moduleall"])
-        # modulesline = self.login.driver.find_elements_by_xpath(iosfile["IOS"]["LoginPage"]["moduleall"])
-        # mods = list(filter(lambda e: e % 2 == 0, modules))
-        ele = element_exist(self.login.driver)
-        for i in range(0, len(modules)):
-
-            modulesline = self.login.driver.find_elements_by_xpath(iosfile["IOS"]["LoginPage"]["moduleach"] % (i))
-            for each in modulesline:
-                each.click()
-                if ele.is_element_exists_by_id(iosfile["IOS"]["LoginPage"]["download"]):
-                    self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["download"]).click()
-                    time.sleep(20)
-                self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["startbtn"]).click()
-                time.sleep(2)
-                if ele.is_element_exists_by_id(iosfile["IOS"]["LoginPage"]["arrow"]):
-                    self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["arrow"]).click()
-                    self.login.swipe('down')
-
-                if ele.is_element_exists_by_id(iosfile["IOS"]["LoginPage"]["countiune"]):
-                    self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["countiune"]).click()
-
-                if ele.is_element_exists_by_id(iosfile["IOS"]["LoginPage"]["startbtn"]):
-                    self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["startbtn"]).click()
-
-                while ele.is_element_exists_by_id(
-                    self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["btnQApass"])):
-                    self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["btnQApass"]).click()
-                    time.sleep(2)
-
-                self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["btnContinue"]).click()
-                time.sleep(2)
 
     @Test()
     def pass_one_lesson(self):

@@ -16,6 +16,20 @@ Android:
     settings_logout: id;textview_logout
     Level_move_on: id;btn_move_on
 
+  LessonOverViewPage:
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
+    Lesson_collapse: id;image_collapse
+    Back_button: id;syncTextView
+
+  ModuleOverViewPage:
+    Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
+    modules: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/template_menu"]/android.widget.RelativeLayout
+    module_download: id;download_button
+    module_start: id;start_activity
+    activity_skip_button: id;activity_skip_button
+    countinue_button: id;text_continue
+    back_button: id;background_image
+
 IOS:
   LoginPage:
     username: xpath;//XCUIElementTypeTextField[@value='Username']
@@ -29,3 +43,14 @@ IOS:
     backbtn: id;back button black
     Selectlevel: id;Select level
     lessonone: id;pnlLesson_1_1
+
+  ModuleOverViewPage:
+    moduleall: xpath;//XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther
+    moduleach: xpath;/XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther['%d']
+    moduleone: xpath;//XCUIElementTypeOther[@name="pnlModule_Vocabulary"]/XCUIElementTypeOther/XCUIElementTypeButton
+    module_download: id;btn_moduleintro_download
+    passmodule: id;PASS MODULE
+    module_start: id;btn_moduleintro_start
+    activity_skip_button: id;btnQApass
+    countinue_button: id;btnContinue
+    arrow: id;arrow
