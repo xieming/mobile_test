@@ -1,7 +1,11 @@
 import yaml
+from globals import PLATFORM
 
 
 class YAML():
+    device_path="/Users/anderson/testcode/mynewthinking/autotest/public/device.yml"
+    page_path = "/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml"
+
 
 # Write YAML file
     def write_yml(self,save_path,data):
@@ -20,14 +24,24 @@ class YAML():
             except yaml.YAMLError as exc:
                 print(exc)
 
+    def current_device(self):
+        return self.read_yml(self.device_path)[PLATFORM]
+
+    def current_page(self,page):
+        return self.read_yml(self.page_path)[PLATFORM][page]
 
 
 
-if __name__ == '__main__':
 
-    yml = YAML()
-    files = yml.read_yml("/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml")
-    print(files)
+
+
+
+
+# if __name__ == '__main__':
+#
+#     yml = YAML()
+#     files = yml.read_yml("/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml")
+#     print(files)
 
 
 

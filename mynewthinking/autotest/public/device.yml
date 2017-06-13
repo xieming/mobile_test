@@ -6,7 +6,7 @@ Android:
   appPackage: com.ef.core.engage.englishtown
   appActivity: com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity
   appWaitActivity: com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity
-  app: /Users/anderson/Documents/builds/engage-englishtown-uat-debug-1.5.0.apk
+  app: /Users/anderson/Downloads/engage-englishtown-uat-debug-1.5.0-201706130059.apk
   resetKeyboard: True
   noSign: True
   noReset: True

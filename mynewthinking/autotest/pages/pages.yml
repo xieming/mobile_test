@@ -2,16 +2,30 @@
 Android:
   LoginPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity"
-    username: id_txtName
-    password: id_txtPwd
-    loginbtn: id_btnLogin
+    username: id;txtName
+    password: id;txtPwd
+    loginbtn: id;btnLogin
 
   CourseOverViewPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
-    LessonOne: imageView
-    Download: download_progress_bar
-    Setting: xpath_//*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
-    settings_languae: id_textview_set_language
-    settings_sync: id_textview_sync
-    settings_logout: id_textview_logout
-    Level_move_on: id_btn_move_on
+    settings: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
+    lessonone: id;imageView
+    Download: id;download_progress_bar
+    settings_languae: id;textview_set_language
+    settings_sync: id;textview_sync
+    settings_logout: id;textview_logout
+    Level_move_on: id;btn_move_on
+
+IOS:
+  LoginPage:
+    username: xpath;//XCUIElementTypeTextField[@value='Username']
+    password: xpath;//XCUIElementTypeSecureTextField
+    loginbtn: id;LOGIN
+
+  CourseOverViewPage:
+    settings: xpath;//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]
+    settings_logout: id;Logout
+    settings_languae: id;Language
+    backbtn: id;back button black
+    Selectlevel: id;Select level
+    lessonone: id;pnlLesson_1_1

@@ -2,14 +2,16 @@ __author__ = 'anderson'
 from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
 import os, time
+from selenium.webdriver.common.by import By
+from globals import MAX_TIMES
 from autotest.public.yamlmanage import YAML
+from selenium.common.exceptions import NoSuchElementException
 
 
 
 
 class Base_page():
-    yas = YAML()
-    capabilities = yas.read_yml('/Users/anderson/testcode/mynewthinking/autotest/public/device.yml')['Android']
+    capabilities = YAML().current_device()
     print(capabilities)
 
     # capabilities['platformName'] = 'Android'
@@ -27,72 +29,65 @@ class Base_page():
     def __init__(self):
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', self.capabilities)
 
-    def actions(self,current,value):
-        ele=""
-        if current == 'id':
-            ele=self.driver.find_element_by_id(value)
-        if current == 'xpath':
-            ele=self.driver.find_element_by_xpath(value)
-        return ele
+    # def actions(self,current,value):
+    #     ele=""
+    #     if current == 'id':
+    #         ele=self.driver.find_element_by_id(value)
+    #     if current == 'xpath':
+    #         ele=self.driver.find_element_by_xpath(value)
+    #     return ele
 
+
+    # def find_element(self, tag):
+    #     key = tag.split(";")[0]
+    #     print(key)
+    #     value = tag.split(";")[1]
+    #
+    #     by = eval("MobileBy.{}".format(key))
+    #
+    #     loc = (by, value)
+    #
+    #     # element=("MobileBy.{}".format(key),value)
+    #
+    #     try:
+    #         WebDriverWait(self.driver,15).until(self.actions(key,value).is_displayed())
+    #         return self.actions(key,value)
+    #
+    #         # WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*element).is_displayed())
+    #         # return self.driver.find_element(by=element[0],value=element[1])
+    #     except:
+    #         print("%s page cannot find %s %s" % (self, key,value))
 
     def find_element(self, tag):
-        key = tag.split("_")[0]
-        print(key)
-        value = tag.split("_")[1]
-
-        # element=("MobileBy.{}".format(key),value)
-
+        key = tag.split(";")[0]
+        value = tag.split(";")[1]
+        by = eval("By.{}".format(key.upper()))
+        loc = (by,value)
         try:
-            element=self.actions(key,value)
-            return element
-
-            # WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*element).is_displayed())
-            # return self.driver.find_element(by=element[0],value=element[1])
+            WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_element(*loc).is_displayed())
+            return self.driver.find_element(*loc)
         except:
-            print("%s page cannot find %s %s" % (self, key,value))
+            print("%s page cannot find element %s " % (self, loc))
 
-    # def find_element(self, loc):
-    #     try:
-    #         WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*loc).is_displayed())
-    #         return self.driver.find_element(*loc)
-    #     except:
-    #         print(u"%s 页面中未能找到 %s 元素" % (self, loc))
-    #
-    #
     def find_elements(self, tag):
-        elements = {}
-        key = tag.split(": ")[0]
-        value = tag.split(": ")[1]
-        elements["By." + key.upper] = value
+        key = tag.split(";")[0]
+        value = tag.split(";")[1]
+        by = eval("By.{}".format(key.upper()))
+        loc = (by, value)
         try:
-            if len(self.driver.find_elements(*elements)):
-                return self.driver.find_elements(*elements)
+            WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_elements(*loc).is_displayed())
+            if len(self.driver.find_elements(*loc)):
+                return self.driver.find_elements(*loc)
         except:
-            print("%s page cannot find %s" % (self, elements))
-            #
-            #
-            # def send_keys(self, loc, value, clear_first=True, click_first=True):
-            #     try:
-            #         if click_first:
-            #             self.find_element(loc).click()
-            #         if clear_first:
-            #             self.find_element(loc).clear()
-            #         self.find_element(loc).send_keys(value)
-            #     except AttributeError:
-            #         print("%s 页面未能找到 %s 元素" % (self, loc))
-            #
-            #         # 重新封装按钮点击方法
-            #
-            # def clickButton(self, loc, find_first=True):
-            #     try:
-            #         if find_first:
-            #             self.find_element(loc)
-            #         self.find_element(loc).click()
-            #     except AttributeError:
-            #         print("%s 页面未能找到 %s 按钮" % (self, loc))
+            print("%s page cannot find elements%s" % (self, loc))
 
-            # savePngName:生成图片的名称
+    def type(self,element,value):
+        ele = self.find_element(element)
+        ele.clear()
+        return self.driver.set_value(ele,value)
+
+    def clickat(self,element):
+        return self.find_element(element).click()
 
     def savePngName(self, name):
         """
@@ -133,6 +128,18 @@ class Base_page():
         # print os.getcwd()
         image = self.driver.save_screenshot(self.savePngName(name))
         return image
+
+    def wait_activity(self,activity,time=10):
+        self.driver.wait_activity(activity,time)
+        time.sleep(time)
+
+    def is_element_exists(self,tag):
+        try:
+            self.driver.find_element(tag)
+        except NoSuchElementException:
+            return False
+        return True
+
 
     def swipe(self, direction, duration=500):
         window_size = self.driver.get_window_size()
