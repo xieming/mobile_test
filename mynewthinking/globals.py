@@ -1,3 +1,3 @@
 MAX_TIMES = 30
 WAIT_TIME = 10
-PLATFORM = "IOS"
+PLATFORM = "Android"

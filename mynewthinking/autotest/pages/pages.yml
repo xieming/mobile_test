@@ -9,7 +9,7 @@ Android:
   CourseOverViewPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
     settings: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
-    lessonone: id;imageView
+    lessonone: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout
     Download: id;download_progress_bar
     settings_languae: id;textview_set_language
     settings_sync: id;textview_sync
@@ -19,7 +19,7 @@ Android:
   LessonOverViewPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
     Lesson_collapse: id;image_collapse
-    Back_button: id;syncTextView
+    back_button: id;Navigate up
 
   ModuleOverViewPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownModuleActivity"
@@ -28,7 +28,6 @@ Android:
     module_start: id;start_activity
     activity_skip_button: id;activity_skip_button
     countinue_button: id;text_continue
-    back_button: id;background_image
 
 IOS:
   LoginPage:
@@ -40,9 +39,12 @@ IOS:
     settings: xpath;//XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]
     settings_logout: id;Logout
     settings_languae: id;Language
-    backbtn: id;back button black
     Selectlevel: id;Select level
     lessonone: id;pnlLesson_1_1
+
+  LessonOverViewPage:
+    back_button: id;back button black
+
 
   ModuleOverViewPage:
     moduleall: xpath;//XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther

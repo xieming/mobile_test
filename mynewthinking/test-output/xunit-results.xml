@@ -1,4 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="76.927" timestamp="2017-06-13 13:44:37.980990">
-		<testcase classname="autotest.cases.test_login.LoginTest" name="check_login_success" time="76.916"/>
+	<testsuite errors="0" failures="1" name="DefaultSuite" skips="0" tests="1" time="33.712" timestamp="2017-06-29 21:55:25.698922">
+		<testcase classname="autotest.cases.test_passcourse.LoginTest" name="pass_one_unit" time="33.709">
+			<failure message="list index out of range" type="builtins.IndexError">Traceback (most recent call last):
+  File &quot;/Users/anderson/.local/lib/python3.5/site-packages/ptest/testexecutor.py&quot;, line 383, in run_test
+    self.test_fixture.test_fixture_ref.__call__()
+  File &quot;/Users/anderson/testcode/mynewthinking/autotest/cases/test_passcourse.py&quot;, line 37, in pass_one_unit
+    self.course.pass_one_unit_action()
+  File &quot;/Users/anderson/testcode/mynewthinking/autotest/pages/courseoverviewpage.py&quot;, line 157, in pass_one_unit_action
+    self.pass_one_unit_android()
+  File &quot;/Users/anderson/testcode/mynewthinking/autotest/pages/courseoverviewpage.py&quot;, line 55, in pass_one_unit_android
+    print(&quot;lesson {}&quot;.format(lessons[i]))
+IndexError: list index out of range
+</failure>
+		</testcase>
 	</testsuite>

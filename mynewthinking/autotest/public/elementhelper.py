@@ -11,12 +11,8 @@ class element_exist(object):
         self.driver = driver
 
     def IOS_element(self):
-
-        self.driver.swipe('down')
-        self.driver.swipe('up')
-
         page_course = YAML().current_page('CourseOverViewPage')
-        settings = page_course['settings'].split(",")[1]
+        settings = page_course['settings'].split(";")[1]
         location = self.driver.find_element_by_xpath(settings)
         pic = Appium_Extend(self.driver)
         course, classroom, setting = pic.get_location_by_element(location, 3)

@@ -9,16 +9,12 @@ class Login(Base_page):
     username = page['username']
     password = page['password']
     loginbtn = page['loginbtn']
-
-    page_course = YAML().current_page('CourseOverViewPage')
-    settings = page_course['settings']
-    settings_logout = page_course['settings_logout']
+    login_page_activity = page["Activity"]
 
     def login_action(self, username, password):
+        self.wait_activity(self.login_page_activity)
         self.type(self.username, username)
         self.type(self.password, password)
         self.clickat(self.loginbtn)
 
-    def logout(self):
-        self.clickat(self.settings)
-        self.clickat(self.settings_logout)
+

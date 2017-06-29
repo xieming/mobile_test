@@ -3,28 +3,36 @@ __author__ = 'Anderson'
 import time
 
 from autotest.Base import Base_page
-from autotest.pages.loginpage import Login
 from autotest.public.elementhelper import element_exist
 from autotest.public.yamlmanage import YAML
+from globals import PLATFORM
 
 
 class Course(Base_page):
+    def __init__(self,driver):
+        self.driver=driver
+
     course_page = YAML().current_page("CourseOverViewPage")
-    course_page_activity = course_page["Activity"]
-    Setting = course_page['settings']
+
+    setting = course_page['settings']
     settings_logout = course_page['settings_logout']
 
     lesson_page = YAML().current_page("LessonOverViewPage")
-    lesson_page_activity = lesson_page["Activity"]
-    lesson_collapse = lesson_page["Lesson_collapse"]
-    back_button = lesson_page["Back_button"]
+    back_button = lesson_page["back_button"]
 
     module_page = YAML().current_page("ModuleOverViewPage")
-    module_page_activity = module_page["Activity"]
     module_download = module_page["module_download"]
     module_start = module_page["module_start"]
     activity_skip = module_page["activity_skip_button"]
     countinue_button = module_page["countinue_button"]
+
+    if PLATFORM == "Android":
+        course_page_activity = course_page["Activity"]
+        lesson_page_activity = lesson_page["Activity"]
+        module_page_activity = module_page["Activity"]
+        lesson_collapse = lesson_page["Lesson_collapse"]
+
+
 
     def course_overview_android(self):
         self.wait_activity(self.course_page_activity)
@@ -32,22 +40,30 @@ class Course(Base_page):
 
     def logout_android(self):
         self.course_overview_android()
-        Login().logout()
+        self.clickat(self.setting)
+        self.clickat(self.settings_logout)
 
     def pass_one_unit_android(self):
         self.wait_activity(self.course_page_activity)
         time.sleep(10)
-        lessons = self.find_element(self.course_page["lessonone"])
-        for i in range(4):
+        print(self.course_page["lessonone"])
+        lessons = self.find_elements(self.course_page["lessonone"])
+        #lessons = self.driver.find_elements_by_id("unit_lessons_page")
+        print(lessons)
+        for i in range(5):
+            print("start lesson {}".format(i))
+            print("lesson {}".format(lessons[i]))
             self.pass_one_lesson_android(lessons[i])
 
     def pass_one_lesson_android(self, lesson):
         lesson.click()
         time.sleep(5)
         self.wait_activity(self.lesson_page_activity)
-        self.clickat(self.find_element(self.lesson_collapse))
-        self.driver.wait_activity(self.module_page_activity)
-        elements = self.driver.find_elements(self.module_page["modules"])
+        time.sleep(2)
+        self.clickat(self.lesson_collapse)
+        time.sleep(2)
+        #self.driver.wait_activity(self.module_page_activity)
+        elements = self.find_elements(self.module_page["modules"])
         print("module number is {number}".format(number=len(elements)))
         i = 0
         for element in elements:
@@ -55,22 +71,22 @@ class Course(Base_page):
             print("start %d module" % (i))
             i = i + 1
 
-        self.clickat(self.find_element(self.back_button))
+        self.clickat(self.back_button)
         time.sleep(3)
 
     def pass_one_module_android(self, module):
         module.click()
         time.sleep(2)
 
-        if self.is_element_exists(self.find_element(self.module_download)):
-            self.clickat(self.find_element(self.module_download))
-            time.sleep(5)
-        self.clickat(self.find_element(self.module_start))
+        if self.is_element_exists(self.module_download):
+            self.clickat(self.module_download)
+            time.sleep(35)
+        self.clickat(self.module_start)
 
         time.sleep(2)
 
-        while self.is_element_exists(self.find_element(self.activity_skip)):
-            self.clickat(self.find_element(self.activity_skip))
+        while self.is_element_exists(self.activity_skip):
+            self.clickat(self.activity_skip)
             time.sleep(2)
 
         self.clickat(self.countinue_button)
@@ -78,8 +94,12 @@ class Course(Base_page):
 
     def logout_ios(self):
         element = element_exist(self.driver)
+        self.swipe('down')
         element.tap_setting()
-        self.clickat(self.find_element(self.settings_logout))
+        self.swipe('down')
+        self.swipe('down')
+        time.sleep(2)
+        self.clickat(self.settings_logout)
 
     def pass_one_unit_ios(self):
         pass
@@ -96,24 +116,46 @@ class Course(Base_page):
     def pass_one_module_ios(self, module):
 
         module.click()
-        if self.is_element_exists(self.find_element(self.module_download)):
-            self.clickat(self.find_element(self.module_download))
+        if self.is_element_exists(self.module_download):
+            self.clickat(self.module_download)
             time.sleep(5)
-        self.clickat(self.find_element(self.module_start))
+        self.clickat(self.module_start)
         time.sleep(2)
 
-        if self.is_element_exists(self.find_element(self.module_page["arrow"])):
-            self.clickat(self.find_element(self.module_page["arrow"]))
+        if self.is_element_exists(self.module_page["arrow"]):
+            self.clickat(self.module_page["arrow"])
             self.swipe('down')
 
-        if self.is_element_exists(self.find_element(self.countinue_button)):
-            self.clickat(self.find_element(self.countinue_button))
+        if self.is_element_exists(self.countinue_button):
+            self.clickat(self.countinue_button)
 
-        self.clickat(self.find_element(self.module_start))
+        self.clickat(self.module_start)
 
-        while self.is_element_exists(self.find_element(self.activity_skip)):
-            self.clickat(self.find_element(self.activity_skip))
+        while self.is_element_exists(self.activity_skip):
+            self.clickat(self.activity_skip)
             time.sleep(2)
 
         self.clickat(self.countinue_button)
         time.sleep(2)
+
+    def logout_action(self):
+        if PLATFORM == "Android":
+            self.logout_android()
+
+        if PLATFORM == "IOS":
+            self.logout_ios()
+
+    # def pass_one_lesson_action(self):
+    #     if PLATFORM == "Android":
+    #         self.pass_one_lesson_android()
+    #
+    #     if PLATFORM == "IOS":
+    #         self.pass_one_lesson_ios()
+    #
+    def pass_one_unit_action(self):
+        if PLATFORM == "Android":
+            self.pass_one_unit_android()
+
+        if PLATFORM == "IOS":
+            self.pass_one_unit_ios()
+

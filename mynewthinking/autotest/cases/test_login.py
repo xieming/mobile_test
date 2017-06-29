@@ -7,7 +7,7 @@ from ptest.plogger import preporter
 
 from autotest.pages.loginpage import Login
 from autotest.public.yamlmanage import YAML
-from autotest.public.imagehelper import Appium_Extend
+from autotest.pages.courseoverviewpage import Course
 from autotest.public.elementhelper import element_exist
 
 
@@ -20,25 +20,12 @@ class LoginTest:
         self.password = '1'
         print("start to test")
 
-    # @Test()
-    # def check_login_success1(self):
-    #     yml = YAML()
-    #     iosfile = yml.read_yml("/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml")
-    #     print(iosfile["Android"]["LoginPage"]["username"])
-    #     ele = self.login.find_element(iosfile["Android"]["LoginPage"]["username"])
-    #     print(ele)
-    #     self.login.driver.set_value(ele, self.username)
-    #     time.sleep(2)
-    #     ele = self.login.find_element(iosfile["Android"]["LoginPage"]["password"])
-    #     print(ele)
-    #     self.login.driver.set_value(ele, self.password)
-    #     time.sleep(2)
-    #     self.login.find_element(iosfile["Android"]["LoginPage"]["loginbtn"]).click()
-    #     time.sleep(20)
-
     @Test()
     def check_login_success(self):
         self.login.login_action(self.username, self.password)
+        time.sleep(20)
+        Course(self.login.driver).logout_action()
+
 
 
     @Test()
@@ -115,18 +102,6 @@ class LoginTest:
 
                 self.login.driver.find_element_by_id(iosfile["IOS"]["LoginPage"]["btnContinue"]).click()
                 time.sleep(2)
-
-    @Test()
-    def pass_one_lesson(self):
-        self.login.login_action(self.username, self.password)
-        self.login.pass_one_lesson()
-        # self.login.logout_action()
-
-    @Test()
-    def pass_one_unit(self):
-        self.login.login_action(self.username, self.password)
-        self.login.pass_one_unit()
-        # self.login.logout_action()
 
     @AfterMethod(always_run=True, description="Clean up")
     def after(self):

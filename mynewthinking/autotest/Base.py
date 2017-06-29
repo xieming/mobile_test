@@ -2,12 +2,22 @@ __author__ = 'anderson'
 from selenium.webdriver.support.ui import WebDriverWait
 from appium import webdriver
 import os, time
-from selenium.webdriver.common.by import By
 from globals import MAX_TIMES
 from autotest.public.yamlmanage import YAML
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
 
-
+#
+# locator_to_by_map = {
+#     "id": By.ID,
+#     "xpath": By.XPATH,
+#     "link": By.LINK_TEXT,
+#     "partial_link": By.PARTIAL_LINK_TEXT,
+#     "name": By.NAME,
+#     "tag": By.TAG_NAME,
+#     "class": By.CLASS_NAME,
+#     "css": By.CSS_SELECTOR
+# }
 
 
 class Base_page():
@@ -29,64 +39,87 @@ class Base_page():
     def __init__(self):
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', self.capabilities)
 
-    # def actions(self,current,value):
-    #     ele=""
-    #     if current == 'id':
-    #         ele=self.driver.find_element_by_id(value)
-    #     if current == 'xpath':
-    #         ele=self.driver.find_element_by_xpath(value)
-    #     return ele
-
-
-    # def find_element(self, tag):
-    #     key = tag.split(";")[0]
-    #     print(key)
-    #     value = tag.split(";")[1]
-    #
-    #     by = eval("MobileBy.{}".format(key))
-    #
-    #     loc = (by, value)
-    #
-    #     # element=("MobileBy.{}".format(key),value)
-    #
+    # def locator_to_by_value(self,locator):
+    #     separator_index = locator.find(";")
+    #     by = locator[:separator_index]
+    #     value = locator[separator_index + 1:]
     #     try:
-    #         WebDriverWait(self.driver,15).until(self.actions(key,value).is_displayed())
-    #         return self.actions(key,value)
-    #
-    #         # WebDriverWait(self.driver, 15).until(lambda driver: driver.find_element(*element).is_displayed())
-    #         # return self.driver.find_element(by=element[0],value=element[1])
-    #     except:
-    #         print("%s page cannot find %s %s" % (self, key,value))
+    #         by = locator_to_by_map[by]
+    #     except KeyError:
+    #         print("The by <%s> of locator <%s> is not a valid By." % (by, locator))
+    #     return by, value
+
+    def action_element(self, by, value):
+        element = ""
+        if by == 'id':
+            try:
+                element = self.driver.find_element_by_id(value)
+            except NoSuchElementException:
+                return False
+
+        if by == 'xpath':
+            try:
+                element = self.driver.find_element_by_xpath(value)
+            except NoSuchElementException:
+                return False
+
+        return element
+
+    def action_elements(self, by, value):
+        elements = ""
+        if by == 'id':
+            elements = self.driver.find_elements_by_id(value)
+        if by == 'xpath':
+            elements = self.driver.find_elements_by_xpath(value)
+        return elements
 
     def find_element(self, tag):
         key = tag.split(";")[0]
         value = tag.split(";")[1]
-        by = eval("By.{}".format(key.upper()))
-        loc = (by,value)
-        try:
-            WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_element(*loc).is_displayed())
-            return self.driver.find_element(*loc)
-        except:
-            print("%s page cannot find element %s " % (self, loc))
+        if self.action_element(key, value):
+            #WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
+            return self.action_element(key, value)
+
+        else:
+            print("%s page cannot find %s %s" % (self, key, value))
+            return False
 
     def find_elements(self, tag):
         key = tag.split(";")[0]
         value = tag.split(";")[1]
-        by = eval("By.{}".format(key.upper()))
-        loc = (by, value)
         try:
-            WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_elements(*loc).is_displayed())
-            if len(self.driver.find_elements(*loc)):
-                return self.driver.find_elements(*loc)
-        except:
-            print("%s page cannot find elements%s" % (self, loc))
+            # WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
+            # if len(self.action_element(key, value)):
+            return self.action_elements(key, value)
+        except NoSuchElementException:
+            print("%s page cannot find %s %s" % (self, key, value))
+            return False
 
-    def type(self,element,value):
+    # def find_element(self, tag):
+    #
+    #     loc = (self.locator_to_by_value(tag))
+    #     try:
+    #         WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_element(*loc).is_displayed())
+    #         return self.driver.find_element(*loc)
+    #     except:
+    #         print("%s page cannot find element %s " % (self, loc))
+    #
+    # def find_elements(self, tag):
+    #
+    #     loc = (self.locator_to_by_value(tag))
+    #     try:
+    #         WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_elements(*loc).is_displayed())
+    #         if len(self.driver.find_elements(*loc)):
+    #             return self.driver.find_elements(*loc)
+    #     except:
+    #         print("%s page cannot find elements%s" % (self, loc))
+
+    def type(self, element, value):
         ele = self.find_element(element)
-        ele.clear()
-        return self.driver.set_value(ele,value)
+        # ele.clear()
+        return self.driver.set_value(ele, value)
 
-    def clickat(self,element):
+    def clickat(self, element):
         return self.find_element(element).click()
 
     def savePngName(self, name):
@@ -129,18 +162,17 @@ class Base_page():
         image = self.driver.save_screenshot(self.savePngName(name))
         return image
 
-    def wait_activity(self,activity,time=10):
-        self.driver.wait_activity(activity,time)
-        time.sleep(time)
+    def wait_activity(self, activity, time=10):
+        self.driver.wait_activity(activity, time)
 
-    def is_element_exists(self,tag):
-        try:
-            self.driver.find_element(tag)
-        except NoSuchElementException:
+    def is_element_exists(self, tag):
+        if self.find_element(tag):
+            return True
+        else:
             return False
-        return True
 
 
+    # driver.swipe(start_x, start_y, end_x, end_y, duration)
     def swipe(self, direction, duration=500):
         window_size = self.driver.get_window_size()
         if (window_size and 'width' in window_size and \

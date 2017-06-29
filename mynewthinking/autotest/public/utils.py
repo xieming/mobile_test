@@ -3,6 +3,7 @@ import re
 import shutil
 import subprocess
 import requests
+from com.android.monkeyrunner import MonkeyRunner ,MonkeyDevice ,MonkeyImage
 
 current_dir = os.path.split(os.path.realpath(__file__))[0]
 apk_path = current_dir + "/apk/"
