@@ -1,20 +1,17 @@
-jenkins_host_android: http://10.128.42.155:8080
- - tablet:
-   efekta: /view/Efekta%20(LEAN)/job/dla-efekta-android/lastSuccessfulBuild/api/json
-   efec: /view/Efekta%20(LEAN)/job/efekta-android-daily/lastSuccessfulBuild/api/json
- - engage: /view/Engage/job/spnashot/lastSuccessfulBuild/api/json
+---
+jenkins:
+  host: http://10.128.42.155:8080
+  tablet:
+    efekta: /view/Efekta%20(LEAN)/job/dla-efekta-android/lastSuccessfulBuild/api/json
+    efec: /view/Efekta%20(LEAN)/job/efekta-android-daily/lastSuccessfulBuild/api/json
+  engage: /view/Engage/job/spnashot/lastSuccessfulBuild/api/json
 apk:   
- - b2c: englishtown 
-   activity: com.ef.core.engage.englishtown.login
-   package: com.ef.core.engage.englishtown
- - b2b: coporate 
-   activity: com.ef.core.engage.coporate.login
-   package: com.ef.core.engage.coporate
- - ec: smartenglish 
-   activity: com.ef.core.engage.smartenglish.login
-   package: com.ef.core.engage.smartenglish
-children:  
- - name: Jimmy Smith  
-   age: 15  
- - name1: Jenny Smith  
-   age1: 12  
+  englishtown:
+    activity: com.ef.core.engage.englishtown.login
+    package: com.ef.core.engage.englishtown
+  coporate:
+    activity: com.ef.core.engage.coporate.login
+    package: com.ef.core.engage.coporate
+  smartenglish:
+    activity: com.ef.core.engage.smartenglish.login
+    package: com.ef.core.engage.smartenglish

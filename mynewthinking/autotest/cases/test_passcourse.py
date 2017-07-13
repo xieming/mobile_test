@@ -31,8 +31,8 @@ class LoginTest:
 
     @Test()
     def pass_one_unit(self):
-        if self.login.driver.current_activity == self.login.login_page_activity:
-            self.login.login_action(self.username, self.password)
+        #if self.login.driver.current_activity == self.login.login_page_activity:
+        self.login.login_action(self.username, self.password)
 
         self.course.pass_one_unit_action()
         self.course.logout_action()

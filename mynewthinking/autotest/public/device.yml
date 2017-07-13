@@ -1,16 +1,17 @@
 ---
 Android:
   platformName: Android
-  platformVersion: 5.1
+  platformVersion: 5.0
   deviceName: 192.168.56.101:5555
   appPackage: com.ef.core.engage.englishtown
   appActivity: com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity
   #appWaitActivity: com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity
-  app: /Users/anderson/Documents/builds/engage-englishtown-qa-debug-1.5.0-201706280059.apk
-  resetKeyboard: True
-  noSign: True
-  noReset: True
-  deviceReadyTimeout: 5
+  #app: /Users/anderson/Documents/builds/engage-englishtown-qa-debug-1.5.0-201706280059.apk
+  app: /Users/anderson/practice/myappium/builds/engage-englishtown-qa-debug-1.5.0-201707070100.apk
+#  resetKeyboard: True
+#  noSign: True
+#  noReset: True
+#  deviceReadyTimeout: 5
 #iPhone 7
 IOS:
   platformName: IOS
