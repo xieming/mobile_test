@@ -9,7 +9,12 @@ Android:
   CourseOverViewPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownCourseOverviewActivity"
     settings: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/toolbar"]/android.widget.ImageButton[1]
-    lessonone: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout
+    lessonall: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout
+    lessonone: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[1]
+    lessontwo: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[2]
+    lessonthree: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[3]
+    lessonfour: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[4]
+    lessonpl: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[5]
     Download: id;download_progress_bar
     settings_languae: id;textview_set_language
     settings_sync: id;textview_sync
@@ -40,19 +45,25 @@ IOS:
     settings_logout: id;Logout
     settings_languae: id;Language
     Selectlevel: id;Select level
-    lessonone: id;pnlLesson_1_1
+    lessonall: xpath;//XCUIElementTypeApplication[@name="EF English Live"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeTable/XCUIElementTypeCell
+    lessonone: xpath;//XCUIElementTypeApplication[@name="EF English Live"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeTable/XCUIElementTypeCell[1]
+    lessontwo: xpath;//XCUIElementTypeApplication[@name="EF English Live"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeTable/XCUIElementTypeCell[2]
+    lessonthree: xpath;//XCUIElementTypeApplication[@name="EF English Live"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeTable/XCUIElementTypeCell[3]
+    lessonfour: xpath;//XCUIElementTypeApplication[@name="EF English Live"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeTable/XCUIElementTypeCell[4]
+    lessonpl: xpath;//XCUIElementTypeApplication[@name="EF English Live"]/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeCollectionView/XCUIElementTypeCell[1]/XCUIElementTypeTable/XCUIElementTypeCell[5]
+    Download: id;unit ready to download
 
   LessonOverViewPage:
     back_button: id;back button black
 
 
   ModuleOverViewPage:
-    moduleall: xpath;//XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther
-    moduleach: xpath;/XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther['%d']
-    moduleone: xpath;//XCUIElementTypeOther[@name="pnlModule_Vocabulary"]/XCUIElementTypeOther/XCUIElementTypeButton
-    module_download: id;btn_moduleintro_download
-    passmodule: id;PASS MODULE
-    module_start: id;btn_moduleintro_start
-    activity_skip_button: id;btnQApass
-    countinue_button: id;btnContinue
-    arrow: id;arrow
+    moduleall: xpath;//XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther
+    moduleach: xpath;//XCUIElementTypeOther[@name="lesson_page"]/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther['%d']
+    moduleone: xpath;//XCUIElementTypeOther/XCUIElementTypeButton
+    module_download: name;btn_moduleintro_download
+    passmodule: name;PASS MODULE
+    module_start: name;btn_moduleintro_start
+    activity_skip_button: name;btnQApass
+    countinue_button: name;btnContinue
+    arrow: name;arrow

@@ -10,12 +10,14 @@ from autotest.pages.courseoverviewpage import Course
 from autotest.public.yamlmanage import YAML
 from autotest.public.imagehelper import Appium_Extend
 from autotest.public.elementhelper import element_exist
-
+from globals import PLATFORM
+from setupenv import setup_env
 
 @TestClass(run_mode='singleline')
 class LoginTest:
     @BeforeMethod(description="Prepare test data.")
     def setup_data(self):
+        setup_env()
         self.login = Login()
         self.username = 'newqa@qp1.org'
         self.password = '11111111'
@@ -25,15 +27,15 @@ class LoginTest:
 
     @Test()
     def pass_one_lesson(self):
-        self.login.login_action(self.username, self.password)
 
-        self.course.logout_action()
+        self.login.login_action(self.username,self.password)
+        self.course.pass_one_lesson_action("lessonthree")
+        #self.course.logout_action()
 
     @Test()
     def pass_one_unit(self):
-        #if self.login.driver.current_activity == self.login.login_page_activity:
-        self.login.login_action(self.username, self.password)
 
+        self.login.login_action(self.username,self.password)
         self.course.pass_one_unit_action()
         self.course.logout_action()
 

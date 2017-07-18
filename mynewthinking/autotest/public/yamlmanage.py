@@ -3,8 +3,8 @@ from globals import PLATFORM
 
 
 class YAML():
-    device_path="/Users/anderson/testcode/mobile_test/mynewthinking/autotest/public/device.yml"
-    page_path = "/Users/anderson/testcode/mobile_test/mynewthinking/autotest/pages/pages.yml"
+    device_path="/Users/anderson/testcode/mynewthinking/autotest/public/device.yml"
+    page_path = "/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml"
 
 
 # Write YAML file

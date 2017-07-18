@@ -1,23 +1,50 @@
 import os
-import re
 import shutil
 import subprocess
+import time
+from subprocess import Popen
+
 import requests
-from com.android.monkeyrunner import MonkeyRunner ,MonkeyDevice ,MonkeyImage
+from ptest.plogger import preporter
 
 current_dir = os.path.split(os.path.realpath(__file__))[0]
-apk_path = current_dir + "/apk/"
-old_path = current_dir + "/old/"
-new_path = current_dir + "/new/"
+current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 
-def exec_command(cmd):
-    result = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-    (stdoutdata, stderrdata) = result.communicate()
-    if (re.search("error", str(stdoutdata))):
-        print ("error occur!")
-    else:
-        return stdoutdata
+def run_command_on_shell(command_string):
+    try:
+        process = start_process_by_command(command_string)
+        out, error = process.communicate()
+        return out.decode().splitlines()
+    except:
+        print("Command Error")
+        preporter.info('error occur for command {}'.format(command_string))
+        raise
+
+def start_process_by_command(command_string, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT):
+    process = Popen(command_string, shell=shell, stdout=stdout, stderr=stderr)
+    return process
+
+
+def kill_progress_by_name(progress_name):
+    cmd = "killall -9 {}".format(progress_name)
+    run_command_on_shell(cmd)
+    preporter.info("progress {} was killed ".format(progress_name))
+
+
+def write_log(file_name, content):
+    file = current_dir + "/" + file_name
+    with open(file, 'w+') as f:
+        f.write(content)
+
+
+# def exec_command(cmd):
+#     result = subprocess.Popen(cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+#     (stdoutdata, stderrdata) = result.communicate()
+#     if (re.search("error", str(stdoutdata))):
+#         print ("error occur!")
+#     else:
+#         return stdoutdata
 
 
 def check_folder(name):
@@ -33,13 +60,8 @@ def check_folder(name):
 #     exec_command(cmd)
 #     os.chdir(current_dir)
 
-def download_file(url,path):
-    print (path)
-    file=requests.get(url).content
-    with open(path,'wb') as f:
+def download_file(url, path):
+    print(path)
+    file = requests.get(url).content
+    with open(path, 'wb') as f:
         f.write(file)
-
-def check_md5(file):
-    cmd = 'md5 {0}'.format(file)
-    md5_id = exec_command(cmd)
-    print ("{0} md5 value is {1}".format(file, md5_id))

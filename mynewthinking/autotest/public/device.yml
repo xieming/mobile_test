@@ -6,17 +6,16 @@ Android:
   appPackage: com.ef.core.engage.englishtown
   appActivity: com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity
   #appWaitActivity: com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity
-  #app: /Users/anderson/Documents/builds/engage-englishtown-qa-debug-1.5.0-201706280059.apk
-  app: /Users/anderson/practice/myappium/builds/engage-englishtown-qa-debug-1.5.0-201707070100.apk
-#  resetKeyboard: True
-#  noSign: True
-#  noReset: True
-#  deviceReadyTimeout: 5
+  app: /Users/anderson/Documents/builds/engage-englishtown-qa-debug-1.5.0-201706280059.apk
+  resetKeyboard: True
+  noSign: True
+  noReset: True
+  deviceReadyTimeout: 5
 #iPhone 7
 IOS:
   platformName: IOS
   deviceName: iPhone 6s
-  app: /Users/anderson/Documents/builds/EngageEnglishtownUATdebug.app
+  app: /Users/anderson/Documents/builds/EngageEnglishtownQAdebug.app
   automationName: XCUITest
   allowTouchIdEnroll: True
   noSign: True

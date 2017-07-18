@@ -1,0 +1,5 @@
+[Appium] Welcome to Appium v1.6.4
+[Appium] Non-default server args:
+[Appium]   sessionOverride: true
+[Appium] Appium REST http interface listener started on 0.0.0.0:4723
+[Appium] Received SIGINT - shutting down

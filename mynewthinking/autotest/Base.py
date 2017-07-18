@@ -50,8 +50,9 @@ class Base_page():
     #     return by, value
 
     def action_element(self, by, value):
-        element = ""
+
         if by == 'id':
+
             try:
                 element = self.driver.find_element_by_id(value)
             except NoSuchElementException:
@@ -63,7 +64,17 @@ class Base_page():
             except NoSuchElementException:
                 return False
 
+        if by == 'name':
+            try:
+                element = self.driver.find_element_by_name(value)
+            except NoSuchElementException:
+                return False
+
         return element
+
+
+
+
 
     def action_elements(self, by, value):
         elements = ""
