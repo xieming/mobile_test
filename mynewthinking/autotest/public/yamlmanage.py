@@ -1,10 +1,14 @@
 import yaml
-from globals import PLATFORM
+from globals import PLATFORM,current_dir
+
+
+
+
 
 
 class YAML():
-    device_path="/Users/anderson/testcode/mynewthinking/autotest/public/device.yml"
-    page_path = "/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml"
+    device_path=current_dir + "/autotest/public/device.yml"
+    page_path = current_dir + "/autotest/pages/pages.yml"
 
 
 # Write YAML file
