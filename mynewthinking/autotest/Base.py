@@ -6,6 +6,9 @@ from globals import MAX_TIMES
 from autotest.public.yamlmanage import YAML
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
 #
 # locator_to_by_map = {
@@ -208,3 +211,38 @@ class Base_page():
             return True
         else:
             assert False, 'Fail to obtain window size for swiping! {0}'.format(window_size)
+
+    def wait(self, timeout=WAIT_PAGE_LOADING_TIME):
+        return WebDriverWait(self._driver, timeout)
+
+    def wait_until(self, method, message=None, timeout=WAIT_PAGE_LOADING_TIME):
+        return self.wait(timeout).until(method, message)
+
+    def wait_unitl_not(self, method, message=None, timeout=WAIT_PAGE_LOADING_TIME):
+        return self.wait(timeout).until_not(method, message)
+
+    def wait_for_visibility_of_element(self, element, timeout=WAIT_PAGE_LOADING_TIME):
+        return self.wait_until(EC.visibility_of(element),
+                               "Element {} is not visible".format(element), timeout=timeout)
+
+    def wait_for_presence_of_element_located(self, locator, timeout=WAIT_PAGE_LOADING_TIME):
+        locator_info = parse_element_locator(self.platform, locator)
+        return self.wait_until(EC.presence_of_element_located(locator_info),
+                               "Element locator (by: {0}, value: {1}) is not present"
+                               .format(locator_info[0], locator_info[1]), timeout=timeout)
+
+    def wait_for_visibility_of_element_located(self, locator, timeout=WAIT_PAGE_LOADING_TIME):
+        locator_info = parse_element_locator(self.platform, locator)
+        return self.wait_until(EC.visibility_of_element_located(locator_info),
+                               "Element locator (by: {0}, value: {1}) is not visible"
+                               .format(locator_info[0], locator_info[1]), timeout=timeout)
+
+    def wait_for_invisibility_of_element_located(self, locator, timeout=WAIT_PAGE_LOADING_TIME):
+        return self.wait_until(EC.invisibility_of_element_located(locator),
+                               "Element with locator {} is still existed".format(locator), timeout=timeout)
+
+    def wait_for_invisibility_of_child_element_located(self, parent_element, child_locator,
+                                                       timeout=WAIT_PAGE_LOADING_TIME):
+        return self.wait_until(is_child_element_invisible(parent_element, child_locator),
+                               "Child Element with locator {0} is still existed"
+                               .format(child_locator), timeout=timeout)
