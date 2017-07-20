@@ -1,5 +1,5 @@
 import yaml
-from globals import PLATFORM,current_dir
+from globals import PLATFORM,current_dir,AppPath
 
 
 

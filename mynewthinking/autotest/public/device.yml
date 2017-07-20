@@ -5,8 +5,7 @@ Android:
   deviceName: 192.168.56.101:5555
   appPackage: com.ef.core.engage.englishtown
   appActivity: com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity
-  #appWaitActivity: com.ef.core.engage.ui.screens.activity.EnglishTownLoginActivity
-  app: /Users/anderson/Documents/builds/engage-englishtown-qa-debug-1.5.0-201706280059.apk
+  app: /Users/anderson/testcode/mobile_test/mynewthinking/autotest/builds/Android/ENGAGE/englishtown/engage-englishtown-qa-debug-1.5.0-201707201101.apk
   resetKeyboard: True
   noSign: True
   noReset: True
