@@ -59,29 +59,29 @@ class Base_page():
     #         print("The by <%s> of locator <%s> is not a valid By." % (by, locator))
     #     return by, value
 
-    def action_element(self, by, value):
-
-        if by == 'id':
-
-            try:
-                element = self.driver.find_element_by_id(value)
-            except NoSuchElementException:
-                return False
-
-        if by == 'xpath':
-            try:
-                element = self.driver.find_element_by_xpath(value)
-            except NoSuchElementException:
-                return False
-
-        if by == 'name':
-            try:
-                element = self.driver.find_element_by_name(value)
-            except NoSuchElementException:
-                return False
-
-        return element
-
+    # def action_element(self, by, value):
+    #
+    #     if by == 'id':
+    #
+    #         try:
+    #             element = self.driver.find_element_by_id(value)
+    #         except NoSuchElementException:
+    #             return False
+    #
+    #     if by == 'xpath':
+    #         try:
+    #             element = self.driver.find_element_by_xpath(value)
+    #         except NoSuchElementException:
+    #             return False
+    #
+    #     if by == 'name':
+    #         try:
+    #             element = self.driver.find_element_by_name(value)
+    #         except NoSuchElementException:
+    #             return False
+    #
+    #     return element
+    #
     def action_elements(self, by, value):
         elements = ""
         if by == 'id':
@@ -89,18 +89,18 @@ class Base_page():
         if by == 'xpath':
             elements = self.driver.find_elements_by_xpath(value)
         return elements
-
-    def find_element(self, tag):
-        key = tag.split(";")[0]
-        value = tag.split(";")[1]
-        if self.action_element(key, value):
-            # WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
-            return self.action_element(key, value)
-
-        else:
-            print("%s page cannot find %s %s" % (self, key, value))
-            return False
-
+    #
+    # def find_element(self, tag):
+    #     key = tag.split(";")[0]
+    #     value = tag.split(";")[1]
+    #     if self.action_element(key, value):
+    #         # WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
+    #         return self.action_element(key, value)
+    #
+    #     else:
+    #         print("%s page cannot find %s %s" % (self, key, value))
+    #         return False
+    #
     def find_elements(self, tag):
         key = tag.split(";")[0]
         value = tag.split(";")[1]
@@ -112,22 +112,24 @@ class Base_page():
             print("%s page cannot find %s %s" % (self, key, value))
             return False
 
-    # def find_element(self, tag):
-    #
-    #     loc = (self.locator_to_by_value(tag))
-    #     try:
-    #         WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_element(*loc).is_displayed())
-    #         return self.driver.find_element(*loc)
-    #     except:
-    #         print("%s page cannot find element %s " % (self, loc))
-    #
+    def find_element(self, tag):
+
+        loc = (self.locator_to_by_value(tag))
+        try:
+            #WebDriverWait(self.driver, WAIT_MAX_TIME).until(lambda driver: driver.find_element(*loc).is_displayed())
+            #self.wait_for_presence_of_element_located(tag)
+
+            return self.driver.find_element(*loc)
+        except:
+            print("%s page cannot find element %s " % (self, loc))
+
     # def find_elements(self, tag):
     #
     #     loc = (self.locator_to_by_value(tag))
     #     try:
-    #         WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_elements(*loc).is_displayed())
-    #         if len(self.driver.find_elements(*loc)):
-    #             return self.driver.find_elements(*loc)
+    #         WebDriverWait(self.driver, WAIT_MAX_TIME).until(lambda driver: driver.find_elements(*loc).is_displayed())
+    #
+    #         return self.driver.find_elements(*loc)
     #     except:
     #         print("%s page cannot find elements%s" % (self, loc))
 
