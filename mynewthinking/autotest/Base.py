@@ -141,6 +141,10 @@ class Base_page():
     def clickat(self, element):
         return self.find_element(element).click()
 
+    def clickelement(self, element):
+        self.wait_for_presence_of_element_located(element)
+        return self.find_element(element).click()
+
     def savePngName(self, name):
         """
         name：自定义图片的名称

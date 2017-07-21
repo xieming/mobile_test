@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="72.082" timestamp="2017-07-21 13:32:22.458043">
-		<testcase classname="autotest.cases.test_passcourse.LoginTest" name="pass_one_lesson" time="72.080"/>
+	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="38.841" timestamp="2017-07-21 16:12:18.482388">
+		<testcase classname="autotest.cases.test_change_course.LoginTest" name="chang_ge_level" time="38.840"/>
 	</testsuite>
