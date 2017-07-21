@@ -194,6 +194,11 @@ class Base_page():
         else:
             return False
 
+    def scroll(self,origin,destination):
+        from_ele = self.find_element(origin)
+        to_ele=self.find_element(destination)
+        self.driver.scroll(origin_el=from_ele,destination_el=to_ele)
+
     # driver.swipe(start_x, start_y, end_x, end_y, duration)
     def swipe(self, direction, duration=500):
         window_size = self.driver.get_window_size()

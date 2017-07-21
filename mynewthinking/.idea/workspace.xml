@@ -20,13 +20,13 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="loginpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/autotest/pages/loginpage.py">
+      <file leaf-file-name="Base.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/autotest/Base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="32" lean-forward="false" selection-start-line="20" selection-start-column="32" selection-end-line="20" selection-end-column="32" />
+            <state relative-caret-position="-454">
+              <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
               <folding>
-                <element signature="e#39#74#0" expanded="true" />
+                <element signature="e#24#33#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -45,8 +45,8 @@
       <file leaf-file-name="managecoursepage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/pages/managecoursepage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="26" />
+            <state relative-caret-position="360">
+              <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
               <folding>
                 <element signature="e#39#50#0" expanded="true" />
               </folding>
@@ -54,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_change_course.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_change_course.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/cases/test_change_course.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="495">
-              <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+            <state relative-caret-position="480">
+              <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="44" />
               <folding>
                 <element signature="e#48#59#0" expanded="true" />
               </folding>
@@ -69,8 +69,8 @@
       <file leaf-file-name="testexecutor.py" pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/.pyenv/versions/3.5.3/lib/python3.5/site-packages/ptest/testexecutor.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="382" column="0" lean-forward="false" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
+            <state relative-caret-position="155">
+              <caret line="413" column="0" lean-forward="false" selection-start-line="413" selection-start-column="0" selection-end-line="413" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -86,11 +86,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="servermanage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/servermanage.py">
+      <file leaf-file-name="threading.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/.pyenv/versions/3.5.3/lib/python3.5/threading.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="155">
+              <caret line="913" column="0" lean-forward="false" selection-start-line="913" selection-start-column="0" selection-end-line="913" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -99,8 +99,8 @@
       <file leaf-file-name="courseoverviewpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/autotest/pages/courseoverviewpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+            <state relative-caret-position="146">
+              <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
               <folding>
                 <element signature="e#39#50#0" expanded="true" />
               </folding>
@@ -181,14 +181,14 @@
         <option value="$PROJECT_DIR$/autotest/cases/test_login.py" />
         <option value="$PROJECT_DIR$/autotest/pages/loginpage.py" />
         <option value="$PROJECT_DIR$/autotest/public/device.yml" />
-        <option value="$PROJECT_DIR$/autotest/Base.py" />
         <option value="$PROJECT_DIR$/autotest/cases/test_passcourse.py" />
         <option value="$PROJECT_DIR$/autotest/pages/settingpage.py" />
-        <option value="$PROJECT_DIR$/autotest/pages/managecoursepage.py" />
         <option value="$PROJECT_DIR$/autotest/cases/test_change_setting.py" />
         <option value="$PROJECT_DIR$/autotest/pages/pages.yml" />
         <option value="$PROJECT_DIR$/autotest/pages/courseoverviewpage.py" />
+        <option value="$PROJECT_DIR$/autotest/Base.py" />
         <option value="$PROJECT_DIR$/autotest/cases/test_change_course.py" />
+        <option value="$PROJECT_DIR$/autotest/pages/managecoursepage.py" />
       </list>
     </option>
   </component>
@@ -617,21 +617,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 04m 35s.xml">
-      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
-    </history-entry>
-    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 04m 40s.xml">
-      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
-    </history-entry>
-    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 05m 27s.xml">
-      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
-    </history-entry>
-    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 08m 00s.xml">
-      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
-    </history-entry>
-    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 08m 15s.xml">
-      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
-    </history-entry>
     <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 08m 19s.xml">
       <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
     </history-entry>
@@ -645,6 +630,21 @@
       <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
     </history-entry>
     <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 12m 57s.xml">
+      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
+    </history-entry>
+    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 16h 38m 58s.xml">
+      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
+    </history-entry>
+    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 17h 22m 08s.xml">
+      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
+    </history-entry>
+    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 17h 33m 04s.xml">
+      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
+    </history-entry>
+    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 17h 36m 21s.xml">
+      <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
+    </history-entry>
+    <history-entry file="ptest_LoginTest_chang_ge_level - 2017.07.21 at 17h 39m 45s.xml">
       <configuration name="ptest LoginTest.chang_ge_level" configurationId="ptest" />
     </history-entry>
   </component>
@@ -715,8 +715,13 @@
           <line>52</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/autotest/pages/managecoursepage.py</url>
+          <line>23</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="66" />
+      <option name="time" value="69" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -913,14 +918,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.pyenv/versions/3.5.3/lib/python3.5/threading.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="13620">
-          <caret line="914" column="30" lean-forward="false" selection-start-line="914" selection-start-column="30" selection-end-line="914" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/autotest/cases/test_login.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
@@ -971,31 +968,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/Base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="197" column="8" lean-forward="false" selection-start-line="197" selection-start-column="8" selection-end-line="197" selection-end-column="8" />
-          <folding>
-            <element signature="e#24#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/servermanage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/pages/settingpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
-          <folding>
-            <element signature="e#39#50#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1019,28 +996,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/pages/managecoursepage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="26" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="26" />
-          <folding>
-            <element signature="e#39#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/autotest/pages/pages.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="30" lean-forward="false" selection-start-line="20" selection-start-column="30" selection-end-line="20" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.pyenv/versions/3.5.3/lib/python3.5/site-packages/ptest/testexecutor.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="382" column="0" lean-forward="false" selection-start-line="382" selection-start-column="0" selection-end-line="382" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1053,22 +1012,68 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/autotest/pages/courseoverviewpage.py">
+    <entry file="file://$PROJECT_DIR$/autotest/pages/settingpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="51" column="8" lean-forward="false" selection-start-line="51" selection-start-column="8" selection-end-line="51" selection-end-column="8" />
+        <state relative-caret-position="405">
+          <caret line="27" column="28" lean-forward="false" selection-start-line="27" selection-start-column="28" selection-end-line="27" selection-end-column="28" />
           <folding>
             <element signature="e#39#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/pages/courseoverviewpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="179" column="0" lean-forward="false" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/3.5.3/lib/python3.5/site-packages/ptest/testexecutor.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="413" column="0" lean-forward="false" selection-start-line="413" selection-start-column="0" selection-end-line="413" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.pyenv/versions/3.5.3/lib/python3.5/threading.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="913" column="0" lean-forward="false" selection-start-line="913" selection-start-column="0" selection-end-line="913" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/autotest/cases/test_change_course.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="495">
-          <caret line="33" column="36" lean-forward="true" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+        <state relative-caret-position="480">
+          <caret line="32" column="44" lean-forward="false" selection-start-line="32" selection-start-column="26" selection-end-line="32" selection-end-column="44" />
           <folding>
             <element signature="e#48#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/pages/managecoursepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="24" lean-forward="true" selection-start-line="24" selection-start-column="24" selection-end-line="24" selection-end-column="24" />
+          <folding>
+            <element signature="e#39#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/autotest/Base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-454">
+          <caret line="141" column="0" lean-forward="false" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#33#0" expanded="true" />
           </folding>
         </state>
       </provider>

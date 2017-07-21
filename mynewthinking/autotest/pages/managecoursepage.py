@@ -22,8 +22,18 @@ class ManageCourse(Base_page):
     def change_level_on_GE(self,id):
         self.wait_for_presence_of_element_located(self.Back_button)
         self.clickat(self.GE_course)
-        if id > 6:
-            self.swipe("up")
+        if 6 < id <= 10:
+            self.scroll(self.Lessons%(5), self.Lessons%(1))
+        elif 10 <id <= 14:
+            self.scroll(self.Lessons % (5), self.Lessons % (1))
+            self.scroll(self.Lessons % (9), self.Lessons % (5))
+        else:
+            self.scroll(self.Lessons % (5), self.Lessons % (1))
+            self.scroll(self.Lessons % (9), self.Lessons % (5))
+            self.scroll(self.Lessons % (13), self.Lessons % (11))
+
+
+
         level = self.Lessons%(id)
         print(level)
         self.clickat(level)
