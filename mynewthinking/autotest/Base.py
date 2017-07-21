@@ -1,14 +1,18 @@
 __author__ = 'anderson'
-from selenium.webdriver.support.ui import WebDriverWait
+import os
+import time
+import re
+
 from appium import webdriver
-import os, time
-from globals import MAX_TIMES
-from autotest.public.yamlmanage import YAML
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.common.by import By
+
+from autotest.public.yamlmanage import YAML
+from globals import WAIT_MAX_TIME,PLATFORM,AppPath,build_path
+import inspect
+
 
 #
 # locator_to_by_map = {
@@ -25,6 +29,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 
 class Base_page():
     capabilities = YAML().current_device()
+    if PLATFORM == 'Adroid':
+        capabilities['app'] = AppPath.get_app_filename(build_path)
+
     print(capabilities)
 
     # capabilities['platformName'] = 'Android'
@@ -75,10 +82,6 @@ class Base_page():
 
         return element
 
-
-
-
-
     def action_elements(self, by, value):
         elements = ""
         if by == 'id':
@@ -91,7 +94,7 @@ class Base_page():
         key = tag.split(";")[0]
         value = tag.split(";")[1]
         if self.action_element(key, value):
-            #WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
+            # WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
             return self.action_element(key, value)
 
         else:
@@ -185,7 +188,6 @@ class Base_page():
         else:
             return False
 
-
     # driver.swipe(start_x, start_y, end_x, end_y, duration)
     def swipe(self, direction, duration=500):
         window_size = self.driver.get_window_size()
@@ -212,37 +214,46 @@ class Base_page():
         else:
             assert False, 'Fail to obtain window size for swiping! {0}'.format(window_size)
 
-    def wait(self, timeout=WAIT_PAGE_LOADING_TIME):
-        return WebDriverWait(self._driver, timeout)
+    def equals_ignore_case(self,str1, str2):
+        return re.match(re.escape(str1) + r'\Z', str2, re.I) is not None
 
-    def wait_until(self, method, message=None, timeout=WAIT_PAGE_LOADING_TIME):
+    def locator_to_by_value(self, tag):
+        key = tag.split(";")[0]
+        value = tag.split(";")[1]
+
+
+        mobile_by_properties = [member for member in inspect.getmembers(By) if member[0][:1] != '_']
+        property_name = [member[0] for member in mobile_by_properties
+                         if self.equals_ignore_case(member[1], key)][0]
+        by = eval("By.{}".format(property_name))
+
+        return (by, value)
+
+    def wait(self, timeout=WAIT_MAX_TIME):
+        return WebDriverWait(self.driver, timeout)
+
+    def wait_until(self, method, message=None, timeout=WAIT_MAX_TIME):
         return self.wait(timeout).until(method, message)
 
-    def wait_unitl_not(self, method, message=None, timeout=WAIT_PAGE_LOADING_TIME):
+    def wait_unitl_not(self, method, message=None, timeout=WAIT_MAX_TIME):
         return self.wait(timeout).until_not(method, message)
 
-    def wait_for_visibility_of_element(self, element, timeout=WAIT_PAGE_LOADING_TIME):
+    def wait_for_visibility_of_element(self, element, timeout=WAIT_MAX_TIME):
         return self.wait_until(EC.visibility_of(element),
                                "Element {} is not visible".format(element), timeout=timeout)
 
-    def wait_for_presence_of_element_located(self, locator, timeout=WAIT_PAGE_LOADING_TIME):
-        locator_info = parse_element_locator(self.platform, locator)
+    def wait_for_presence_of_element_located(self, tag, timeout=WAIT_MAX_TIME):
+        locator_info = self.locator_to_by_value(tag)
         return self.wait_until(EC.presence_of_element_located(locator_info),
                                "Element locator (by: {0}, value: {1}) is not present"
                                .format(locator_info[0], locator_info[1]), timeout=timeout)
 
-    def wait_for_visibility_of_element_located(self, locator, timeout=WAIT_PAGE_LOADING_TIME):
-        locator_info = parse_element_locator(self.platform, locator)
+    def wait_for_visibility_of_element_located(self, tag, timeout=WAIT_MAX_TIME):
+        locator_info = self.locator_to_by_value(tag)
         return self.wait_until(EC.visibility_of_element_located(locator_info),
                                "Element locator (by: {0}, value: {1}) is not visible"
                                .format(locator_info[0], locator_info[1]), timeout=timeout)
 
-    def wait_for_invisibility_of_element_located(self, locator, timeout=WAIT_PAGE_LOADING_TIME):
+    def wait_for_invisibility_of_element_located(self, locator, timeout=WAIT_MAX_TIME):
         return self.wait_until(EC.invisibility_of_element_located(locator),
                                "Element with locator {} is still existed".format(locator), timeout=timeout)
-
-    def wait_for_invisibility_of_child_element_located(self, parent_element, child_locator,
-                                                       timeout=WAIT_PAGE_LOADING_TIME):
-        return self.wait_until(is_child_element_invisible(parent_element, child_locator),
-                               "Child Element with locator {0} is still existed"
-                               .format(child_locator), timeout=timeout)

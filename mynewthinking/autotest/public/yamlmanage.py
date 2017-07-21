@@ -12,6 +12,7 @@ class YAML():
 
 
 # Write YAML file
+
     def write_yml(self,save_path,data):
         with open(save_path, 'w', encoding='utf8') as outfile:
             try:
@@ -20,6 +21,8 @@ class YAML():
                 print(exc)
 
 # Read YAML file
+
+
     def read_yml(self,load_path):
         with open(load_path, 'r') as stream:
             try:
@@ -30,6 +33,7 @@ class YAML():
 
     def current_device(self):
         return self.read_yml(self.device_path)[PLATFORM]
+
 
     def current_page(self,page):
         return self.read_yml(self.page_path)[PLATFORM][page]

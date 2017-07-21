@@ -51,11 +51,12 @@ class Course(Base_page):
     def logout_android(self):
         self.course_overview_android()
         self.clickat(self.setting)
+        self.wait_for_presence_of_element_located(self.settings_logout)
         self.clickat(self.settings_logout)
 
     def pass_one_unit_android(self):
         self.wait_activity(self.course_page_activity)
-        time.sleep(10)
+        self.wait_for_presence_of_element_located(self.lessonall)
         lessons = self.find_elements(self.lessonall)
         #lessons = self.driver.find_elements_by_id("unit_lessons_page")
         print(lessons)
@@ -65,13 +66,14 @@ class Course(Base_page):
             self.pass_one_lesson_android(lessons[i])
 
     def pass_one_lesson_android(self, lesson):
-        time.sleep(15)
+
         self.clickat(lesson)
-        time.sleep(5)
         self.wait_activity(self.lesson_page_activity)
-        time.sleep(2)
+
+        self.wait_for_presence_of_element_located(self.lesson_collapse)
         self.clickat(self.lesson_collapse)
-        time.sleep(2)
+
+        self.wait_for_presence_of_element_located(self.module_page["modules"])
         #self.driver.wait_activity(self.module_page_activity)
         elements = self.find_elements(self.module_page["modules"])
         print("module number is {number}".format(number=len(elements)))
@@ -81,27 +83,33 @@ class Course(Base_page):
             print("start %d module" % (i))
             i = i + 1
 
+        self.wait_for_presence_of_element_located(self.back_button)
         self.clickat(self.back_button)
-        time.sleep(3)
+
 
     def pass_one_module_android(self, module):
+
         module.click()
-        time.sleep(2)
 
         if self.is_element_exists(self.module_download):
+            self.wait_for_presence_of_element_located(self.module_download)
             self.clickat(self.module_download)
-            time.sleep(35)
 
-        self.clickat(self.module_start)
+        if self.is_element_exists(self.module_start):
+            self.wait_for_presence_of_element_located(self.module_start)
+            self.clickat(self.module_start)
+        else:
+            self.wait_for_invisibility_of_element_located(self.module_start)
+            self.clickat(self.module_start)
 
-        time.sleep(2)
-
+        self.wait_for_presence_of_element_located(self.activity_skip)
         while self.is_element_exists(self.activity_skip):
+            self.wait_for_presence_of_element_located(self.activity_skip)
             self.clickat(self.activity_skip)
-            time.sleep(2)
 
+        self.wait_for_presence_of_element_located(self.countinue_button)
         self.clickat(self.countinue_button)
-        time.sleep(2)
+
 
     def logout_ios(self):
         element = element_exist(self.driver)

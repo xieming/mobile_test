@@ -4,6 +4,7 @@ current_dir = os.path.split(os.path.realpath(__file__))[0]
 
 MAX_TIMES = 3
 WAIT_TIME = 5
+WAIT_MAX_TIME = 20
 
 PLATFORM = "Android" # Android, IOS
 PROJECT = "ENGAGE"  #TABLET,ENGAGE

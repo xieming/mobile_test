@@ -9,21 +9,22 @@ from autotest.pages.loginpage import Login
 from autotest.public.yamlmanage import YAML
 from autotest.pages.courseoverviewpage import Course
 from autotest.public.elementhelper import element_exist
+from setupenv import setup_env
 
 
 @TestClass(run_mode='singleline')
 class LoginTest:
     @BeforeMethod(description="Prepare test data.")
     def setup_data(self):
+        setup_env()
         self.login = Login()
-        self.username = 'dd2@qp1.org'
-        self.password = '1'
+        self.username = 'newqa@qp1.org'
+        self.password = '11111111'
         print("start to test")
 
     @Test()
     def check_login_success(self):
         self.login.login_action(self.username, self.password)
-        time.sleep(20)
         Course(self.login.driver).logout_action()
 
 
