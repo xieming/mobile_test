@@ -17,7 +17,7 @@ from setupenv import setup_env
 class LoginTest:
     @BeforeMethod(description="Prepare test data.")
     def setup_data(self):
-        setup_env()
+        #setup_env()
         self.login = Login()
         self.username = 'newqa@qp1.org'
         self.password = '11111111'

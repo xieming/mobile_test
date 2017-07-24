@@ -7,7 +7,7 @@ from appium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.by import By
+from appium.webdriver.common.mobileby import MobileBy
 
 from autotest.public.yamlmanage import YAML
 from globals import WAIT_MAX_TIME,PLATFORM,AppPath,build_path
@@ -210,9 +210,9 @@ class Base_page():
             width = window_size['width']
             height = window_size['height']
 
-            if direction == 'up':
+            if direction == 'down':
                 self.driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, duration)
-            elif direction == 'down':
+            elif direction == 'up':
                 self.driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, duration)
             elif direction == 'left':
                 self.driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, duration)
@@ -233,10 +233,10 @@ class Base_page():
         value = tag.split(";")[1]
 
 
-        mobile_by_properties = [member for member in inspect.getmembers(By) if member[0][:1] != '_']
+        mobile_by_properties = [member for member in inspect.getmembers(MobileBy) if member[0][:1] != '_']
         property_name = [member[0] for member in mobile_by_properties
                          if self.equals_ignore_case(member[1], key)][0]
-        by = eval("By.{}".format(property_name))
+        by = eval("MobileBy.{}".format(property_name))
 
         return (by, value)
 

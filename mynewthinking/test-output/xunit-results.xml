@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="1" name="DefaultSuite" skips="0" tests="1" time="34.501" timestamp="2017-07-21 17:39:10.544418">
-		<testcase classname="autotest.cases.test_change_course.LoginTest" name="chang_ge_level" time="34.499">
-			<failure message="'NoneType' object has no attribute 'click'" type="builtins.AttributeError">Traceback (most recent call last):
-  File &quot;/Users/anderson/.pyenv/versions/3.5.3/lib/python3.5/site-packages/ptest/testexecutor.py&quot;, line 383, in run_test
-    self.test_fixture.test_fixture_ref.__call__()
-  File &quot;/Users/anderson/testcode/mobile_test/mynewthinking/autotest/cases/test_change_course.py&quot;, line 33, in chang_ge_level
-    self.changecourse.change_level_on_GE(9)
-  File &quot;/Users/anderson/testcode/mobile_test/mynewthinking/autotest/pages/managecoursepage.py&quot;, line 39, in change_level_on_GE
-    self.clickat(level)
-  File &quot;/Users/anderson/testcode/mobile_test/mynewthinking/autotest/Base.py&quot;, line 142, in clickat
-    return self.find_element(element).click()
-AttributeError: 'NoneType' object has no attribute 'click'
-</failure>
-		</testcase>
+	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="43.959" timestamp="2017-07-24 14:33:45.731942">
+		<testcase classname="autotest.cases.test_change_course.LoginTest" name="chang_ge_level" time="43.957"/>
 	</testsuite>

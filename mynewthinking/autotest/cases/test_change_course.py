@@ -30,5 +30,5 @@ class LoginTest:
     def chang_ge_level(self):
         self.login.login_action(self.username,self.password)
         self.course.change_course_action()
-        self.changecourse.change_level_on_GE(9)
-        #self.course.logout_action()
+        self.changecourse.change_level_on_GE(5)
+        self.course.logout_action()
