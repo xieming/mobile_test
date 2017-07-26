@@ -1,0 +1,66 @@
+# Files ignored
+Thumbs.db
+*.project
+*.pydevproject
+*.obj
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.sln.docstates
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.lib
+!SurveyTool.lib
+*.sbr
+*.tmp
+*.dll0
+*.dotCover
+*.DotSettings
+*.pyc
+#*.dll*
+#!*EF.CodeGenerators.dll
+*.publish.xml
+*.uploading.cfg
+*.pyproj
+*.sln
+
+
+# Folders ignored
+[Oo]utput/
+_[Oo]utput/
+[Bb]in/
+[Dd]ebug*/
+[Rr]elease*/
+obj/
+_ReSharper*/
+[Tt]est[Rr]esult*
+.metadata/
+test-output/
+apps/
+
+# NuGet files
+packages/
+*.nupkg
+
+# NCrunch files
+*.ncrunchsolution
+*.ncrunchproject
+*_NCrunch_*/sufi/debug.log
+
+# IDE generated folders
+.idea/
+.vs/
+.vscode/
+__pycache__/
+

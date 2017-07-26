@@ -16,10 +16,9 @@ Android:
     lessonfour: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[4]
     lessonpl: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/unit_lessons_page"]/android.widget.FrameLayout[5]
     Download: id;download_progress_bar
-    settings_languae: id;textview_set_language
-    settings_sync: id;textview_sync
-    settings_logout: id;textview_logout
     Level_move_on: id;btn_move_on
+    Change_level_button: id;imageViewDropDown
+    logout: id;textview_logout
 
   LessonOverViewPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"
@@ -33,6 +32,22 @@ Android:
     module_start: id;start_activity
     activity_skip_button: id;activity_skip_button
     countinue_button: id;text_continue
+
+  SettingPage:
+    language: id;textview_set_language
+    sync: id;textview_sync
+    logout: id;textview_logout
+
+  ManageCoursePage:
+    Back_button: id;Navigate up
+    GE_course: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/tabs_change_course"]/android.widget.TextView[1]
+    BE_course: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/tabs_change_course"]/android.widget.TextView[2]
+    # lesson from 0 to 15
+    Lessons: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/course_structure_level_card_view"][%d]
+
+
+
+
 
 IOS:
   LoginPage:

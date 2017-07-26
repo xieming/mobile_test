@@ -1,11 +1,18 @@
 __author__ = 'anderson'
-from selenium.webdriver.support.ui import WebDriverWait
+import os
+import time
+import re
+
 from appium import webdriver
-import os, time
-from globals import MAX_TIMES
-from autotest.public.yamlmanage import YAML
 from selenium.common.exceptions import NoSuchElementException
-from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from appium.webdriver.common.mobileby import MobileBy
+
+from autotest.public.yamlmanage import YAML
+from globals import WAIT_MAX_TIME,PLATFORM,AppPath,build_path
+import inspect
+
 
 #
 # locator_to_by_map = {
@@ -22,6 +29,9 @@ from selenium.webdriver.common.by import By
 
 class Base_page():
     capabilities = YAML().current_device()
+    if PLATFORM == 'Adroid':
+        capabilities['app'] = AppPath.get_app_filename(build_path)
+
     print(capabilities)
 
     # capabilities['platformName'] = 'Android'
@@ -49,33 +59,29 @@ class Base_page():
     #         print("The by <%s> of locator <%s> is not a valid By." % (by, locator))
     #     return by, value
 
-    def action_element(self, by, value):
-
-        if by == 'id':
-
-            try:
-                element = self.driver.find_element_by_id(value)
-            except NoSuchElementException:
-                return False
-
-        if by == 'xpath':
-            try:
-                element = self.driver.find_element_by_xpath(value)
-            except NoSuchElementException:
-                return False
-
-        if by == 'name':
-            try:
-                element = self.driver.find_element_by_name(value)
-            except NoSuchElementException:
-                return False
-
-        return element
-
-
-
-
-
+    # def action_element(self, by, value):
+    #
+    #     if by == 'id':
+    #
+    #         try:
+    #             element = self.driver.find_element_by_id(value)
+    #         except NoSuchElementException:
+    #             return False
+    #
+    #     if by == 'xpath':
+    #         try:
+    #             element = self.driver.find_element_by_xpath(value)
+    #         except NoSuchElementException:
+    #             return False
+    #
+    #     if by == 'name':
+    #         try:
+    #             element = self.driver.find_element_by_name(value)
+    #         except NoSuchElementException:
+    #             return False
+    #
+    #     return element
+    #
     def action_elements(self, by, value):
         elements = ""
         if by == 'id':
@@ -83,18 +89,18 @@ class Base_page():
         if by == 'xpath':
             elements = self.driver.find_elements_by_xpath(value)
         return elements
-
-    def find_element(self, tag):
-        key = tag.split(";")[0]
-        value = tag.split(";")[1]
-        if self.action_element(key, value):
-            #WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
-            return self.action_element(key, value)
-
-        else:
-            print("%s page cannot find %s %s" % (self, key, value))
-            return False
-
+    #
+    # def find_element(self, tag):
+    #     key = tag.split(";")[0]
+    #     value = tag.split(";")[1]
+    #     if self.action_element(key, value):
+    #         # WebDriverWait(self.driver, MAX_TIMES).until(self.action_element(key, value).is_displayed())
+    #         return self.action_element(key, value)
+    #
+    #     else:
+    #         print("%s page cannot find %s %s" % (self, key, value))
+    #         return False
+    #
     def find_elements(self, tag):
         key = tag.split(";")[0]
         value = tag.split(";")[1]
@@ -106,22 +112,24 @@ class Base_page():
             print("%s page cannot find %s %s" % (self, key, value))
             return False
 
-    # def find_element(self, tag):
-    #
-    #     loc = (self.locator_to_by_value(tag))
-    #     try:
-    #         WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_element(*loc).is_displayed())
-    #         return self.driver.find_element(*loc)
-    #     except:
-    #         print("%s page cannot find element %s " % (self, loc))
-    #
+    def find_element(self, tag):
+
+        loc = (self.locator_to_by_value(tag))
+        try:
+            #WebDriverWait(self.driver, WAIT_MAX_TIME).until(lambda driver: driver.find_element(*loc).is_displayed())
+            #self.wait_for_presence_of_element_located(tag)
+
+            return self.driver.find_element(*loc)
+        except:
+            print("%s page cannot find element %s " % (self, loc))
+
     # def find_elements(self, tag):
     #
     #     loc = (self.locator_to_by_value(tag))
     #     try:
-    #         WebDriverWait(self.driver, MAX_TIMES).until(lambda driver: driver.find_elements(*loc).is_displayed())
-    #         if len(self.driver.find_elements(*loc)):
-    #             return self.driver.find_elements(*loc)
+    #         WebDriverWait(self.driver, WAIT_MAX_TIME).until(lambda driver: driver.find_elements(*loc).is_displayed())
+    #
+    #         return self.driver.find_elements(*loc)
     #     except:
     #         print("%s page cannot find elements%s" % (self, loc))
 
@@ -131,6 +139,10 @@ class Base_page():
         return self.driver.set_value(ele, value)
 
     def clickat(self, element):
+        return self.find_element(element).click()
+
+    def clickelement(self, element):
+        self.wait_for_presence_of_element_located(element)
         return self.find_element(element).click()
 
     def savePngName(self, name):
@@ -182,6 +194,10 @@ class Base_page():
         else:
             return False
 
+    def scroll(self,origin,destination):
+        from_ele = self.find_element(origin)
+        to_ele=self.find_element(destination)
+        self.driver.scroll(origin_el=from_ele,destination_el=to_ele)
 
     # driver.swipe(start_x, start_y, end_x, end_y, duration)
     def swipe(self, direction, duration=500):
@@ -194,9 +210,9 @@ class Base_page():
             width = window_size['width']
             height = window_size['height']
 
-            if direction == 'up':
+            if direction == 'down':
                 self.driver.swipe(width / 2, height / 4, width / 2, height * 3 / 4, duration)
-            elif direction == 'down':
+            elif direction == 'up':
                 self.driver.swipe(width / 2, height * 3 / 4, width / 2, height / 4, duration)
             elif direction == 'left':
                 self.driver.swipe(width * 3 / 4, height / 2, width / 4, height / 2, duration)
@@ -208,3 +224,47 @@ class Base_page():
             return True
         else:
             assert False, 'Fail to obtain window size for swiping! {0}'.format(window_size)
+
+    def equals_ignore_case(self,str1, str2):
+        return re.match(re.escape(str1) + r'\Z', str2, re.I) is not None
+
+    def locator_to_by_value(self, tag):
+        key = tag.split(";")[0]
+        value = tag.split(";")[1]
+
+
+        mobile_by_properties = [member for member in inspect.getmembers(MobileBy) if member[0][:1] != '_']
+        property_name = [member[0] for member in mobile_by_properties
+                         if self.equals_ignore_case(member[1], key)][0]
+        by = eval("MobileBy.{}".format(property_name))
+
+        return (by, value)
+
+    def wait(self, timeout=WAIT_MAX_TIME):
+        return WebDriverWait(self.driver, timeout)
+
+    def wait_until(self, method, message=None, timeout=WAIT_MAX_TIME):
+        return self.wait(timeout).until(method, message)
+
+    def wait_unitl_not(self, method, message=None, timeout=WAIT_MAX_TIME):
+        return self.wait(timeout).until_not(method, message)
+
+    def wait_for_visibility_of_element(self, element, timeout=WAIT_MAX_TIME):
+        return self.wait_until(EC.visibility_of(element),
+                               "Element {} is not visible".format(element), timeout=timeout)
+
+    def wait_for_presence_of_element_located(self, tag, timeout=WAIT_MAX_TIME):
+        locator_info = self.locator_to_by_value(tag)
+        return self.wait_until(EC.presence_of_element_located(locator_info),
+                               "Element locator (by: {0}, value: {1}) is not present"
+                               .format(locator_info[0], locator_info[1]), timeout=timeout)
+
+    def wait_for_visibility_of_element_located(self, tag, timeout=WAIT_MAX_TIME):
+        locator_info = self.locator_to_by_value(tag)
+        return self.wait_until(EC.visibility_of_element_located(locator_info),
+                               "Element locator (by: {0}, value: {1}) is not visible"
+                               .format(locator_info[0], locator_info[1]), timeout=timeout)
+
+    def wait_for_invisibility_of_element_located(self, locator, timeout=WAIT_MAX_TIME):
+        return self.wait_until(EC.invisibility_of_element_located(locator),
+                               "Element with locator {} is still existed".format(locator), timeout=timeout)

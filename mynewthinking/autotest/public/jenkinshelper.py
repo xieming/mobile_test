@@ -1,29 +1,28 @@
-from globals import *
-from enumeration import Product, Project
+from globals import PLATFORM,PROJECT,PRODUCT,ENV
 import requests, re, os
 import shutil
 from ptest.plogger import preporter
-from utilities.string_helper import convert_list_to_string
 
-JENKINS_HOST_ANDROID = "http://10.128.42.155:8080"
+
+JENKINS_HOST_ANDROID = "http://10.128.42.165:8080"
 
 
 class Jenkins:
     def __init__(self, apk_path):
         self.apk_path = apk_path
-        if current_app_info.app_project == Project.TABLET:
-            self.build_name = Product.to_name_tablet(current_app_info.app_product)
+        if  PROJECT== 'TABLET':
+            self.build_name = PRODUCT
             self.type = 'efekta'
 
-            if current_app_info.app_product == Product.EC:
+            if PRODUCT == 'EC':
                 self.Jenkins_build_url = JENKINS_HOST_ANDROID + "/view/Efekta%20(LEAN)/job/efekta-android-daily/lastSuccessfulBuild/api/json"
                 self.build_name = 'efec'
             else:
                 self.Jenkins_build_url = JENKINS_HOST_ANDROID + "/view/Efekta%20(LEAN)/job/dla-efekta-android/lastSuccessfulBuild/api/json"
 
         else:
-            self.build_name = Product.to_name_engage(current_app_info.app_product)
-            self.type = Project.ENGAGE
+            self.build_name = PRODUCT
+            self.type = 'engage'
             self.Jenkins_build_url = JENKINS_HOST_ANDROID + "/view/Engage/job/engage-android-snapshot/lastSuccessfulBuild/api/json"
 
     def get_build_url(self):
@@ -35,9 +34,7 @@ class Jenkins:
             builds = [each_build['relativePath'] for each_build in builds_urls.json()['artifacts']]
             preporter.info(builds)
             current_build = re.findall(
-                "{}/build/outputs/apk/{}-{}-{}-debug.*?.apk".format(self.type, self.type, self.build_name,
-                                                                    current_app_info.app_env),
-                convert_list_to_string(builds, ','))
+                "{}/build/outputs/apk/{}-{}-{}-debug.*?.apk".format(self.type, self.type, self.build_name,ENV),",".join(builds))
 
             preporter.info(current_build)
 

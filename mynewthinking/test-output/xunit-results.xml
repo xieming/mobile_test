@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-	<testsuite errors="0" failures="0" name="DefaultSuite" skips="1" tests="1" time="5.369" timestamp="2017-07-19 16:45:09.906392">
-		<testcase classname="autotest.cases.test_passcourse.LoginTest" name="pass_one_lesson" time="5.367">
-			<skipped message="@BeforeMethod failed, so skipped."/>
-		</testcase>
+	<testsuite errors="0" failures="0" name="DefaultSuite" skips="0" tests="1" time="43.959" timestamp="2017-07-24 14:33:45.731942">
+		<testcase classname="autotest.cases.test_change_course.LoginTest" name="chang_ge_level" time="43.957"/>
 	</testsuite>

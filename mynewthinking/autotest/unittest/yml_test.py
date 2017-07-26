@@ -39,5 +39,8 @@ if __name__ == '__main__':
     # result = yamls.read_yml("/Users/anderson/testcode/mynewthinking/autotest/unittest/test.yml")
     # final = result["LoginPage"]["Login"][0]["id"]
     # print(final)
-    result = yamls.read_yml("/Users/anderson/testcode/mynewthinking/autotest/pages/pages.yml")["IOS"]["LoginPage"]
+    result = (yamls.read_yml("/Users/anderson/testcode/mobile_test/mynewthinking/autotest/unittest/test.yml"))
+
+    result['product']['b2c'] = "ri"
+
     print(result)

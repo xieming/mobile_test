@@ -57,8 +57,9 @@ def kill_adb_port():
     #record = result.split("\n")[1]
     # port = record.split(" ")[1]
     port = re.search("\d+", result[1])
-    cmd_port = "kill -9 {}".format(port.group(0))
-    run_command_on_shell(cmd_port)
+    if port:
+        cmd_port = "kill -9 {}".format(port.group(0))
+        run_command_on_shell(cmd_port)
 
 
 if __name__ == '__main__':

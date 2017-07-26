@@ -3,6 +3,7 @@ __author__ = 'Anderson'
 from autotest.Base import Base_page
 from autotest.public.yamlmanage import YAML
 import time
+from globals import WAIT_MAX_TIME
 
 
 class Login(Base_page):
@@ -13,10 +14,11 @@ class Login(Base_page):
 
 
     def login_action(self, username, password):
-        time.sleep(3)
+        self.wait_for_visibility_of_element_located(self.loginbtn)
         self.type(self.username, username)
         self.type(self.password, password)
         self.clickat(self.loginbtn)
+        time.sleep(WAIT_MAX_TIME)
 
     def open_app_android(self,username, password):
         login_page_activity = self.page["Activity"]
