@@ -4,6 +4,8 @@ from globals import set_env, Teacher
 
 from arrangeclass import Ui_MainWindow
 from pages import web_page
+import time
+import datetime
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -27,12 +29,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             current_teacher = Teacher().current_teacher(self.env, "A")
             self.memberid = current_teacher[0:current_teacher.index(",")]
             self.teacher_name = current_teacher[current_teacher.index(","):]
-            print("Default teacher_name{}, Member id {}".format(self.teacher_name,self.memberid))
+            print("Default teacher_name{}, Member id {}".format(self.teacher_name, self.memberid))
         if self.radioButton_10.isChecked():
             self.level = "BEG"
             print("Default level is {}".format(self.level))
 
-
+        # if not self.checkBox.isChecked():
+        #     self.dateTimeEdit.setEnabled(False)
+        #     self.dateTimeEdit_2.setEnabled(False)
 
     @pyqtSlot()
     def on_radioButton_clicked(self):
@@ -67,6 +71,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.type = "pl"
         print("current type is: {}".format(self.type))
 
+    @pyqtSlot()
+    def on_radioButton_15_clicked(self):
+
+        self.type = "cp20"
+        print("current type is: {}".format(self.type))
+
     # Teachers
     @pyqtSlot()
     def on_radioButton_6_clicked(self):
@@ -89,6 +99,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.memberid = current_teacher[0:current_teacher.index(",")]
         self.teacher_name = current_teacher[current_teacher.index(","):]
         print("Current teacher_name{}, Member id {}".format(self.teacher_name, self.memberid))
+
     @pyqtSlot()
     def on_radioButton_9_clicked(self):
         current_teacher = Teacher().current_teacher(self.env, "D")
@@ -99,37 +110,51 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     # Level
     @pyqtSlot()
     def on_radioButton_10_clicked(self):
-        self.level="BEG"
+        self.level = "BEG"
         print("Current level is: {}".format(self.level))
 
     @pyqtSlot()
     def on_radioButton_11_clicked(self):
-        self.level="ELE"
+        self.level = "ELE"
         print("Current level is: {}".format(self.level))
 
     @pyqtSlot()
     def on_radioButton_12_clicked(self):
-        self.level="INT"
+        self.level = "INT"
         print("Current level is: {}".format(self.level))
 
     @pyqtSlot()
     def on_radioButton_13_clicked(self):
-        self.level="UPINT"
+        self.level = "UPINT"
         print("Current level is: {}".format(self.level))
 
     @pyqtSlot()
     def on_radioButton_14_clicked(self):
-        self.level="ADV"
+        self.level = "ADV"
         print("Current level is: {}".format(self.level))
+
+
+    def on_checkBox_toggled(self):
+        self.start_time = time.strptime(self.dateTimeEdit.text(), '%Y-%m-%d %H:%M:%S')
+        print(self.start_time)
+
+        self.end_time = time.strptime(self.dateTimeEdit_2.text(), '%Y-%m-%d %H:%M:%S')
+        print(self.end_time)
+
 
     @pyqtSlot()
     def on_pushButton_clicked(self):
         host, admin = set_env(self.env)
+        if self.checkBox.isChecked():
 
-        page = web_page(host, admin,self.memberid,self.type)
-        page.open_page_with_admin()
-        page.arrange_class()
+            page = web_page(host, admin, self.memberid, self.type, self.level, self.start_time, self.end_time)
+            page.open_page_with_admin()
+            page.arrange_class()
 
+        else:
+            page = web_page(host, admin, self.memberid, self.type, self.level)
+            page.open_page_with_admin()
+            page.arrange_class()
 
 
 if __name__ == "__main__":
