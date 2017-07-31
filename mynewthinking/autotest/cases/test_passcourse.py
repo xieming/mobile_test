@@ -10,8 +10,8 @@ from autotest.pages.courseoverviewpage import Course
 from autotest.public.yamlmanage import YAML
 from autotest.public.imagehelper import Appium_Extend
 from autotest.public.elementhelper import element_exist
-from globals import PLATFORM
-from setupenv import setup_env
+from globals import PLATFORM,get_current_package
+from setupenv import setup_env,clear_catch
 
 @TestClass(run_mode='singleline')
 class LoginTest:
@@ -43,5 +43,6 @@ class LoginTest:
     @AfterMethod(always_run=True, description="Clean up")
     def after(self):
         preporter.info("cleaning up")
+        clear_catch(get_current_package())
         self.login.driver.quit()
         # self.login.driver.close_app()

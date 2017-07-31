@@ -6,12 +6,12 @@ MAX_TIMES = 3
 WAIT_TIME = 5
 WAIT_MAX_TIME = 20
 
-PLATFORM = "Android" # Android, IOS
-PROJECT = "ENGAGE"  #TABLET,ENGAGE
+PLATFORM = "Android"  # Android, IOS
+PROJECT = "ENGAGE"  # TABLET,ENGAGE
 PRODUCT = "englishtown"  # englishtown,corporate,smartenglish
-ENV = "qa"      # qa,staging
+ENV = "qa"  # qa,staging
 
-build_path = current_dir + "/autotest/builds/{}/{}/{}".format(PLATFORM,PROJECT,PRODUCT)
+build_path = current_dir + "/autotest/builds/{}/{}/{}".format(PLATFORM, PROJECT, PRODUCT)
 
 
 class AppPath:
@@ -25,3 +25,12 @@ class AppPath:
                     file_name = os.path.join(dir_path, name)
 
         return file_name
+
+
+def get_current_package():
+    package_name = {
+        "englishtown": "com.ef.core.engage.englishtown",
+        "corporate": "com.ef.core.engage.corporate",
+        "smartenglish": "om.ef.core.engage.smartenglish"
+    }[PRODUCT]
+    return package_name
