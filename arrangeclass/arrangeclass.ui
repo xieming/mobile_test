@@ -32,8 +32,8 @@
      <rect>
       <x>60</x>
       <y>10</y>
-      <width>431</width>
-      <height>71</height>
+      <width>331</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="title">
@@ -58,7 +58,7 @@
     <widget class="QRadioButton" name="radioButton_2">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>130</x>
        <y>30</y>
        <width>82</width>
        <height>17</height>
@@ -71,7 +71,7 @@
     <widget class="QRadioButton" name="radioButton_3">
      <property name="geometry">
       <rect>
-       <x>300</x>
+       <x>240</x>
        <y>30</y>
        <width>82</width>
        <height>17</height>
@@ -86,9 +86,9 @@
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>160</y>
-      <width>431</width>
-      <height>71</height>
+      <y>190</y>
+      <width>331</width>
+      <height>51</height>
      </rect>
     </property>
     <property name="title">
@@ -113,7 +113,7 @@
     <widget class="QRadioButton" name="radioButton_7">
      <property name="geometry">
       <rect>
-       <x>120</x>
+       <x>100</x>
        <y>30</y>
        <width>82</width>
        <height>17</height>
@@ -126,7 +126,7 @@
     <widget class="QRadioButton" name="radioButton_8">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>190</x>
        <y>30</y>
        <width>82</width>
        <height>17</height>
@@ -139,7 +139,7 @@
     <widget class="QRadioButton" name="radioButton_9">
      <property name="geometry">
       <rect>
-       <x>340</x>
+       <x>270</x>
        <y>30</y>
        <width>82</width>
        <height>17</height>
@@ -234,7 +234,7 @@
    <widget class="QDateTimeEdit" name="dateTimeEdit">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>150</x>
       <y>340</y>
       <width>201</width>
       <height>22</height>
@@ -243,9 +243,12 @@
     <property name="acceptDrops">
      <bool>false</bool>
     </property>
+    <property name="toolTipDuration">
+     <number>0</number>
+    </property>
     <property name="dateTime">
      <datetime>
-      <hour>0</hour>
+      <hour>10</hour>
       <minute>0</minute>
       <second>0</second>
       <year>2017</year>
@@ -260,16 +263,23 @@
       <day>19</day>
      </date>
     </property>
+    <property name="minimumTime">
+     <time>
+      <hour>2</hour>
+      <minute>0</minute>
+      <second>0</second>
+     </time>
+    </property>
     <property name="displayFormat">
-     <string>yyyy/M/d h:mm AP</string>
+     <string>yyyy-M-d h:mm:ss</string>
     </property>
    </widget>
    <widget class="QDateTimeEdit" name="dateTimeEdit_2">
     <property name="geometry">
      <rect>
-      <x>70</x>
+      <x>150</x>
       <y>380</y>
-      <width>194</width>
+      <width>201</width>
       <height>22</height>
      </rect>
     </property>
@@ -298,14 +308,14 @@
      </time>
     </property>
     <property name="displayFormat">
-     <string>yyyy/M/d h:mm AP</string>
+     <string>yyyy-M-d h:mm:ss</string>
     </property>
    </widget>
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
       <x>60</x>
-      <y>90</y>
+      <y>70</y>
       <width>331</width>
       <height>51</height>
      </rect>
@@ -332,7 +342,7 @@
     <widget class="QRadioButton" name="radioButton_5">
      <property name="geometry">
       <rect>
-       <x>200</x>
+       <x>130</x>
        <y>20</y>
        <width>82</width>
        <height>17</height>
@@ -342,6 +352,113 @@
       <string>PL</string>
      </property>
     </widget>
+    <widget class="QRadioButton" name="radioButton_15">
+     <property name="geometry">
+      <rect>
+       <x>240</x>
+       <y>20</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CP20</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>400</x>
+      <y>370</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Time</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>340</y>
+      <width>51</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Start Time</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="EndTime">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>380</y>
+      <width>47</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>EndTime</string>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>130</y>
+      <width>331</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>DB</string>
+    </property>
+    <widget class="QRadioButton" name="radioButton_16">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>20</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>US</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_17">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>20</y>
+       <width>82</width>
+       <height>17</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>CN</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>210</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>AutoLogin</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
