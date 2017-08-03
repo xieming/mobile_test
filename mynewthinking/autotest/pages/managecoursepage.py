@@ -5,7 +5,7 @@ import time
 from autotest.Base import Base_page
 from autotest.public.elementhelper import element_exist
 from autotest.public.yamlmanage import YAML
-from globals import PLATFORM,WAIT_TIME,WAIT_MAX_TIME
+from globals import PLATFORM,WAIT_TIME,WAIT_MAX_TIME,WAIT_LONG_TIME
 
 
 
@@ -18,6 +18,8 @@ class ManageCourse(Base_page):
     GE_course = manage_course_page['GE_course']
     BE_course = manage_course_page['BE_course']
     Lessons = manage_course_page['Lessons']
+    Lessonall = manage_course_page['Lessonsall']
+    Lessonchild = manage_course_page['Lessonchild']
 
     def change_level_on_GE(self,id):
         self.wait_for_presence_of_element_located(self.Back_button)
@@ -33,13 +35,26 @@ class ManageCourse(Base_page):
         #     self.scroll(self.Lessons % (13), self.Lessons % (11))
 
         if id > 6:
-            swipe_time = int((id -6)/2)
+            swipe_time = int((id -5)/2)
             for i in range (swipe_time):
                 self.swipe('up')
 
-        level = self.Lessons%(id)
-        print(level)
-        self.clickelement(level)
-        time.sleep(WAIT_TIME)
+        #     levelid = abs(id - 5 - 2 *(swipe_time))
+        #     level = self.Lessons % (levelid)
+        #
+            ele = self.find_elements(self.Lessonchild)
+            print(ele)
+            for each in ele:
+                if str(id) in each.text:
+                    each.click()
+                    break
+                else:
+                    print("cannot find the element")
+        else:
+            level = self.Lessons%(id)
+            print(level)
+            self.clickat(level)
+
+        time.sleep(WAIT_LONG_TIME)
 
 

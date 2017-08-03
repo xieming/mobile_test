@@ -44,6 +44,8 @@ Android:
     BE_course: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/tabs_change_course"]/android.widget.TextView[2]
     # lesson from 0 to 15
     Lessons: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/course_structure_level_card_view"][%d]
+    Lessonsall: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/course_structure_level_card_view"]/[@text='%d')]
+    Lessonchild: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/course_structure_level_card_view"]/android.widget.RelativeLayout/*[@resource-id="com.ef.core.engage.englishtown:id/course_structure_level_number"]
 
 
 

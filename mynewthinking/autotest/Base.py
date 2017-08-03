@@ -10,8 +10,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from appium.webdriver.common.mobileby import MobileBy
 
 from autotest.public.yamlmanage import YAML
-from globals import WAIT_MAX_TIME,PLATFORM,AppPath,build_path
+from globals import WAIT_MAX_TIME,PLATFORM,AppPath,build_path,WAIT_TIME
 import inspect
+from devicemanage import get_device_name, get_android_version
 
 
 #
@@ -29,9 +30,12 @@ import inspect
 
 class Base_page():
     capabilities = YAML().current_device()
-    if PLATFORM == 'Adroid':
+    if PLATFORM == 'Android':
         capabilities['app'] = AppPath.get_app_filename(build_path)
+        capabilities['platformVersion'] = get_android_version()
+        capabilities['deviceName'] = get_device_name()
 
+    print(get_android_version)
     print(capabilities)
 
     # capabilities['platformName'] = 'Android'
@@ -143,7 +147,8 @@ class Base_page():
 
     def clickelement(self, element):
         self.wait_for_presence_of_element_located(element)
-        return self.find_element(element).click()
+        ele = self.find_element(element)
+        ele.click()
 
     def savePngName(self, name):
         """
@@ -268,3 +273,7 @@ class Base_page():
     def wait_for_invisibility_of_element_located(self, locator, timeout=WAIT_MAX_TIME):
         return self.wait_until(EC.invisibility_of_element_located(locator),
                                "Element with locator {} is still existed".format(locator), timeout=timeout)
+
+
+
+

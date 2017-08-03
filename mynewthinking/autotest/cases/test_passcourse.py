@@ -17,7 +17,7 @@ from setupenv import setup_env,clear_catch
 class LoginTest:
     @BeforeMethod(description="Prepare test data.")
     def setup_data(self):
-        #setup_env()
+    #    setup_env()
         self.login = Login()
         self.username = 'newqa@qp1.org'
         self.password = '11111111'
@@ -29,7 +29,7 @@ class LoginTest:
     def pass_one_lesson(self):
 
         self.login.login_action(self.username,self.password)
-        self.course.pass_one_lesson_action("lessontwo")
+        self.course.pass_one_lesson_action("lessonone")
         self.course.logout_action()
 
     @Test()

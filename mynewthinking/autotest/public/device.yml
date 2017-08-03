@@ -2,7 +2,7 @@
 Android:
   platformName: Android
   platformVersion: 5.0
-  deviceName: 192.168.56.101:5555
+  deviceName: Nexus 5X
   appPackage: com.ef.core.engage.englishtown
   appActivity: com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity
   resetKeyboard: True

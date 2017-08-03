@@ -3,7 +3,10 @@ import os
 current_dir = os.path.split(os.path.realpath(__file__))[0]
 
 MAX_TIMES = 3
+
+WAIT_MINI_TIME = 1
 WAIT_TIME = 5
+WAIT_LONG_TIME = 10
 WAIT_MAX_TIME = 20
 
 PLATFORM = "Android"  # Android, IOS

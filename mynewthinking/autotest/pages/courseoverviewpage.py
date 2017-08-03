@@ -5,7 +5,7 @@ import time
 from autotest.Base import Base_page
 from autotest.public.elementhelper import element_exist
 from autotest.public.yamlmanage import YAML
-from globals import PLATFORM,WAIT_TIME,WAIT_MAX_TIME
+from globals import PLATFORM,WAIT_TIME,WAIT_MAX_TIME,WAIT_MINI_TIME,WAIT_LONG_TIME
 
 
 
@@ -56,8 +56,9 @@ class Course(Base_page):
     def logout_android(self):
         self.course_overview_android()
         self.clickat(self.setting)
-
+        time.sleep(WAIT_MINI_TIME)
         self.swipe('up')
+        time.sleep(WAIT_MINI_TIME)
         self.clickelement(self.settings_logout)
 
     def pass_one_unit_android(self):
@@ -88,6 +89,7 @@ class Course(Base_page):
             print("start %d module" % (i))
             i = i + 1
 
+        time.sleep(WAIT_MINI_TIME)
         self.clickelement(self.back_button)
 
 
@@ -98,6 +100,9 @@ class Course(Base_page):
         if self.is_element_exists(self.module_download):
             self.clickelement(self.module_download)
             time.sleep(WAIT_TIME)
+
+        if self.is_element_exists(self.module_download):
+            time.sleep(WAIT_LONG_TIME)
 
         if self.is_element_exists(self.module_download):
             time.sleep(WAIT_MAX_TIME)
@@ -112,6 +117,7 @@ class Course(Base_page):
             self.wait_for_presence_of_element_located(self.activity_skip)
             self.clickelement(self.activity_skip)
 
+        time.sleep(WAIT_MINI_TIME)
         self.clickelement(self.countinue_button)
 
 

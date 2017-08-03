@@ -45,6 +45,18 @@ def get_run_list():
     print(runlist[runlist['Run'] == 'Y'])
 
 
+def get_android_version():
+    cmd = "adb shell getprop ro.build.version.release"
+    result = run_command_on_shell(cmd)[0]
+    return result
+
+def get_device_name():
+    cmd = "adb shell getprop ro.product.model"
+    result = run_command_on_shell(cmd)[0]
+    return result
+
+
+
 def open_genemotion():
     device_name = '"Custom Phone - 5.0.0 - API 21 - 768x1280"'
     cmd = "open -a /Applications/Genymotion.app/Contents/MacOS/player.app --args --vm-name {}".format(device_name)
@@ -102,7 +114,10 @@ def close_android_emulator():
 
 
 if __name__ == '__main__':
-    get_device_list()
-    open_genemotion()
+    # get_device_list()
+    # open_genemotion()
+
+    print(get_android_version())
+    print(get_device_name())
     # get_run_list()
     # get_file()

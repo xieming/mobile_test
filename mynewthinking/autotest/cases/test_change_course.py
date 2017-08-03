@@ -11,7 +11,8 @@ from autotest.public.yamlmanage import YAML
 from autotest.public.imagehelper import Appium_Extend
 from autotest.public.elementhelper import element_exist
 from globals import PLATFORM
-from setupenv import setup_env
+from globals import PLATFORM,get_current_package
+from setupenv import setup_env,clear_catch
 
 @TestClass(run_mode='singleline')
 class LoginTest:
@@ -30,5 +31,11 @@ class LoginTest:
     def chang_ge_level(self):
         self.login.login_action(self.username,self.password)
         self.course.change_course_action()
-        self.changecourse.change_level_on_GE(5)
+        self.changecourse.change_level_on_GE(10)
         self.course.logout_action()
+
+    @AfterMethod(always_run=True, description="Clean up")
+    def after(self):
+        preporter.info("cleaning up")
+        clear_catch(get_current_package())
+        self.login.driver.quit()
