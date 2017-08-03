@@ -28,33 +28,3 @@ ec:
   siteVersion: development
   appVersion: 0.6.0
   productId: 4
-
-#login:
-#  serviceRequest:
-#    appVersion: '%s'
-#    platform: PLATFORM
-#    productId: PRODUCT_ID
-#    userName: USER_NAME
-#    password: PASSWORD
-#
-#study_context:
-#  serviceRequest:
-#    appVersion: APP_VERSION,
-#    culturecode: CULTURE_CODE,
-#    platform: PLATFORM,
-#    productId: PRODUCT_ID,
-#    sessionId: session_id,
-#    token": token
-#
-#course_sturcture:
-#  serviceRequest:
-#    level: level_id,
-#    countryCode: COUNTRY_CODE,
-#    partnerCode: PARTNER_CODE,
-#    siteVersion: SITE_VERSION,
-#    appVersion: APP_VERSION,
-#    culturecode: CULTURE_CODE,
-#    platform: PLATFORM,
-#    productId: PRODUCT_ID,
-#    sessionId: session_id,
-#    token: token

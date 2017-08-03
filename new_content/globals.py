@@ -18,6 +18,12 @@ PRODUCT = CONFIG_READ.get("product", "product")
 USERNAME = CONFIG_READ.get("user", "name")
 PASSWORD = CONFIG_READ.get("user", "pwd")
 
+SPIN = CONFIG_READ.get("content", "spin")
+ASR = CONFIG_READ.get("content", "ASR")
+
+
+
+
 class YAML():
     # Write YAML file
     @staticmethod
