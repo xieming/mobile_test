@@ -1,0 +1,59 @@
+---
+env:
+  uat: uat
+  qa: qa
+  staging: staging
+
+
+package:
+  englishtown: com.ef.core.engage.englishtown
+  corporate: com.ef.core.engage.corporate
+  smartenglish: com.ef.core.engage.smartenglish
+
+activity:
+  englishtown: com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity
+  corporate: com.ef.core.engage.ui.screens.activity.CorporateSplashActivity
+  smartenglish: com.ef.core.engage.ui.screens.activity.SmartEnglishSplashActivity
+
+engage:
+  uat:
+    englishtown:
+      - username:
+        username:
+        username:
+        username:
+
+    corporate:
+      - username:
+        username:
+        username:
+        username:
+        username:
+
+    smartenglish:
+      - username:
+        username:
+        username:
+        username:
+        username:
+
+  qa:
+    englishtown:
+      - username0: 11
+        username1: 12
+        username2: 13
+        username3: 14
+
+    corporate:
+      - username:
+        username:
+        username:
+        username:
+        username:
+
+    smartenglish:
+      - username:
+        username:
+        username:
+        username:
+        username:

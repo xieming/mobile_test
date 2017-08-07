@@ -1,0 +1,11 @@
+---
+Android:
+  platformName: Android
+  platformVersion: 5.0
+  deviceName: Nexus 5X
+  appPackage: com.ef.core.engage.englishtown
+  appActivity: com.ef.core.engage.ui.screens.activity.EnglishTownSplashActivity
+  resetKeyboard: True
+  noSign: True
+  noReset: True
+  deviceReadyTimeout: 5
