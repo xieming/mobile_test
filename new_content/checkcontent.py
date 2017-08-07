@@ -15,11 +15,13 @@ __author__ = 'anderson'
 
 
 THREAD_COUNT_FOR_GET_JSON_FILE = 1
-THREAD_COUNT_FOR_CHECK_URL = 1
+THREAD_COUNT_FOR_CHECK_URL = 8
 POST_ACTIVITY_BATCH_SIZE = 10
 ASR_MINIMUM_SIZE = 10
 DEFAULT_TIME_OUT = 30
 HEAD_CONTENT_LENGTH = "Content-Length"
+
+
 
 fail_media_url_list = []
 media_url_list = set()
@@ -144,34 +146,59 @@ class ActivityJsonStructure():
         #             self.get_asr(each_activity_id, json)
         #
         #     ActivityJsonStructure.json_queue.task_done()
-#
-#
-class MediaFile():
-    def __init__(self):
-        # threading.Thread.__init__(self)
-        self.pattern = re.compile(r'http:\/\/+(.*).[(mp3)|(mp4)|(jpg)]$', re.IGNORECASE)
 
 
-    def check_resource(self,url):
-        url_status = 0
+def check_resource(url):
+    pattern = re.compile(r'http:\/\/+(.*).[(mp3)|(mp4)|(jpg)]$', re.IGNORECASE)
 
-        if re.search(self.pattern, url):
-            try:
-                status = requests.head(url, allow_redirects=False).status_code
-                if status != 200:
-                    fail_media_url_list.append(url)
-                    url_status += 1
+    url_status = 0
+    print(url)
 
-            except:
-
+    if re.search(pattern, url):
+        try:
+            status = requests.head(url, allow_redirects=False).status_code
+            if status != 200:
                 fail_media_url_list.append(url)
                 url_status += 1
 
-        else:
+        except:
+
             fail_media_url_list.append(url)
             url_status += 1
 
-        return url_status
+    else:
+        fail_media_url_list.append(url)
+        url_status += 1
+
+    return url_status
+#
+#
+# class MediaFile():
+#     def __init__(self):
+#         # threading.Thread.__init__(self)
+#         self.pattern = re.compile(r'http:\/\/+(.*).[(mp3)|(mp4)|(jpg)]$', re.IGNORECASE)
+#
+#
+#     def check_resource(self,url):
+#         url_status = 0
+#
+#         if re.search(self.pattern, url):
+#             try:
+#                 status = requests.head(url, allow_redirects=False).status_code
+#                 if status != 200:
+#                     fail_media_url_list.append(url)
+#                     url_status += 1
+#
+#             except:
+#
+#                 fail_media_url_list.append(url)
+#                 url_status += 1
+#
+#         else:
+#             fail_media_url_list.append(url)
+#             url_status += 1
+#
+#         return url_status
 #
 #         # def run(self):
 #         #     while not exit_flag:
@@ -340,9 +367,13 @@ def main():
     #         print(fail_media_url_list)
 
     print(len(media_url_list))
-    for x in list(media_url_list):
-
-        MediaFile().check_resource(x)
+    # for x in list(media_url_list):
+    #
+    #     check_resource(x)
+    pool = Pool(THREAD_COUNT_FOR_CHECK_URL)
+    pool.map(check_resource, list(media_url_list))
+    pool.close()
+    pool.join()
 
     write_result_report(fail_media_url_list)
 
