@@ -13,7 +13,7 @@ from globals import build_path
 from public.jenkinshelper import Jenkins
 from management.devicesmanage import get_devices_info
 from management.appiumservermanage import start_appium_server
-from management.loginmanage import Login
+from management.loginmanage import login
 from management.logmanage import write_blacklist
 from public.utils import run_command_on_shell
 from management.yamlmanage import YAML
@@ -52,7 +52,7 @@ def run_monkey(device):
 
 
 if __name__ == '__main__':
-    # check_folder(log_dir)
+    check_folder(log_dir)
     # jenkins = Jenkins(build_path)
     # jenkins.download_build()
     get_devices_info()
@@ -65,10 +65,10 @@ if __name__ == '__main__':
         # pool.close()
         # pool.join()
 
-        # pool2 = Pool(len(get_devices_info()))
-        # pool2.map(Login().login,get_devices_info())
-        # pool2.close()
-        # pool2.join()
+        pool2 = Pool(len(get_devices_info()))
+        pool2.map(login,get_devices_info())
+        pool2.close()
+        pool2.join()
         #
         # pool3 = Pool(len(get_devices_info()))
         # pool3.map(write_blacklist,get_devices_info())

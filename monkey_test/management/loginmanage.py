@@ -1,24 +1,34 @@
-from Base import Base_page
-import time
 from globals import WAIT_TIME
 
-class Login(Base_page):
-    # def __init__(self,device):
-    #     super(Login, self).__init__(device=device)
-    #     self.username= device["name"].split("/")[0]
-    #     self.password = device["name"].split("/")[1]
+__author__ = 'anderson'
+import time
 
-    def login(self,device):
-        super(Login, self).__init__(device=device)
-        self.username = device["name"].split("/")[0]
-        self.password = device["name"].split("/")[1]
-        username = self.driver.find_element_by_id("txtName")
-        username.clear()
-        self.driver.set_value(username,self.username)
-        password =self.driver.find_element_by_id("txtPwd")
-        password.clear()
-        self.driver.set_value(password,self.password)
-        self.driver.find_element_by_id("btnLogin").click()
+from appium import webdriver
+
+from management.yamlmanage import YAML
+from globals import PLATFORM, AppPath, build_path
+
+
+def login(device):
+    capabilities = YAML().get_appium_config()
+
+    if PLATFORM == 'Android':
+        capabilities['app'] = AppPath.get_app_filename(build_path)
+        capabilities['platformVersion'] = device["version"]
+        capabilities['deviceName'] = device["name"]
+
+        print(capabilities)
+
+        driver = webdriver.Remote('http://localhost:4723/wd/hub', capabilities)
+        print(driver)
         time.sleep(WAIT_TIME)
-
-
+        usernametxt = device["username"][0:device["username"].index('/')]
+        passwordtxt = device["username"][device["username"].index('/')+1:]
+        username = driver.find_element_by_id("txtName")
+        username.clear()
+        driver.set_value(username, usernametxt)
+        password = driver.find_element_by_id("txtPwd")
+        password.clear()
+        driver.set_value(password, passwordtxt)
+        driver.find_element_by_id("btnLogin").click()
+        time.sleep(WAIT_TIME)

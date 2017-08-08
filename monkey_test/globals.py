@@ -5,7 +5,7 @@ import yaml
 
 START_TIME = time.strftime('%Y-%m-%d-%H-%M-%S', time.localtime(time.time()))
 current_dir = os.path.split(os.path.realpath(__file__))[0]
-WAIT_TIME = 5
+WAIT_TIME = 8
 
 conf_path = current_dir + "/contentini.conf"
 yaml_path = current_dir + "/settings.yml"

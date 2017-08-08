@@ -18,10 +18,10 @@ activity:
 engage:
   uat:
     englishtown:
-      - username:
-        username:
-        username:
-        username:
+      - 11: 1
+        22: 1
+        33: 1
+        44: 1
 
     corporate:
       - username:
@@ -39,10 +39,9 @@ engage:
 
   qa:
     englishtown:
-      - username0: 11
-        username1: 12
-        username2: 13
-        username3: 14
+      - tauto4327/1
+      - newqa@qp1.org/11111111
+
 
     corporate:
       - username:

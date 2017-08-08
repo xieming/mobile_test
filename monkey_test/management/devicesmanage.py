@@ -50,7 +50,7 @@ def get_devices_info():
             each_device["name"] = get_devices_name(dev)
             each_device["port"]= port + j
             each_device["bootstrap"] = bootstrap + j
-#            each_device["username"]= YAML().get_users()[j]["username{}".format(j)]
+            each_device["username"]= YAML().get_users()[j]
             devices.append(each_device)
             j = j + 1
 
