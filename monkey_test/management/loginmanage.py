@@ -16,10 +16,11 @@ def login(device):
         capabilities['app'] = AppPath.get_app_filename(build_path)
         capabilities['platformVersion'] = device["version"]
         capabilities['deviceName'] = device["name"]
+        capabilities['udid'] = device["id"]
 
         print(capabilities)
 
-        driver = webdriver.Remote('http://localhost:4723/wd/hub', capabilities)
+        driver = webdriver.Remote('http://localhost:{}/wd/hub'.format(device['port']), capabilities)
         print(driver)
         time.sleep(WAIT_TIME)
         usernametxt = device["username"][0:device["username"].index('/')]

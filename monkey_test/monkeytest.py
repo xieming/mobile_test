@@ -34,7 +34,7 @@ current_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
 def run_monkey(device):
 
-    cmd = "adb -s {} shell monkey -p {}  -v -v 2000 > {}".format(device['id'], YAML().get_package(),get_log(device)[0])
+    cmd = "adb -s {} shell monkey -p {}  -v -v 20000 > {}".format(device['id'], YAML().get_package(),get_log(device)[0])
     run_command_on_shell(cmd)
     cmd2 = "adb logcat >{}".format(get_log(device)[1])
     run_command_on_shell(cmd2)
@@ -60,10 +60,10 @@ if __name__ == '__main__':
 
     if get_devices_info():
 
-        # pool = Pool(len(get_devices_info()))
-        # pool.map(start_appium_server,get_devices_info())
-        # pool.close()
-        # pool.join()
+        pool = Pool(len(get_devices_info()))
+        pool.map(start_appium_server,get_devices_info())
+        pool.close()
+        pool.join()
 
         pool2 = Pool(len(get_devices_info()))
         pool2.map(login,get_devices_info())

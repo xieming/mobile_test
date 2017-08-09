@@ -18,17 +18,15 @@ activity:
 engage:
   uat:
     englishtown:
-      - 11: 1
-        22: 1
-        33: 1
-        44: 1
+      - tauto2895/1
+      - tauto2896/1
+      - tauto2897/1
 
     corporate:
-      - username:
-        username:
-        username:
-        username:
-        username:
+      - acreate1100/1
+      - acreate1101/1
+      - acreate1102/1
+
 
     smartenglish:
       - username:

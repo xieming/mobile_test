@@ -10,7 +10,7 @@ from management.logmanage import log_dir
 from public.utils import kill_progress_by_name, run_command_on_shell,start_process_by_command
 from globals import  WAIT_TIME
 
-CMD = 'appium -a {} -p {} --bootstrap-port {} --session-override --command-timeout 600'
+CMD = 'appium -a {} -p {} --bootstrap-port {} --session-override --command-timeout 600 -U {} >{} 2>&1 &'
 
 
 
@@ -26,15 +26,16 @@ def start_appium_server(device):
 
     port = device['port']
     bootstrap_port = device['bootstrap']
-    appium_log = log_dir + "/" + "{}_{}_{}.txt".format(device['name'],device['version'],device['id'])
+    udid = device['id']
+    appium_log = log_dir + "/" + "server.log"
 
     # print("start appium server")
     # cmd = CMD.format(host,port,bootstrap_port)
     # print(cmd)
     # os.popen(cmd)
     # time.sleep(WAIT_TIME)
-    cmd = "appium --session-override"
-    start_process_by_command(cmd)
+    cmd = CMD.format(host,port,bootstrap_port,udid,appium_log)
+    run_command_on_shell(cmd)
     time.sleep(WAIT_TIME)
 
     #time.sleep(WAIT_TIME)
