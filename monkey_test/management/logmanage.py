@@ -22,16 +22,39 @@ def get_blacklist():
 
 
 def write_blacklist(device):
+    print(black_list)
     if not os.path.exists(black_list):
         get_blacklist()
-    cmd = "adb -s {} push {} /sdcard/{}".format(device['id'],black_list,black_list)
+    cmd = "adb push {} /sdcard/{}".format(black_list,os.path.basename(black_list))
     run_command_on_shell(cmd)
 
 
 
 if __name__ == '__main__':
 
-    get_blacklist()
+    cmd = "adb devices"
+    result = run_command_on_shell(cmd)
+    print(result)
+
+    dev = ""
+
+    for i in result[1:]:
+        if i != "":
+            each_device = {}
+            nPos = i.index("\t")
+            dev = i[:nPos]
+            print(dev)
+        else:
+            "no devices"
+
+
+    devices = dev
+
+
+
+    # get_blacklist()
+    #
+    write_blacklist(devices)
 
 
 

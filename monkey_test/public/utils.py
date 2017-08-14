@@ -37,7 +37,7 @@ def write_log(file_name, content):
         f.write(content)
 
 def check_folder(folder):
-    # if os.path.exists(folder):
-    #     shutil.rmtree(folder)
-    if not os.path.exists(folder):
-        os.makedirs(folder)
+    if os.path.exists(folder):
+        shutil.rmtree(folder)
+
+    os.makedirs(folder)

@@ -19,6 +19,7 @@ Android:
     Level_move_on: id;btn_move_on
     Change_level_button: id;imageViewDropDown
     logout: id;textview_logout
+    finished_status: xpath;//android.widget.FrameLayout['%d']/*[@resource-id="com.ef.core.engage.englishtown:id/tatusLayout"]
 
   LessonOverViewPage:
     Activity: "com.ef.core.engage.ui.screens.activity.EnglishTownLessonActivity"

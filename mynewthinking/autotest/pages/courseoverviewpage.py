@@ -83,7 +83,7 @@ class Course(Base_page):
         #self.driver.wait_activity(self.module_page_activity)
         elements = self.find_elements(self.module_page["modules"])
         print("module number is {number}".format(number=len(elements)))
-        i = 0
+        i = 1
         for element in elements:
             self.pass_one_module_android(element)
             print("start %d module" % (i))
@@ -93,9 +93,14 @@ class Course(Base_page):
         self.clickelement(self.back_button)
 
 
+
     def pass_one_module_android(self, module):
 
         module.click()
+
+        if self.is_element_exists(self.module_download):
+            self.clickelement(self.module_download)
+            time.sleep(WAIT_TIME)
 
         if self.is_element_exists(self.module_download):
             self.clickelement(self.module_download)
