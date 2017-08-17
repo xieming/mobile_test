@@ -27,9 +27,8 @@ class LoginTest:
 
     @Test()
     def pass_one_lesson(self):
-
         self.login.login_action(self.username,self.password)
-        self.course.pass_one_lesson_action("lessonthree")
+        self.course.pass_one_lesson_action("l2")
         self.course.logout_action()
 
     @Test()

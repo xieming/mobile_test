@@ -22,7 +22,7 @@ class ManageCourse(Base_page):
     Lessonchild = manage_course_page['Lessonchild']
 
     def change_level_on_GE(self,id):
-        self.wait_for_presence_of_element_located(self.Back_button)
+#        self.wait_for_presence_of_element_located(self.Back_button)
         self.clickat(self.GE_course)
         # if 6 < id <= 10:
         #     self.scroll(self.Lessons%(5), self.Lessons%(1))

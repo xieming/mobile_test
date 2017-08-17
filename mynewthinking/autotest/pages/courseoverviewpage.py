@@ -5,13 +5,12 @@ import time
 from autotest.Base import Base_page
 from autotest.public.elementhelper import element_exist
 from autotest.public.yamlmanage import YAML
-from globals import PLATFORM,WAIT_TIME,WAIT_MAX_TIME,WAIT_MINI_TIME,WAIT_LONG_TIME
-
+from globals import PLATFORM, WAIT_TIME, WAIT_MAX_TIME, WAIT_MINI_TIME, WAIT_LONG_TIME
 
 
 class Course(Base_page):
-    def __init__(self,driver):
-        self.driver=driver
+    def __init__(self, driver):
+        self.driver = driver
 
     course_page = YAML().current_page("CourseOverViewPage")
 
@@ -23,6 +22,7 @@ class Course(Base_page):
     lesson3 = course_page["lessonthree"]
     lesson4 = course_page["lessonfour"]
     lessonpl = course_page["lessonpl"]
+    finishedstatus = course_page["finished_status"]
 
     lesson_page = YAML().current_page("LessonOverViewPage")
     back_button = lesson_page["back_button"]
@@ -43,15 +43,12 @@ class Course(Base_page):
         allmodules = module_page["moduleall"]
         moduleseachline = module_page["moduleach"]
 
-
-
     def course_overview_android(self):
         self.wait_activity(self.course_page_activity)
         self.saveScreenshot("%s.png" % (self.course_page))
 
     def change_level_btn(self):
         self.clickat(self.change_course_btn)
-
 
     def logout_android(self):
         self.course_overview_android()
@@ -64,13 +61,14 @@ class Course(Base_page):
     def pass_one_unit_android(self):
         self.wait_activity(self.course_page_activity)
         self.wait_for_presence_of_element_located(self.lessonall)
-        lessons = self.find_elements(self.lessonall)
-        #lessons = self.driver.find_elements_by_id("unit_lessons_page")
-        print(lessons)
-        for i in range(1,5):
+        # lessons = self.find_elements(self.lessonall)
+        # lessons = self.driver.find_elements_by_id("unit_lessons_page")
+        # print(lessons)
+
+        for i in range(1, 5):
             print("start lesson {}".format(i))
-            print("lesson {}".format(lessons[i]))
-            self.pass_one_lesson_android(eval("self.lesson{}".format(i)))
+            # print("lesson {}".format(lessons[i]))
+            self.pass_one_lesson_android(eval('self.lesson{}'.format(i)))
 
     def pass_one_lesson_android(self, lesson):
 
@@ -80,7 +78,7 @@ class Course(Base_page):
         self.clickelement(self.lesson_collapse)
 
         self.wait_for_presence_of_element_located(self.module_page["modules"])
-        #self.driver.wait_activity(self.module_page_activity)
+        # self.driver.wait_activity(self.module_page_activity)
         elements = self.find_elements(self.module_page["modules"])
         print("module number is {number}".format(number=len(elements)))
         i = 1
@@ -92,6 +90,13 @@ class Course(Base_page):
         time.sleep(WAIT_MINI_TIME)
         self.clickelement(self.back_button)
 
+    def assert_lesson_passed(self,lesson):
+        self.wait_activity(self.course_page_activity)
+        self.wait_for_presence_of_element_located(self.lessonall)
+        if self.wait_for_presence_of_element_located(lesson):
+            return True
+        else:
+            return False
 
 
     def pass_one_module_android(self, module):
@@ -112,10 +117,8 @@ class Course(Base_page):
         if self.is_element_exists(self.module_download):
             time.sleep(WAIT_MAX_TIME)
 
-
         self.wait_for_presence_of_element_located(self.module_start)
         self.clickelement(self.module_start)
-
 
         self.wait_for_presence_of_element_located(self.activity_skip)
         while self.is_element_exists(self.activity_skip):
@@ -124,7 +127,6 @@ class Course(Base_page):
 
         time.sleep(WAIT_MINI_TIME)
         self.clickelement(self.countinue_button)
-
 
     def logout_ios(self):
         element = element_exist(self.driver)
@@ -144,7 +146,7 @@ class Course(Base_page):
             print("lesson {}".format(lessons[i]))
             self.pass_one_lesson_ios(lessons[i])
 
-    def pass_one_lesson_ios(self,lesson):
+    def pass_one_lesson_ios(self, lesson):
         time.sleep(15)
         self.clickat(lesson)
 
@@ -190,30 +192,33 @@ class Course(Base_page):
         if PLATFORM == "Android":
             self.change_level_btn()
 
-
-
     def pass_one_lesson_action(self, lesson):
-        if 'one' in lesson:
+        if '1' in lesson:
             takelesson = self.lesson1
+            lessonid = 1
 
-        if 'two' in lesson:
+        if '2' in lesson:
             takelesson = self.lesson2
+            lessonid = 2
 
-        if 'three' in lesson:
+        if '3' in lesson:
             takelesson = self.lesson3
+            lessonid = 3
 
-        if 'four' in lesson:
+        if '4' in lesson:
             takelesson = self.lesson4
+            lessonid = 4
         if PLATFORM == "Android":
             self.pass_one_lesson_android(takelesson)
+            assert(self.assert_lesson_passed(self.finishedstatus%(lessonid)))
 
         if PLATFORM == "IOS":
             self.pass_one_lesson_ios(takelesson)
 
     def pass_one_unit_action(self):
+        # takelesson = [self.lesson1, self.lesson2, self.lesson3, self.lesson4]
         if PLATFORM == "Android":
             self.pass_one_unit_android()
 
         if PLATFORM == "IOS":
             self.pass_one_unit_ios()
-
