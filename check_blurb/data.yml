@@ -1,0 +1,36 @@
+---
+servicepath:
+  path: /services/api/mobile/service/
+
+login:
+  serviceRequest:
+    "appVersion": "1.4.2"
+    "password": "1"
+    "platform": "Android"
+    "productId": 1
+    "userName": "tauto4327"
+
+studycontext:
+  serviceRequest:
+    "appVersion": "1.4.2"
+    "culturecode": "zh-CN"
+    "platform": "Android"
+    "productId": 1
+    "sessionId": "fc1d75b9b81447aeb77b748a9404350b"
+    "token": "ADEAMQAzADAAMwA3ADUAMwB8ADEANQAwADIAOAA3ADUAMwA1ADMAOQAyADMAfAB0AGEAdQB0AG8ANAAzADIANwB8AE0AfABTA"
+
+coursestructure:
+  serviceRequest:
+    "level": 20000524
+    "countrycode": "us"
+    "partnercode": "None"
+    "siteversion": "qa"
+    "appVersion": "1.4.2"
+    "culturecode": "zh-CN"
+    "platform": "Android"
+    "productId": 1
+    "sessionId": "fc1d75b9b81447aeb77b748a9404350b"
+    "token": "ADEAMQAzADAAMwA3ADUAMwB8ADEANQAwADIAOAA3ADUAMwA1ADMAOQAyADMAfAB0AGEAdQB0AG8ANAAzADIANwB8AE0AfABTA"
+
+
+
