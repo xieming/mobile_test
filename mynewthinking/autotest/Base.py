@@ -149,6 +149,9 @@ class Base_page():
         self.wait_for_presence_of_element_located(element)
         ele = self.find_element(element)
         ele.click()
+    def getelementtext(self,element):
+        text = self.find_element(element).text()
+        return text
 
     def savePngName(self, name):
         """

@@ -1,10 +1,15 @@
 import re
 import requests
 from globals import ENV
+import langid
 
 
 token_page_url = '{}/services/oboe2/Areas/ServiceTest/MemberSiteSetting.aspx'
 url = "http://" + ENV +".englishtown.com"
+
+
+
+
 
 
 def get_token():
@@ -50,6 +55,30 @@ def score_helper_load_student(student_name_or_id):
             result['current_unit'] = int(re.findall(r'Unit([\d ]+)', current_unit)[0].strip())  # 1~6
 
     return result
+
+def get_language_id(language):
+    # English,Español,Deutsch,Français,Italiano,简体中文
+    language_id = {
+        "English": "en",
+        "Deutsch": "de",
+        "Español": "es",
+        "Français": "fr",
+        "Italiano": "it",
+        "简体中文": "zh"
+    }[language]
+    return language_id
+
+
+def check_language_type(text, language):
+    lineTuple = langid.classify(text)  # 调用langid来对该行进行语言检测
+    print(lineTuple[0])
+    if lineTuple[0] != get_language_id(language):
+        return False
+    else:
+        return True
+
+
+
 
 
 if __name__ == '__main__':

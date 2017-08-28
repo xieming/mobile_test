@@ -18,6 +18,7 @@ Android:
     Download: id;download_progress_bar
     Level_move_on: id;btn_move_on
     Change_level_button: id;imageViewDropDown
+    unittitle: id; textViewTitle
     logout: id;textview_logout
     finished_status: xpath;//android.widget.FrameLayout['%d']/*[@resource-id="com.ef.core.engage.englishtown:id/tatusLayout"]
 
@@ -36,6 +37,8 @@ Android:
 
   SettingPage:
     language: id;textview_set_language
+    languageset: xpath;//*[contains(@resource-id,'levelName') and @text='%s']
+    language_back: xpath;//*[@resource-id="com.ef.core.engage.englishtown:id/action_bar"]/android.widget.ImageButton
     sync: id;textview_sync
     logout: id;textview_logout
 
