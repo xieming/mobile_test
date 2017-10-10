@@ -1,0 +1,30 @@
+---
+env:
+  uat: mobilefirst
+  dev: mobiledev
+  qa: qa
+  staging: staging
+
+api:
+  login: /services/api/mobile/service/login
+  studycontext: /services/api/mobile/service/studycontext
+  coursestructure: /services/api/mobile/service/coursestructure
+  activitycontent: /services/api/mobile/service/activitycontent
+
+dla:
+  platform: Android
+  culturecode: en
+  countryCode: us
+  partnerCode: None
+  siteVersion: development
+  appVersion: 1.5.0
+  productId: 1
+
+ec:
+  platform: Android
+  culturecode: en
+  countryCode: cn
+  partnerCode: Cool
+  siteVersion: development
+  appVersion: 0.7.0
+  productId: 4
