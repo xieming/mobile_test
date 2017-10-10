@@ -24,13 +24,23 @@ class REQUEST():
         else:
             print("login fail, please check your account")
 
+<<<<<<< HEAD
+    def get_response(self,tag,level=20000524):
+=======
     def get_response(self,tag):
+>>>>>>> ba04dda4cf91056bd49e265afc7e7491ae6c8242
         path, data = YAML().get_api(tag)
         if self.sessionId is None or self.token is None:
             self.get_token(username,password)
 
         data['serviceRequest']['sessionId']=self.sessionId
         data['serviceRequest']['token'] = self.token
+<<<<<<< HEAD
+        if tag == "coursestructure":
+            data['serviceRequest']['level'] = level
+
+=======
+>>>>>>> ba04dda4cf91056bd49e265afc7e7491ae6c8242
         url = host + path
         response = requests.post(url=url,json=data)
         if response.status_code == 200:
