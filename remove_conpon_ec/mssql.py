@@ -4,12 +4,12 @@ __author__ = 'ming.xiesh'
 #coding=utf-8  
 import sys  
 import pymssql  
-import ConfigParser  
+import configparser
 
 class MSSQL:
 
     def __init__(self):
-        cf = ConfigParser.ConfigParser()
+        cf = configparser.ConfigParser()
         #read config
         cf.read("ini.conf")
         self.host = cf.get("dbsetting", "host")
@@ -64,7 +64,7 @@ class MSSQL:
 
             return len(rows),rows[len(rows)-1]
         except:
-            connection.rollback()
+            self.__get_connection.rollback()
             raise
 
         
